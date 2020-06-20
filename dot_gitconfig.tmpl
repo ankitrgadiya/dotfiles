@@ -1,0 +1,79 @@
+# -*- mode: conf-unix; -*-
+# Begin ~/.gitconfig
+
+# Copyright 2016-2020, Ankit R Gadiya
+# BSD License
+
+# I introduce myself to git by configuring my name, email and GPG
+# key.
+[user]
+	name = Ankit R Gadiya
+{{- if eq .machine "home" }}
+	email = git@argp.in
+	signingkey = 3A25137FB8A87C77C5EAC226322DB2D680BAFB16
+{{- else if eq .machine "work" }}
+	email = ankit@semut.in
+	signingkey = 43101E90B7D685CAA52C728CAFC5D95554A08F6D
+{{- end }}
+
+# I have enabled signing commits with GPG for every commit
+[commit]
+	gpgsign = true
+
+# Use gpg2 executable in the PATH for signing the commits
+[gpg]
+	program = gpg2
+
+# Enable colors in output
+[color]
+	ui = true
+
+# Use Emacs as editor
+[core]
+	quotepath = false
+	editor = emacs-client
+
+# Aliases
+
+## Golang
+[alias]
+	change = codereview change
+	gofmt = codereview gofmt
+	mail = codereview mail
+	pending = codereview pending
+	submit = codereview submit
+	sync = codereview sync
+
+## Github
+[url "ssh://git@github.com/ankitrgadiya/"]
+	insteadOf = argh:
+[url "ssh://git@github.com/"]
+	insteadOf = gh:
+
+## Gitlab
+[url "ssh://git@gitlab.com/ankitrgadiya/"]
+	insteadOf = argl:
+[url "ssh://git@gitlab.com/"]
+	insteadOf = gl:
+{{- if eq .machine "work" }}
+[url "ssh://git@work.gitlab.com/semut-technologies/"]
+	insteadOf = st:
+[url "ssh://git@work.gitlab.com/"]
+	insteadOf = glw:
+{{- end}}
+
+## Bitbucket
+[url "ssh://git@bitbucket.org/"]
+	insteadOf = bb:
+
+## Go Modules
+## Modules use VCS to fetch the code. For private repositories this
+## means the server will ask for username and password. Modules
+##  however do not catch that which results in error. Adding these
+## lines essentially replace "https" protocol with "ssh" protocol.
+[url "ssh://git@github.com/"]
+	insteadOf = "https://github.com/"
+[url "ssh://git@gitlab.com/"]
+	insteadOf = "https://gitlab.com/"
+
+# End ~/.gitconfig

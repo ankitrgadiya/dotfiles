@@ -1,0 +1,88 @@
+# Begin ~/.ssh/config
+
+# Copyright 2016-2020, Ankit R Gadiya
+# BSD License
+
+## Github
+Host github.com
+  HostName github.com
+  User git
+  Port 22
+  IdentityFile ~/.ssh/git
+
+## Gitlab
+Host gitlab.com
+  HostName gitlab.com
+  User git
+  Port 22
+  IdentityFile ~/.ssh/git
+
+{{- if eq .machine "work" }}
+## Gitlab Work
+Host work.gitlab.com
+  HostName gitlab.com
+  User git
+  Port 22
+  IdentityFile ~/.ssh/git-work
+{{- end}}
+
+## Bitbucket
+Host bitbucket.org
+  HostName bitbucket.org
+  User git
+  Port 22
+  IdentityFile ~/.ssh/git
+
+## Archlinux AUR
+Host aur.archlinux.com
+  HostName aur.archlinux.org
+  User git
+  Port 22
+  IdentityFile ~/.ssh/git
+
+## SDF
+Host sdf
+  HostName sdf.org
+  User argv
+  Port 22
+  IdentityFile ~/.ssh/server
+
+## Rsync
+Host rsync
+  HostName hk-s020.rsync.net
+  User 20400
+  Port 22
+  IdentityFile ~/.ssh/server
+
+{{- if eq .machine "work" }}
+# Work
+Host kops-or
+  HostName kops-or.semut.io
+  User ankit
+  Port 22
+  IdentityFile ~/.ssh/ec2-or
+
+Host kops-or-tmux
+  HostName kops-or.semut.io
+  User ankit
+  Port 22
+  IdentityFile ~/.ssh/ec2-or
+  RequestTTY force
+  RemoteCommand tmux new -s Bastion || tmux attach -t Bastion
+
+Host kops-va
+  HostName kops-va.semut.io
+  User ec2-user
+  Port 22
+  IdentityFile ~/.ssh/ec2-or
+
+Host kops-va-tmux
+  HostName kops-va.semut.io
+  User ec2-user
+  Port 22
+  IdentityFile ~/.ssh/ec2-or
+  RequestTTY force
+  RemoteCommand tmux new -s Bastion || tmux attach -t Bastion
+{{- end}}
+
+# End ~/.ssh/config

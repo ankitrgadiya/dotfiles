@@ -1,0 +1,23 @@
+! -*- mode: conf-xdefaults; -*-
+! Begin ~/.Xresources
+
+! Copyright 2016-2020, Ankit R Gadiya
+! BSD 3-Clause License
+
+! URxvt config
+URxvt.font: xft:Iosevka:style=Medium:size=11
+URxvt.scrollBar: false
+
+! For Secondary Screen
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+
+! Extensions
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+! Colorscheme
+#include ".Xresources.d/colorschemes/gruvbox-dark"
+
+! End ~/.Xresources

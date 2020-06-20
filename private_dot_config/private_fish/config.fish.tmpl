@@ -1,0 +1,136 @@
+# Begin ~/.config/fish/config.fish
+
+# Copyright 2019, Ankit R Gadiya
+# BSD License
+
+{{- if eq .chezmoi.os "darwin" }}
+# Homebrew package manager requires some environment variables. This is a Fish
+# compatible version of (brew shellenv).
+set -x HOMEBREW_PREFIX "/usr/local"
+set -x HOMEBREW_CELLAR "$HOMEBREW_PREFIX/Cellar"
+set -x HOMEBREW_REPOSITORY "$HOMEBREW_PREFIX/Homebrew"
+set -x PATH "$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin" $PATH
+set -x MANPATH "$HOMEBREW_PREFIX/share/man" $MANPATH
+set -x INFOPATH "$HOMEBREW_PREFIX/share/info" $INFOPATH
+
+# Mac specific settings.
+# The pre-installed coreutils in Mac are BSD version. Brew installs the GNU
+# versions but prepends "g" in front of them. The symlinks exists for directly
+# using the commands. The following adds the symlinks before PATH so it takes
+# precedence before PATH variables.
+set PATH "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin" $PATH
+set PATH "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin" $PATH
+{{- end }}
+
+
+# Enable direnv hook for fish if it is installed
+if type direnv &> /dev/null
+    eval (direnv hook fish)
+end
+
+# Load Fzf Key bindingins into Fish session
+{{- if eq .chezmoi.os "darwin" }}
+if test -e "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.fish"
+   source $HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.fish
+   fzf_key_bindings
+end
+{{- else if eq .chezmoi.os "linux" }}
+if test -e "/usr/share/fzf/shell/key-bindings.fish"
+   source /usr/share/fzf/shell/key-bindings.fish
+   fzf_key_bindings
+end
+{{- end }}
+
+# Customize options for Fzf keybindings The configured keybindings for Fzf can
+# be configured using the flags. Fzf requires the specific variables to be set
+# with the flags for it to recognise it. I have configured C-t which is used to
+# search for files under current directory to display the file. I have also
+# configured M-c which shows the direcoties to display the directory tree of the
+# selected directory.
+set -x FZF_DEFAULT_OPTS "--color=16"
+set -x FZF_CTRL_T_OPTS "--preview 'bat {}'"
+set -x FZF_ALT_C_OPTS "--preview 'tree -L 1 -C {} | head -200'"
+
+# Abbreviations!
+abbr src cd ~/.local/src
+
+# Git aliases
+alias gs='git status'
+alias gd='git diff'
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gsl='git shortlog'
+alias ga='git shortlog -s'
+
+# Misc aliases
+alias f='free'
+alias g='grep'
+alias t='tmux -u'
+alias u='uptime -p'
+
+# Enable Human readable versions
+alias df='df --human'
+alias du='du --human'
+alias free='free --human'
+
+# Make 'em interactive to save your ass
+alias cp='cp --interactive --verbose'
+alias mv='mv --interactive --verbose'
+alias rm='rm --interactive --verbose'
+alias mkdir='mkdir --verbose'
+
+# Following are the newer alternatives to some Unix tools. These aliases are
+# optional and will only be enabled if the programs are present.
+if type bat &> /dev/null;
+    alias cat='bat'
+end
+if type prettyping &> /dev/null;
+    alias ping='prettyping'
+end
+if type fd &> /dev/null;
+    alias find='fd'
+end
+if type rg &> /dev/null;
+    alias grep='rg'
+end
+if type lf &> /dev/null;
+    alias ranger='lf'
+end
+if type exa &> /dev/null;
+    alias ls='exa'
+end
+
+# Enable default download options for Axel
+alias axel='axel -n 15 -a -k'
+
+# Golang configurations
+{{- if eq .chezmoi.os "darwin" }}
+set -x GOROOT "$HOMEBREW_PREFIX/opt/golang/libexec"
+{{- else if eq .chezmoi.os "linux" }}
+set -x GOROOT "/usr/lib/golang"
+{{- end }}
+set -x GOPATH $HOME/.local/go
+set -x GO111MODULE "auto"
+set -x GOPROXY "https://proxy.golang.org,direct"
+set -x GOPRIVATE "gitlab.com/semut-technologies/*"
+set -x PATH $GOROOT/bin $GOPATH/bin $PATH
+
+# Add local directories to the Path
+set -x PATH $HOME/.local/bin $PATH
+set -x MANPATH $HOME/.local/share/man:$MANPATH
+
+# I use Emacs for editing text files. Emacs can also be configured to
+# work in Client-Server fashion which means reduced time for launching
+# client. Emacs 26+ (atleast on Debian) also comes with a user service
+# (systemd) to run Emacs daemon automatically. However, if the daemon
+# is not running the desirable result is to start a daemon and connect
+# to it as client. I had some trouble in past where some command was
+# not accepting flags in the $EDITOR variable and so the client was
+# not working. So, I wrapped up the logic described in a simple shell
+# script. I am using it as EDITOR now.
+set -x EDITOR "emacs-editor"
+set -x VISUAL "emacs-visual"
+
+# I <3 Vi key-bindings.
+fish_vi_key_bindings
+
+# End ~/.config/fish/config.fish

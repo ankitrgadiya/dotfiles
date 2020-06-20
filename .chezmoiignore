@@ -1,0 +1,14 @@
+# Begin ~/.local/share/chezmoi/.chezmoiignore
+
+# Copyright 2020, Ankit R Gadiya
+
+# Add X Server files if Desktop Environment is Gnome
+{{- if ne .desktop "i3" }}
+.Xresources
+.Xmodmap
+.xinitrc
+.Xresources.d/
+.config/i3/
+{{- end }}
+
+# End ~/.local/share/chezmoi/.chezmoiignore
