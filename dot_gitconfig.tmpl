@@ -12,8 +12,8 @@
 	email = git@argp.in
 	signingkey = 3A25137FB8A87C77C5EAC226322DB2D680BAFB16
 {{- else if eq .machine "work" }}
-	email = ankit@semut.in
-	signingkey = 43101E90B7D685CAA52C728CAFC5D95554A08F6D
+	email = ankit.gadiya@rapyuta-robotics.com
+	signingkey = 8C56990BFCA0F5209FF5A3026572A8682F35C253
 {{- end }}
 
 # I have enabled signing commits with GPG for every commit
@@ -55,14 +55,10 @@
 	insteadOf = argl:
 [url "ssh://git@gitlab.com/"]
 	insteadOf = gl:
-{{- if eq .machine "work" }}
-[url "ssh://git@work.gitlab.com/semut-technologies/"]
-	insteadOf = st:
-[url "ssh://git@work.gitlab.com/"]
-	insteadOf = glw:
-{{- end}}
 
 ## Bitbucket
+[url "ssh://git@bitbucket.org/rapyutians/"]
+	insteadOf = rr:
 [url "ssh://git@bitbucket.org/"]
 	insteadOf = bb:
 

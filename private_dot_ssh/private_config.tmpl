@@ -17,15 +17,6 @@ Host gitlab.com
   Port 22
   IdentityFile ~/.ssh/git
 
-{{- if eq .machine "work" }}
-## Gitlab Work
-Host work.gitlab.com
-  HostName gitlab.com
-  User git
-  Port 22
-  IdentityFile ~/.ssh/git-work
-{{- end}}
-
 ## Bitbucket
 Host bitbucket.org
   HostName bitbucket.org
@@ -53,36 +44,5 @@ Host rsync
   User 20400
   Port 22
   IdentityFile ~/.ssh/server
-
-{{- if eq .machine "work" }}
-# Work
-Host kops-or
-  HostName kops-or.semut.io
-  User ankit
-  Port 22
-  IdentityFile ~/.ssh/ec2-or
-
-Host kops-or-tmux
-  HostName kops-or.semut.io
-  User ankit
-  Port 22
-  IdentityFile ~/.ssh/ec2-or
-  RequestTTY force
-  RemoteCommand tmux new -s Bastion || tmux attach -t Bastion
-
-Host kops-va
-  HostName kops-va.semut.io
-  User ec2-user
-  Port 22
-  IdentityFile ~/.ssh/ec2-or
-
-Host kops-va-tmux
-  HostName kops-va.semut.io
-  User ec2-user
-  Port 22
-  IdentityFile ~/.ssh/ec2-or
-  RequestTTY force
-  RemoteCommand tmux new -s Bastion || tmux attach -t Bastion
-{{- end}}
 
 # End ~/.ssh/config
