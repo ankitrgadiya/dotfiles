@@ -35,10 +35,17 @@ if test -e "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.fish"
    fzf_key_bindings
 end
 {{- else if eq .chezmoi.os "linux" }}
+    {{- if eq .distro "fedora" }}
 if test -e "/usr/share/fzf/shell/key-bindings.fish"
    source /usr/share/fzf/shell/key-bindings.fish
    fzf_key_bindings
 end
+    {{- else if eq .distro "ubuntu" }}
+if test -e "/usr/share/doc/fzf/examples/key-bindings.fish"
+   source /usr/share/doc/fzf/examples/key-bindings.fish
+   fzf_key_bindings
+end
+    {{- end }}
 {{- end }}
 
 # Customize options for Fzf keybindings The configured keybindings for Fzf can
@@ -105,8 +112,10 @@ alias axel='axel -n 15 -a -k'
 # Golang configurations
 {{- if eq .chezmoi.os "darwin" }}
 set -x GOROOT "$HOMEBREW_PREFIX/opt/golang/libexec"
-{{- else if eq .chezmoi.os "linux" }}
+{{- else if eq .distro "fedora" }}
 set -x GOROOT "/usr/lib/golang"
+{{- else if eq .distro "ubuntu" }}
+set -x GOROOT "/usr/lib/go-1.13"
 {{- end }}
 set -x GOPATH $HOME/.local/go
 set -x GO111MODULE "auto"

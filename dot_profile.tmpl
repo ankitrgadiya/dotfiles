@@ -22,8 +22,10 @@ export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 # Golang configuration
 {{- if eq .chezmoi.os "darwin" }}
 export GOROOT="$HOMEBREW_PREFIX/opt/golang/libexec"
-{{- else if eq .chezmoi.os "linux" }}
+{{- else if eq .distro "fedora" }}
 export GOROOT="/usr/lib/golang"
+{{- else if eq .distro "ubuntu" }}
+export GOROOT="/usr/lib/go-1.13"
 {{- end}}
 export GOPATH="$HOME/.local/go"
 export GO111MODULE="auto"
