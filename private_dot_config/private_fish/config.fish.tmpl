@@ -142,4 +142,11 @@ set -x VISUAL "emacs-visual"
 # I <3 Vi key-bindings.
 fish_vi_key_bindings
 
+{{- if eq .machine "work" }}
+# ROS Environment
+if test -e /opt/ros/melodic/share/rosbash/rosfish
+    source /opt/ros/melodic/share/rosbash/rosfish
+end
+{{- end }}
+
 # End ~/.config/fish/config.fish
