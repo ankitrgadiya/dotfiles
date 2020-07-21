@@ -147,6 +147,11 @@ fish_vi_key_bindings
 if test -e /opt/ros/melodic/share/rosbash/rosfish
     source /opt/ros/melodic/share/rosbash/rosfish
 end
+
+# Catkin Setup
+if test -e $HOME/.local/src/catkin/devel/setup.sh
+   bass source $HOME/.local/src/catkin/devel/setup.sh
+end
 {{- end }}
 
 # End ~/.config/fish/config.fish
