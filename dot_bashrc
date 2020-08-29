@@ -194,4 +194,7 @@ export docs="$HOME/Documents/"
 export downloads="$HOME/Downloads/"
 export go="$HOME/.local/go/"
 
+# Enable Nord dircolors
+eval $(dircolors ~/.dir_colors)
+
 # End ~/.bashrc
