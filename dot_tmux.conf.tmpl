@@ -4,18 +4,10 @@
 # Copyright 2016-2020, Ankit R Gadiya
 # BSD 3-Clause License
 
-# $TERM
-set -g default-terminal "screen-256color"
-
 # Remap prefix from 'C-b' to 'C-a'
 unbind C-b
 set -g prefix C-a
 bind-key C-a send-prefix
-
-# Status line
-set -g status-justify centre
-set -g status-interval 2
-set -g status-position bottom
 
 # Easy pane switching and spliting
 bind -n M-h select-pane -L
@@ -33,12 +25,6 @@ set -g bell-action none
 setw -g monitor-activity off
 setw -g monitor-silence 0
 
-# Increase the Scroll limit to 10000
-set-option -g history-limit 10000
-
-# Clock
-set-window-option -g clock-mode-colour green
-
 # Quick reload config
 bind-key r source-file ~/.tmux.conf \; display-message "Configuration reloaded"
 
@@ -48,7 +34,13 @@ setw -g automatic-rename off
 set -g set-titles on
 set -g set-titles-string '#S'
 
-# Disable delay after esc key (Resolve lag when switching mode in vim)
-set -sg escape-time 0
+# Tmux Plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'arcticicestudio/nord-tmux'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+
+# Initialize TMUX plugin manager (keep this line at the very b ttom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
 
 # End ~/.tmux.conf
