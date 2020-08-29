@@ -1,0 +1,40 @@
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+[character]
+symbol = "[I] ➜"
+vicmd_symbol = "[N] ➜"
+disabled = false
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+use_logical_path = true
+fish_style_pwd_dir_length = 1
+disabled = false
+
+[username]
+show_always = true
+disabled = false
+
+[git_branch]
+symbol = "🌱 "
+disabled = false
+
+[jobs]
+symbol = "💠"
+
+[line_break]
+disabled = false
+
+[hostname]
+disabled = true
+
+[cmd_duration]
+disabled = true
+
+[golang]
+disabled = true
+
+[kubernetes]
+disabled = true

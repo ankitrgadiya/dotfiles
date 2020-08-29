@@ -143,6 +143,9 @@ set -x VISUAL "emacs-visual"
 # I <3 Vi key-bindings.
 fish_vi_key_bindings
 
+# Prompt
+starship init fish | source
+
 # Bat Settings
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -x MANROFFOPT "-c"

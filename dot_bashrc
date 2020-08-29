@@ -41,10 +41,9 @@ then
 	fi
 fi
 
-# I like to have a simple command prompt without color or any kind of
-# specialization. This is similar to default prompt style in RedHat
-# Linux.
-export PS1="\u@\h \w λ "
+# Starship is a unique shell agnostic prompt written in Rust. I'm trying it out,
+# so I can have same prompt across shells.
+eval "$(starship init bash)"
 
 # Set the TERM variable is used by software to determine the
 # capabilities of the terminal emulator. By setting it to
