@@ -111,7 +111,9 @@ end
 alias axel='axel -n 15 -a -k'
 
 # Golang configurations
-{{- if eq .chezmoi.os "darwin" }}
+{{- if eq .machine "work" }}
+set -x GOROOT "/usr/local/lib/go-1.11"
+{{- else if eq .chezmoi.os "darwin" }}
 set -x GOROOT "$HOMEBREW_PREFIX/opt/golang/libexec"
 {{- else if eq .distro "fedora" }}
 set -x GOROOT "/usr/lib/golang"
@@ -120,7 +122,11 @@ set -x GOROOT "/usr/lib/go-1.13"
 {{- end }}
 set -x GOPATH $HOME/.local/go
 set -x GO111MODULE "auto"
+{{- if eq .machine "work" }}
+set -x GOPROXY "direct"
+{{- else }}
 set -x GOPROXY "https://proxy.golang.org,direct"
+{{- end }}
 set -x GOPRIVATE "gitlab.com/semut-technologies/*"
 set -x PATH $GOROOT/bin $GOPATH/bin $PATH
 

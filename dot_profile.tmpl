@@ -20,16 +20,22 @@ export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 {{- end }}
 
 # Golang configuration
-{{- if eq .chezmoi.os "darwin" }}
+{{- if eq .machine "work" }}
+export GOROOT="/usr/local/lib/go-1.11"
+{{- else if eq .chezmoi.os "darwin" }}
 export GOROOT="$HOMEBREW_PREFIX/opt/golang/libexec"
 {{- else if eq .distro "fedora" }}
 export GOROOT="/usr/lib/golang"
 {{- else if eq .distro "ubuntu" }}
 export GOROOT="/usr/lib/go-1.13"
-{{- end}}
+{{- end }}
 export GOPATH="$HOME/.local/go"
 export GO111MODULE="auto"
+{{- if eq .machine "work" }}
+export GOPROXY="direct"
+{{- else }}
 export GOPROXY="https://proxy.golang.org,direct"
+{{- end }}
 {{- if eq .machine "work" }}
 export GOPRIVATE="bitbucket.org/rapyutians/*"
 {{- end }}
