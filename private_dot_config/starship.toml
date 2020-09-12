@@ -2,8 +2,8 @@
 add_newline = false
 
 [character]
-symbol = "[I] ➜"
-vicmd_symbol = "[N] ➜"
+symbol = "[I] ➜ "
+vicmd_symbol = "[N] ➜ "
 disabled = false
 
 [directory]
