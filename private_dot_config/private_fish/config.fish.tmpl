@@ -45,6 +45,11 @@ if test -e "/usr/share/doc/fzf/examples/key-bindings.fish"
    source /usr/share/doc/fzf/examples/key-bindings.fish
    fzf_key_bindings
 end
+    {{- else if eq .distro "arch" }}
+if test -e "/usr/share/fish/vendor_functions.d/fzf_key_bindings.fish"
+   source /usr/share/fish/vendor_functions.d/fzf_key_bindings.fish
+   fzf_key_bindings
+end
     {{- end }}
 {{- end }}
 
