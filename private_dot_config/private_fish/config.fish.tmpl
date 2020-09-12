@@ -119,6 +119,8 @@ set -x GOROOT "$HOMEBREW_PREFIX/opt/golang/libexec"
 set -x GOROOT "/usr/lib/golang"
 {{- else if eq .distro "ubuntu" }}
 set -x GOROOT "/usr/lib/go-1.13"
+{{- else if eq .distro "arch" }}
+set -x GOROOT "/usr/lib/go"
 {{- end }}
 set -x GOPATH $HOME/.local/go
 set -x GO111MODULE "auto"
@@ -127,7 +129,6 @@ set -x GOPROXY "direct"
 {{- else }}
 set -x GOPROXY "https://proxy.golang.org,direct"
 {{- end }}
-set -x GOPRIVATE "gitlab.com/semut-technologies/*"
 set -x PATH $GOROOT/bin $GOPATH/bin $PATH
 
 # Add local directories to the Path

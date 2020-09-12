@@ -28,6 +28,8 @@ export GOROOT="$HOMEBREW_PREFIX/opt/golang/libexec"
 export GOROOT="/usr/lib/golang"
 {{- else if eq .distro "ubuntu" }}
 export GOROOT="/usr/lib/go-1.13"
+{{- else if eq .distro "arch" }}
+export GOROOT="/usr/lib/go"
 {{- end }}
 export GOPATH="$HOME/.local/go"
 export GO111MODULE="auto"
@@ -35,9 +37,6 @@ export GO111MODULE="auto"
 export GOPROXY="direct"
 {{- else }}
 export GOPROXY="https://proxy.golang.org,direct"
-{{- end }}
-{{- if eq .machine "work" }}
-export GOPRIVATE="bitbucket.org/rapyutians/*"
 {{- end }}
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 

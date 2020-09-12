@@ -9,7 +9,7 @@
 # versions of the dotfiles.
 {{- $machineType := promptString "machine type (work, home)" }}
 {{- $desktop := promptString "desktop (gnome, i3)" }}
-{{- $distro := promptString "distro (fedora, ubuntu)" }}
+{{- $distro := promptString "distro (fedora, ubuntu, arch)" }}
 data:
   machine: {{ $machineType }}
   desktop: {{ $desktop }}
