@@ -2,8 +2,9 @@
 add_newline = false
 
 [character]
-symbol = "[I] ➜ "
-vicmd_symbol = "[N] ➜ "
+format = "$symbol "
+success_symbol = "[<I> ➜ ](bold green)"
+vicmd_symbol = "[<N> ➜ ](bold green)"
 disabled = false
 
 [directory]
