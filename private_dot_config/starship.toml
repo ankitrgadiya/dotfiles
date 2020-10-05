@@ -4,6 +4,7 @@ add_newline = false
 [character]
 format = "$symbol "
 success_symbol = "[<I> ➜ ](bold green)"
+error_symbol = "[<I> ➜ ](bold red)"
 vicmd_symbol = "[<N> ➜ ](bold green)"
 disabled = false
 
