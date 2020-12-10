@@ -169,6 +169,8 @@ bass (dircolors ~/.dir_colors)
 # ROS Environment
 if test -e /opt/ros/melodic/share/rosbash/rosfish
     source /opt/ros/melodic/share/rosbash/rosfish
+    bass source /opt/ros/melodic/setup.bash
+    set -x PYTHONPATH $PYTHONPATH /opt/ros/melodic/lib/python3.8/site-packages /usr/lib/python3.8/site-packages
 end
 
 # Catkin Setup
