@@ -18,6 +18,7 @@ call minpac#add('senderle/restoreview')
 call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-surround')
 call minpac#add('fatih/vim-go')
+call minpac#add('elixir-editors/vim-elixir')
 " call minpac#add('francoiscabrol/ranger.vim')
 
 " Helper commands to access Package manager's functions
