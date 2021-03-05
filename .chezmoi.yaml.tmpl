@@ -8,8 +8,8 @@
 # configured variables are used by Template files to configure machine specific
 # versions of the dotfiles.
 {{- $machineType := promptString "machine type (work, home)" }}
-{{- $desktop := promptString "desktop (gnome, i3)" }}
-{{- $distro := promptString "distro (fedora, ubuntu, arch)" }}
+{{- $desktop := promptString "desktop (mac, gnome, i3)" }}
+{{- $distro := promptString "distro (mac, fedora, ubuntu, arch)" }}
 data:
   machine: {{ $machineType }}
   desktop: {{ $desktop }}

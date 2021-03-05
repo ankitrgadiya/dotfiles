@@ -196,4 +196,6 @@ export go="$HOME/.local/go/"
 # Enable Nord dircolors
 eval $(dircolors ~/.dir_colors)
 
+export GPG_TTY=$(tty)
+
 # End ~/.bashrc

@@ -7,7 +7,7 @@
 {{- if eq .chezmoi.os "darwin" }}
 # I use homebrew for package management on MacOS machines. The following adds
 # the environment variables required for Brew.
-eval $(/usr/local/bin/brew shellenv)
+eval $(/opt/homebrew shellenv)
 {{- end }}
 
 {{- if eq .chezmoi.os "darwin" }}
@@ -15,8 +15,9 @@ eval $(/usr/local/bin/brew shellenv)
 # versions but prepends "g" in front of them. The symlinks exists for directly
 # using the commands. The following adds the symlinks before PATH so it takes
 # precedence before PATH variables.
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 {{- end }}
 
 # Golang configuration

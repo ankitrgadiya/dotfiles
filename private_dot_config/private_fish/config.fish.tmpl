@@ -6,9 +6,9 @@
 {{- if eq .chezmoi.os "darwin" }}
 # Homebrew package manager requires some environment variables. This is a Fish
 # compatible version of (brew shellenv).
-set -x HOMEBREW_PREFIX "/usr/local"
+set -x HOMEBREW_PREFIX "/opt/homebrew"
 set -x HOMEBREW_CELLAR "$HOMEBREW_PREFIX/Cellar"
-set -x HOMEBREW_REPOSITORY "$HOMEBREW_PREFIX/Homebrew"
+set -x HOMEBREW_REPOSITORY "$HOMEBREW_PREFIX"
 set -x PATH "$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin" $PATH
 set -x MANPATH "$HOMEBREW_PREFIX/share/man" $MANPATH
 set -x INFOPATH "$HOMEBREW_PREFIX/share/info" $INFOPATH
@@ -19,6 +19,7 @@ set -x INFOPATH "$HOMEBREW_PREFIX/share/info" $INFOPATH
 # using the commands. The following adds the symlinks before PATH so it takes
 # precedence before PATH variables.
 set PATH "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin" $PATH
+set PATH "$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin" $PATH
 set PATH "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin" $PATH
 {{- end }}
 
@@ -164,6 +165,9 @@ set -x MANROFFOPT "-c"
 
 # Enable Nord dircolors
 bass (dircolors ~/.dir_colors)
+
+# Assign appropriate TTY for GPG
+set -x GPG_TTY (tty)
 
 {{- if eq .machine "work" }}
 # ROS Environment
