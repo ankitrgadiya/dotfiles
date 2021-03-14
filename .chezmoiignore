@@ -13,10 +13,6 @@
 .config/i3status-rust/
 {{- end }}
 
-{{- if ne .machine "work" }}
-.local/go/src/bitbucket.org/rapyutians/dot_envrc
-{{- end }}
-
 # Ignore unused stuff
 .config/i3/i3blocks.conf
 
