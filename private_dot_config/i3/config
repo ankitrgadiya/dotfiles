@@ -26,7 +26,7 @@ font pango: Roboto 9
 floating_modifier $mod
 
 # Terminal
-bindsym $mod+Return exec urxvtc
+bindsym $mod+Return exec alacritty
 # bindsym $mod+Return exec urxvt
 
 # Emacs client
