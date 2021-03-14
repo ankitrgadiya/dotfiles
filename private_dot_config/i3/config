@@ -36,9 +36,7 @@ bindsym $mod+c exec emacs-visual
 bindsym $mod+Shift+q kill
 
 # Application Launcher
-bindsym $mod+d exec --no-startup-id rofi -show run -hide-scrollbar \
-			-location 1 -width 100 -bw 2 -lines 1
-# bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id rofi -show combi
 
 # Vi like key-bindings
 
