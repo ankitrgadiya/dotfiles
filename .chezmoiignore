@@ -9,6 +9,7 @@
 .xinitrc
 .Xresources.d/
 .config/i3/
+.config/rofi/
 {{- end }}
 
 {{- if ne .machine "work" }}
