@@ -30,7 +30,7 @@ bindsym $mod+Return exec alacritty
 # bindsym $mod+Return exec urxvt
 
 # Emacs client
-bindsym $mod+c exec emacsclient -c
+bindsym $mod+c exec emacs-visual
 
 # Kill focused window
 bindsym $mod+Shift+q kill
