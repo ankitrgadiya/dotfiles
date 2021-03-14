@@ -180,16 +180,9 @@ set $green   #859900
 
 # Status Bar
 bar {
-		status_command i3blocks -c ~/.config/i3/i3blocks.conf
+		font pango:Iosevka Heavy Extended, Icons 12
+		status_command i3status-rs
 		position top
-		# colors {
-		# 	background $base03
-		# 	separator  $base1
-		# 	#                   border      background  text
-		# 	focused_workspace   $base03     $base03     $base3
-		# 	inactive_workspace  $base03     $base03     $base0
-		# 	urgent_workspace    $red        $red        $base03
-		# }
 }
 
 # Borders
