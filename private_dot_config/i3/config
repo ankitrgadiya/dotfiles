@@ -186,11 +186,7 @@ bar {
 }
 
 # Borders
-# for_window [class="^(?i)chromium"] border pixel 2
-# for_window [class="^(?i)thunderbird"] border pixel 2
-# for_window [class="^(?i)zathura"] border pixel 2
-for_window [class="^(?i)firefox"] border pixel 2
-for_window [instance="vim-pad"] floating enable
+for_window [class="^.*"] border pixel 0
 
 # Startup Program
 exec_always --no-startup-id feh --bg-scale ~/Pictures/background.png
