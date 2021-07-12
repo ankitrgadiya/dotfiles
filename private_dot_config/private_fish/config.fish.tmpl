@@ -60,6 +60,7 @@ end
 # search for files under current directory to display the file. I have also
 # configured M-c which shows the direcoties to display the directory tree of the
 # selected directory.
+set -x FZF_DEFAULT_COMMAND "fd -H"
 set -x FZF_DEFAULT_OPTS "--color=16"
 set -x FZF_CTRL_T_OPTS "--preview 'bat {}'"
 set -x FZF_ALT_C_OPTS "--preview 'tree -L 1 -C {} | head -200'"
