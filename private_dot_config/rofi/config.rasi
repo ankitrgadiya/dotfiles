@@ -1,0 +1,21 @@
+/*
+ * Copyright 2021, Ankit R Gadiya
+ *  BSD License
+ */
+
+configuration {
+    modi: "window,drun,run,ssh,combi,file-browser";
+	combi-modi: "window,drun,file-browser,run";
+	width: 30;
+	lines: 6;
+	columns: 1;
+	font: "Iosevka Heavy Extended 14";
+	show-icons: true;
+	line-margin: 10;
+	theme: "nord";
+	display-window: "";
+	display-run: "";
+	display-ssh: "";
+	display-drun: "";
+	display-combi: "";
+}

@@ -1,0 +1,39 @@
+# Copyright 2021, Ankit R Gadiya
+# BSD License
+ 
+theme = "space-villain"
+icons = "awesome5"
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
+[[block]]
+block = "cpu"
+interval = 1
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "music"
+buttons = ["play", "next"]
+interface_name_exclude = [".*kdeconnect.*", "mpd"]
+
+[[block]]
+block = "backlight"
+device = "intel_backlight"
+
+[[block]]
+block = "networkmanager"
+on_click = "alacritty -e nmtui"
+interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+", "virbr\\d+"]
+interface_name_include = []
+device_format = "{icon} {ap}"
+
+[[block]]
+block = "time"
+interval = 60
+format = "%a %d/%m %r"

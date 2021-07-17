@@ -26,19 +26,17 @@ font pango: Roboto 9
 floating_modifier $mod
 
 # Terminal
-bindsym $mod+Return exec urxvtc
+bindsym $mod+Return exec alacritty
 # bindsym $mod+Return exec urxvt
 
 # Emacs client
-bindsym $mod+c exec emacsclient -c
+bindsym $mod+c exec emacs-visual
 
 # Kill focused window
 bindsym $mod+Shift+q kill
 
 # Application Launcher
-bindsym $mod+d exec --no-startup-id rofi -show run -hide-scrollbar \
-			-location 1 -width 100 -bw 2 -lines 1
-# bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id rofi -show combi
 
 # Vi like key-bindings
 
@@ -182,41 +180,28 @@ set $green   #859900
 
 # Status Bar
 bar {
-		status_command i3blocks -c ~/.config/i3/i3blocks.conf
+		font pango:Iosevka Heavy Extended, Icons 12
+		status_command i3status-rs
 		position top
-		# colors {
-		# 	background $base03
-		# 	separator  $base1
-		# 	#                   border      background  text
-		# 	focused_workspace   $base03     $base03     $base3
-		# 	inactive_workspace  $base03     $base03     $base0
-		# 	urgent_workspace    $red        $red        $base03
-		# }
 }
 
 # Borders
-# for_window [class="^(?i)chromium"] border pixel 2
-# for_window [class="^(?i)thunderbird"] border pixel 2
-# for_window [class="^(?i)zathura"] border pixel 2
-for_window [class="^(?i)firefox"] border pixel 2
-for_window [instance="vim-pad"] floating enable
+for_window [class="^.*"] border pixel 0
 
 # Startup Program
-exec_always --no-startup-id feh --bg-scale ~/Pictures/background.png
 exec_always --no-startup-id dunst
-# exec_always --no-startup-id urxvtd
+exec_always picom --experimental-backends --backend glx --blur-method dual_kawase --blur-strength 10
 
 # Key bindings
-
 bindsym Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/'
 bindsym --release Shift+Print exec scrot -s '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/'
 bindsym $mod+Control+l exec i3lock -c 1d2021
-bindsym $mod+Control+v exec vim-pad
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5

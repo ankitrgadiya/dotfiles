@@ -45,4 +45,27 @@ Host rsync
   Port 22
   IdentityFile ~/.ssh/server
 
+## Server
+Host wordpress
+  HostName wordpress.argd.in
+  User ankit4922
+  ProxyCommand bash -c '/usr/bin/cloudflared access ssh-gen --hostname %h; ssh -tt %r@cfpipe-wordpress.argd.in >&2 <&1'
+
+Host cfpipe-wordpress.argd.in
+  HostName wordpress.argd.in
+  ProxyCommand /usr/bin/cloudflared access ssh --hostname %h
+  IdentityFile ~/.cloudflared/wordpress.argd.in-cf_key
+  CertificateFile ~/.cloudflared/wordpress.argd.in-cf_key-cert.pub
+
+Host home
+  HostName home.argd.in
+  User ankit4922
+  ProxyCommand bash -c '/usr/bin/cloudflared access ssh-gen --hostname %h; ssh -tt %r@cfpipe-home.argd.in >&2 <&1'
+
+Host cfpipe-home.argd.in
+  HostName home.argd.in
+  ProxyCommand /usr/bin/cloudflared access ssh --hostname %h
+  IdentityFile ~/.cloudflared/home.argd.in-cf_key
+  CertificateFile ~/.cloudflared/home.argd.in-cf_key-cert.pub
+
 # End ~/.ssh/config
