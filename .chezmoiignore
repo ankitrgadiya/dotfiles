@@ -16,4 +16,7 @@
 # Ignore unused stuff
 .config/i3/i3blocks.conf
 
+# Vim Session
+Session.vim
+
 # End ~/.local/share/chezmoi/.chezmoiignore
