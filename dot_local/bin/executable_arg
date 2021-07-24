@@ -1,0 +1,63 @@
+#!/usr/bin/env fish
+
+# Copyright 2021, Ankit R Gadiya
+# BSD License
+
+# arg is a command-line utility inspired by tpope's dotfiles.
+
+function usage
+	echo "Usage: arg <command> [<args>]"
+	echo "Supported commands:"
+	echo -e "\tgit         - configure git profile"
+	echo -e "\tnvim,vim,vi - neovim session"
+end
+
+# gitconfig sets the User config for the current Git repository.
+function gitconfig -a profile
+	git status > /dev/null 2>&1
+	if test $status -ne 0
+		echo "not a git repository"
+		return
+	end
+
+	switch $profile
+	case "home" "personal"
+		git config user.email "git@argp.in"
+		git config user.signkey "3A25137FB8A87C77C5EAC226322DB2D680BAFB16"
+	case "work" "rapyuta"
+		git config user.email "ankit.gadiya@rapyuta-robotics.com"
+		git config user.signkey "8C56990BFCA0F5209FF5A3026572A8682F35C253"
+	case "*"
+		echo "profile not present"
+	end
+end
+
+# nvim-open is an proxy for opening neovim. It checks if the session file
+# (managed by vim-obsession plugin) exists in the current directory.
+function nvim-open
+	if test (count $argv) -gt 0
+		nvim $argv
+	else
+		if test -e Session.vim
+			nvim -S
+		else
+			nvim
+		end
+	end
+end
+
+
+if test (count $argv) -eq 0
+	usage
+else
+	switch $argv[1]
+	case "vi*" "nvi*"
+		nvim-open $argv[2..]
+	case "git"
+		gitconfig $argv[2..]
+	case "*"
+		usage
+	end
+end
+
+# vi: ft=fish
