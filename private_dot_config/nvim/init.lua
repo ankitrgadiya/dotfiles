@@ -36,6 +36,10 @@ require("packer").startup(function(use)
 	use "neovim/nvim-lspconfig"    -- Collection of configurations for built-in LSP client
 	use "nvim-lua/lsp-status.nvim" -- 
 	use "hrsh7th/nvim-compe"       -- Autocompletion plugin
+	use "ray-x/go.nvim"            -- Golang configuration for LSP
+
+	-- Debug Adapter
+	use "mfussenegger/nvim-dap"    -- DAP Client
 
 	-- Utility
 	use "tpope/vim-commentary" -- Easy Commenting
@@ -209,11 +213,6 @@ local on_attach = function(_, bufnr)
   vim.cmd [[ command! Format execute "lua vim.lsp.buf.formatting()" ]]
 end
 
-require("lspconfig").gopls.setup{
-	on_attach = on_attach,
-	capabilities = capabilities,
-}
-
 require("lspconfig").bashls.setup{
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -223,6 +222,23 @@ require'lspconfig'.dockerls.setup{
 	on_attach = on_attach,
 	capabilities = capabilities,
 }
+
+-- Golang
+require("go").setup({
+  goimport="goimports", -- goimport command
+  gofmt = "goimports", --gofmt cmd,
+  max_line_len = 120, -- max line length in goline format
+  tag_transform = false, -- tag_transfer  check gomodifytags for details
+  verbose = false,
+  lsp_cfg = true,
+  lsp_gofumpt = false,
+  lsp_on_attach = true,
+  lsp_diag_hdlr = true,
+  dap_debug = true,
+  dap_debug_keymap = true,
+  dap_debug_gui = true,
+  dap_debug_vt = true,
+})
 
 -- Completion
 vim.o.completeopt = "menuone,noinsert"
