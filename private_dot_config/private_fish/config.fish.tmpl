@@ -3,6 +3,8 @@
 # Copyright 2021, Ankit R Gadiya
 # BSD License
 
+# vi: ft=fish
+
 {{- if eq .chezmoi.os "darwin" }}
 # Homebrew package manager requires some environment variables. This is a Fish
 # compatible version of (brew shellenv).
@@ -116,6 +118,9 @@ if type rg &> /dev/null;
 end
 if type lf &> /dev/null;
     alias ranger='lf'
+end
+if type lazygit &> /dev/null;
+    alias lg='lazygit'
 end
 if type exa &> /dev/null;
     alias ls='exa'
