@@ -25,6 +25,9 @@ require("packer").startup(function(use)
 	-- Fuzzy Search and all the greatness 🙌
 	use { "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } } }
 
+	-- Magit but in Neovim 
+	use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+
 	-- New Parser
 	use "nvim-treesitter/nvim-treesitter"
 	use "nvim-treesitter/nvim-treesitter-textobjects"
@@ -103,6 +106,9 @@ require("gitsigns").setup {
 		changedelete = { hl = "GitGutterChange", text = "~" },
 	},
 }
+
+-- Setup Neogit
+require("neogit").setup {}
 
 -- Fuzzy Search like Ivy
 require("telescope").setup {
