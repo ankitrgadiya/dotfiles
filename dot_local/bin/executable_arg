@@ -10,6 +10,26 @@ function usage
 	echo "Supported commands:"
 	echo -e "\tgit         - configure git profile"
 	echo -e "\tnvim,vim,vi - neovim session"
+	echo -e "\tshrt        - url shortener"
+end
+
+# shrt is a command for my Go link URL shortener.
+# No args: it will list all the existing Go links.
+# 1 arg  : it will create a Go link with auto-incrementing ID.
+# 2 arg  : it will create a named Go link with the provided alias
+function shrt -a url path
+	set -l token (command cloudflared access token -app=https://argv.in/api)
+	if test (count $argv) -eq 0
+		http GET https://argv.in/api/urls/ "cf-access-token:$token" |
+			jq -r ".routes[] | [.name, .url] | @sh" |
+			awk -v FS="'" 'BEGIN{printf("%30s | %-120s\n", "PATH", "URL");printf("%30s | %-120s\n", "====", "===")};{printf("%30s | %-120s\n",$2, substr($4, 1, 120))}'
+		return
+	end
+	set -l output (command http POST "https://argv.in/api/url/$path" "cf-access-token:$token" "url=$url")
+	if test (command echo $output | jq -r .ok) = "true"
+		set -l route (command echo $output | jq -r .route.name)
+		echo "https://argv.in/$route"
+	end
 end
 
 # gitconfig sets the User config for the current Git repository.
@@ -55,6 +75,8 @@ else
 		nvim-open $argv[2..]
 	case "git"
 		gitconfig $argv[2..]
+	case "shrt"
+		shrt $argv[2..]
 	case "*"
 		usage
 	end
