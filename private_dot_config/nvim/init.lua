@@ -25,8 +25,9 @@ require("packer").startup(function(use)
 	-- Fuzzy Search and all the greatness 🙌
 	use { "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } } }
 
-	-- Magit but in Neovim 
-	use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+	-- Git goodies
+	use { "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" }       -- Magit but in Neovim
+	use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }  -- Git Gutter
 
 	-- New Parser
 	use "nvim-treesitter/nvim-treesitter"
@@ -53,7 +54,6 @@ require("packer").startup(function(use)
 	use { "hoob3rt/lualine.nvim", requires = { {"kyazdani42/nvim-web-devicons", opt = true}, { "nvim-lua/lsp-status.nvim" } } } -- Status Line
 	use { "alvarosevilla95/luatab.nvim", requires= { "kyazdani42/nvim-web-devicons" } }                                         -- Tab Line
 	use "lukas-reineke/indent-blankline.nvim"                                                                                   -- Indent Guide
-	use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }                                                   -- Git Gutter
 end)
 
 -- ColorScheme Setup
@@ -63,7 +63,7 @@ vim.cmd [[colorscheme nord]]
 -- Tab and Status Bar
 
 -- Tabbar is configured to use Luatab plugin.
-vim.o.tabline = "%!v:lua.require\'luatab\'.tabline()"
+vim.o.tabline = "%!v:lua.require\"luatab\".tabline()"
 
 -- Sets up the Lualine plugin
 require("lualine").setup{
@@ -134,7 +134,7 @@ vim.api.nvim_set_keymap("n", "<leader>sp", [[<cmd>lua require("telescope.builtin
 vim.api.nvim_set_keymap("n", "<leader>sc", [[<cmd>lua require("telescope.builtin").commands()<CR>]], { noremap = true, silent = true })
 
 -- Treesitter configuration
-require("nvim-treesitter.configs").setup {
+require("nvim-treesitter.configs").setup({
 	highlight = {
 		enable = true, -- false will disable the whole extension
 	},
@@ -183,7 +183,7 @@ require("nvim-treesitter.configs").setup {
 			},
 		},
 	},
-}
+})
 
 -- Language Servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -213,21 +213,21 @@ local on_attach = function(_, bufnr)
   vim.cmd [[ command! Format execute "lua vim.lsp.buf.formatting()" ]]
 end
 
-require("lspconfig").bashls.setup{
+require("lspconfig").bashls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
-}
+})
 
-require("lspconfig").dockerls.setup{
+require("lspconfig").dockerls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
-}
+})
 
 -- Golang
 require("go").setup({
-  goimport="goimports", -- goimport command
-  gofmt = "goimports", --gofmt cmd,
-  max_line_len = 120, -- max line length in goline format
+  goimport="goimports",  -- goimport command
+  gofmt = "goimports",   --gofmt cmd,
+  max_line_len = 120,    -- max line length in goline format
   tag_transform = false, -- tag_transfer  check gomodifytags for details
   verbose = false,
   lsp_cfg = true,
@@ -242,7 +242,7 @@ require("go").setup({
 
 -- Completion
 vim.o.completeopt = "menuone,noinsert"
-require("compe").setup {
+require("compe").setup({
   source = {
     path = true,
     nvim_lsp = true,
@@ -253,4 +253,4 @@ require("compe").setup {
     vsnip = false,
     ultisnips = false,
   },
-}
+})
