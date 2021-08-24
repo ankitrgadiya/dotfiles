@@ -48,8 +48,8 @@ require("packer").startup(function(use)
 	use "tpope/vim-obsession"  -- Session Management
 
 	-- Visual
-	use "arcticicestudio/nord-vim"                                                                                             -- Colorscheme
-	use "kyazdani42/nvim-web-devicons"
+	use "arcticicestudio/nord-vim"                                                                                              -- Colorscheme
+	use "kyazdani42/nvim-web-devicons"                                                                                          -- Fancy Icons
 	use { "hoob3rt/lualine.nvim", requires = { {"kyazdani42/nvim-web-devicons", opt = true}, { "nvim-lua/lsp-status.nvim" } } } -- Status Line
 	use { "alvarosevilla95/luatab.nvim", requires= { "kyazdani42/nvim-web-devicons" } }                                         -- Tab Line
 	use "lukas-reineke/indent-blankline.nvim"                                                                                   -- Indent Guide
@@ -218,7 +218,7 @@ require("lspconfig").bashls.setup{
 	capabilities = capabilities,
 }
 
-require'lspconfig'.dockerls.setup{
+require("lspconfig").dockerls.setup{
 	on_attach = on_attach,
 	capabilities = capabilities,
 }
