@@ -27,6 +27,7 @@ require("packer").startup(function(use)
 
 	-- Git goodies
 	use { "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" }       -- Magit but in Neovim
+	use { "kdheepak/lazygit.nvim", requires = "nvim-lua/plenary.nvim" }        -- Lazy Git bindings
 	use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }  -- Git Gutter
 
 	-- New Parser
@@ -113,6 +114,8 @@ require("gitsigns").setup {
 
 -- Setup Neogit
 require("neogit").setup {}
+
+vim.api.nvim_set_keymap("n", "<leader>lg", [[<cmd>lua require("lazygit").lazygit()<CR>]], { noremap = true, silent = true })
 
 -- Fuzzy Search like Ivy
 require("telescope").setup {
