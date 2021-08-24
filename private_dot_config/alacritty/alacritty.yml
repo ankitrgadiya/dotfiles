@@ -1,15 +1,12 @@
 # Copyright 2021, Ankit R Gadiya
 # BSD License
-# 
+
 import:
   - ~/.config/alacritty/theme-nord.yml
 
 window:
-  padding:
-    x: 20
-    y: 20
   decorations: full
-  dynamic_padding: false
+  dynamic_padding: true
   dynamic_title: true
 
 scrolling:
@@ -28,8 +25,8 @@ font:
   bold_italic:
     family: Iosevka
     style: Heavy Extended Italic
-  size: 9
+  size: 12
   use_thin_strokes: false
 
-draw_bold_text_with_bright_colors: true
-background_opacity: 0.7
+draw_bold_text_with_bright_colors: false
+background_opacity: 1
