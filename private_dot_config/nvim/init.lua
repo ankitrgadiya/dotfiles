@@ -51,6 +51,7 @@ require("packer").startup(function(use)
 
 	-- Visual
 	use "arcticicestudio/nord-vim"                                                                                              -- Colorscheme
+	use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 	use "kyazdani42/nvim-web-devicons"                                                                                          -- Fancy Icons
 	use { "hoob3rt/lualine.nvim", requires = { {"kyazdani42/nvim-web-devicons", opt = true}, { "nvim-lua/lsp-status.nvim" } } } -- Status Line
 	use { "alvarosevilla95/luatab.nvim", requires= { "kyazdani42/nvim-web-devicons" } }                                         -- Tab Line
@@ -58,8 +59,9 @@ require("packer").startup(function(use)
 end)
 
 -- ColorScheme Setup
-vim.o.termguicolors = false
-vim.cmd [[colorscheme nord]]
+vim.o.background = "dark"
+vim.o.termguicolors = true
+vim.cmd [[colorscheme gruvbox]]
 
 -- Tab and Status Bar
 
@@ -67,12 +69,12 @@ vim.cmd [[colorscheme nord]]
 vim.o.tabline = "%!v:lua.require\"luatab\".tabline()"
 
 -- Sets up the Lualine plugin
-require("lualine").setup{
+require("lualine").setup({
 	options = {
 		icons_enabled = true,
-		theme = "nord",
+		theme = "gruvbox",
 	}
-}
+})
 
 -- Visual settings for Indentation
 vim.o.breakindent = true

@@ -193,7 +193,7 @@ export docs="$HOME/Documents/"
 export downloads="$HOME/Downloads/"
 export go="$HOME/.local/go/"
 
-# Enable Nord dircolors
+# Enable dircolors
 eval $(dircolors ~/.dir_colors)
 
 export GPG_TTY=$(tty)
