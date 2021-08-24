@@ -125,8 +125,9 @@ alias axel='axel -n 15 -a -k'
 
 # Golang configurations
 {{- if eq .machine "work" }}
-set -x GOROOT "/usr/local/lib/go-1.11"
-{{- else if eq .chezmoi.os "darwin" }}
+set -x GOPRIVATE "bitbucket.org/rapyutians/*"
+{{- end }}
+{{- if eq .chezmoi.os "darwin" }}
 set -x GOROOT "$HOMEBREW_PREFIX/opt/golang/libexec"
 {{- else if eq .distro "fedora" }}
 set -x GOROOT "/usr/lib/golang"
