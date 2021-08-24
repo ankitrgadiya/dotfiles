@@ -119,17 +119,17 @@ vim.api.nvim_set_keymap("n", "<leader>gg", [[<cmd>lua require("neogit").open()<C
 vim.api.nvim_set_keymap("n", "<leader>lg", [[<cmd>lua require("lazygit").lazygit()<CR>]], { noremap = true, silent = true })
 
 -- Fuzzy Search like Ivy
-require("telescope").setup {
-	themes = get_ivy,
-	defaults = {
+require("telescope").setup({
+	defaults = require("telescope.themes").get_ivy({
 		mappings = {
 			i = {
 				["<C-u>"] = false,
 				["<C-d>"] = false,
 			},
 		},
-	},
-}
+	})
+})
+
 vim.api.nvim_set_keymap("n", "<leader><space>", [[<cmd>lua require("telescope.builtin").find_files({previewer = false})<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>bi", [[<cmd>lua require("telescope.builtin").buffers()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>ss", [[<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })
