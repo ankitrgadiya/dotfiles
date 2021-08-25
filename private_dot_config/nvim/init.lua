@@ -41,7 +41,8 @@ require("packer").startup(function(use)
 	use "ray-x/go.nvim"            -- Golang configuration for LSP
 
 	-- Debug Adapter
-	use "mfussenegger/nvim-dap"    -- DAP Client
+	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} } -- DAP Client
+	use "theHamsta/nvim-dap-virtual-text"                                -- DAP Virtual Text
 
 	-- Utility
 	use "tpope/vim-commentary" -- Easy Commenting
