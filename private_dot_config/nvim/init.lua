@@ -289,3 +289,6 @@ vim.api.nvim_exec(
 	]], 
 	false
 )
+
+-- Key Bindings for convenience
+vim.api.nvim_set_keymap("n", "<leader>db", "<Cmd>:bdelete<CR>", { noremap = true, silent = true })
