@@ -247,6 +247,22 @@ require("go").setup({
   dap_debug_vt = true,
 })
 
+-- Golang additional key bindings
+vim.api.nvim_exec(
+	[[
+	augroup ARG-Golang
+		autocmd! ARG-Golang
+		autocmd FileType go nmap <buffer> <silent> <leader>tt :GoTest<CR>
+		autocmd FileType go nmap <buffer> <silent> <leader>tf :GoTestFunc<CR>
+		autocmd FileType go nmap <buffer> <silent> <leader>dg :GoDebug<CR>
+		autocmd FileType go nmap <buffer> <silent> <leader>ds :GoDbgStop<CR>
+		autocmd FileType go nmap <buffer> <silent> <leader>dt :GoDebug test<CR>
+		autocmd FileType go nmap <buffer> <silent> <leader>bp :GoBreakToggle<CR>
+	augroup end
+	]],
+	false
+)
+
 -- Completion
 vim.o.completeopt = "menuone,noinsert"
 require("compe").setup({
