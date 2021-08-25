@@ -282,3 +282,10 @@ require("compe").setup({
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 
+-- Auto Change Buffer Directory
+vim.api.nvim_exec(
+	[[
+		autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
+	]], 
+	false
+)
