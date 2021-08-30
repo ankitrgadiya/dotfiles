@@ -2,6 +2,7 @@ local sanity = {}
 
 local convenience = function()
 	vim.api.nvim_set_keymap("n", "<leader>db", "<Cmd>:bdelete<CR>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("n", "<leader>fs", "<Cmd>:w<CR>", { noremap = true, silent = true })
 end
 
 sanity.setup = function()
