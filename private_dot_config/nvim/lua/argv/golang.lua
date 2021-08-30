@@ -23,7 +23,7 @@ golang.setup = function()
 		[[
 		augroup Golang
 			autocmd! Golang
-			autocmd FileType go nmap <buffer> <silent> <leader>tt :GoTest<CR>
+			autocmd FileType go nmap <buffer> <silent> <leader>tt :GoTest %:p:h<CR>
 			autocmd FileType go nmap <buffer> <silent> <leader>tf :GoTestFunc<CR>
 			autocmd FileType go nmap <buffer> <silent> <leader>dg :GoDebug<CR>
 			autocmd FileType go nmap <buffer> <silent> <leader>ds :GoDbgStop<CR>
