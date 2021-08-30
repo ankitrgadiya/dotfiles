@@ -16,6 +16,7 @@ sanity.setup = function()
 	vim.g.mapleader = " "
 	vim.g.maplocalleader = " "
 
+	vim.o.path = vim.o.path.."**"
 
 	-- More Convenience Key Bindings
 	convenience()
