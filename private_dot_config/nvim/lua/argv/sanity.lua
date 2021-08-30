@@ -16,13 +16,6 @@ sanity.setup = function()
 	vim.g.mapleader = " "
 	vim.g.maplocalleader = " "
 
-	-- Auto Change Buffer Directory
-	vim.api.nvim_exec(
-		[[
-			autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
-		]], 
-		false
-	)
 
 	-- More Convenience Key Bindings
 	convenience()
