@@ -44,4 +44,7 @@ set -g @tmux-gruvbox 'dark'
 # Initialize TMUX plugin manager (keep this line at the very b ttom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
 
+# Custom Key-bindings
+bind-key z run-shell 'arg popup tmux-capture'
+
 # End ~/.tmux.conf
