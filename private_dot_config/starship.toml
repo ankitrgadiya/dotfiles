@@ -49,3 +49,6 @@ disabled = true
 
 [kubernetes]
 disabled = true
+
+[gcloud]
+disabled = true
