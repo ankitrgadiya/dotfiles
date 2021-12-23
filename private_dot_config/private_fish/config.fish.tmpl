@@ -129,6 +129,9 @@ end
 # Enable default download options for Axel
 alias axel='axel -n 15 -a -k'
 
+# Enable Docker BuildKit
+set -x DOCKER_BUILDKIT 1
+
 # Golang configurations
 {{- if eq .machine "work" }}
 set -x GOPRIVATE "bitbucket.org/rapyutians/*"
