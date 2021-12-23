@@ -19,12 +19,14 @@ end
 # insert it in the active pane inside Tmux. This is bound to prefix+tab key in
 # Tmux.
 function tmux-capture
-    set -l panes (tmux list-pane | string collect)
-    set -l active (command echo $panes | grep "active" | awk -v FS=":" '{print $1}')
-    set -l target (command echo $panes | fzf --layout=reverse | awk -v FS=":" '{print $1}')
-    set -l data (command tmux capture-pane -p -t "$target" | fmt -1 | tr -d "[:blank:]" | fzf --layout=reverse)
-    tmux set-buffer -b arg-tc "$data"
-    tmux paste-buffer -b arg-tc -t "$active"
+	set -l panes  (tmux list-pane | string collect)
+	set -l active (command echo $panes | grep "active" | awk -v FS=":" '{print $1}')
+	set -l target (command echo $panes | fzf --layout=reverse | awk -v FS=":" '{print $1}')
+	set -l data (command tmux capture-pane -p -t "$target" | fmt -1 | tr -d "[:blank:]" | fzf --layout=reverse)
+	if test "$data" == ""
+		tmux set-buffer -b arg-tc "$data"
+		tmux paste-buffer -b arg-tc -t "$active"
+	end
 end
 
 # search is a command to open a new tab in the browser with search query in the
