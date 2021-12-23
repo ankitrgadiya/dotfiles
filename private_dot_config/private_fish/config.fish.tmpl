@@ -137,7 +137,7 @@ set -x PATH $PATH "$HOME/.mix/escripts"
 
 # Golang configurations
 {{- if eq .machine "work" }}
-set -x GOPRIVATE "bitbucket.org/rapyutians/*"
+set -x GOPRIVATE "bitbucket.org/rapyutians,github.com/rapyuta-robotics"
 {{- end }}
 {{- if eq .chezmoi.os "darwin" }}
 set -x GOROOT "$HOMEBREW_PREFIX/opt/golang/libexec"
