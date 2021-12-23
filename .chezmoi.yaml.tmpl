@@ -7,9 +7,28 @@
 # Prompts to ask for the information per machine during initialization. The
 # configured variables are used by Template files to configure machine specific
 # versions of the dotfiles.
-{{- $machineType := promptString "machine type (work, home)" }}
-{{- $desktop := promptString "desktop (mac, gnome, i3)" }}
-{{- $distro := promptString "distro (mac, fedora, ubuntu, arch)" }}
+
+{{- $machineType := "" }}
+{{- if (hasKey . "machine") }}
+{{-   $machineType = .machine }}
+{{- else }}
+{{-   $machineType = promptString "machine type (work, home)" }}
+{{- end }}
+
+{{- $desktop := "" }}
+{{- if (hasKey . "desktop") }}
+{{-   $desktop = .desktop }}
+{{- else }}
+{{-   $desktop = promptString "desktop (mac, gnome, i3)" }}
+{{- end }}
+
+{{- $distro := "" }}
+{{- if (hasKey . "distro") }}
+{{-   $distro = .distro }}
+{{- else }}
+{{-   $distro = promptString "distro (mac, fedora, ubuntu, arch)" }}
+{{- end }}
+
 data:
   machine: {{ $machineType }}
   desktop: {{ $desktop }}
