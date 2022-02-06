@@ -2,7 +2,7 @@
 # BSD License
 
 import:
-  - ~/.config/alacritty/theme-nord.yml
+  - ~/.config/alacritty/theme-gruvbox.yml
 
 window:
   decorations: full
