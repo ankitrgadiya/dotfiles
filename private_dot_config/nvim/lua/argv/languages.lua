@@ -53,8 +53,8 @@ local treesitter_setup = function()
 	})
 
 	-- Enable Treesitter-based Folding
-	vim.wo.foldmethod = "expr"
-	vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+	-- vim.wo.foldmethod = "expr"
+	-- vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 end
 
 local lsp_on_attach_hook = function(_, bufnr)
