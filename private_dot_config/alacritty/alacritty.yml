@@ -8,6 +8,7 @@ window:
   decorations: full
   dynamic_padding: true
   dynamic_title: true
+  opacity: 1
 
 scrolling:
   history: 10000
@@ -29,4 +30,3 @@ font:
   use_thin_strokes: false
 
 draw_bold_text_with_bright_colors: false
-background_opacity: 1
