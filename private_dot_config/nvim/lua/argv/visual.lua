@@ -1,18 +1,19 @@
-local visual = {}
+local M = {}
 
-visual.setup = function()
+function M.setup()
 	-- Use Gruvbox colors
+	-- require("gruvbox")
 	vim.o.background = "dark"
 	vim.o.termguicolors = true
-	require("gruvbox")
 	vim.cmd [[colorscheme gruvbox]]
 
 	-- Configure Tab bar
-	require("luatab")
+	-- require("luatab")
 	vim.o.tabline = "%!v:lua.require\'luatab\'.tabline()"
 
 	-- Configure Status bar
-	require("lualine").setup({
+	local lualine = require("lualine")
+	lualine.setup({
 		options = {
 			icons_enabled = true,
 			theme = "gruvbox",
@@ -38,7 +39,8 @@ visual.setup = function()
 
 	-- Show Git info in the gutter
 	vim.wo.signcolumn = "yes"
-	require("gitsigns").setup({
+	local gitsigns = require("gitsigns")
+	gitsigns.setup({
 		signs = {
 			add = { hl = "GitGutterAdd", text = "+" },
 			change = { hl = "GitGutterChange", text = "~" },
@@ -49,4 +51,4 @@ visual.setup = function()
 	})
 end
 
-return visual
+return M

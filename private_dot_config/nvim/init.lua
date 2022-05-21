@@ -1,8 +1,8 @@
--- Package Manager Setup
+-- Setup Packer Package Manager
 local install_path = vim.fn.stdpath("data").."/site/pack/packer/start/packer.nvim"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	vim.fn.system({"git", "clone", "https://github.com/wbthomason/packer.nvim", install_path})
-	vim.api.nvim_command "packadd packer.nvim"
+	vim.fn.system{"git", "clone", "https://github.com/wbthomason/packer.nvim", install_path}
+	vim.api.nvim_command("packadd packer.nvim")
 end
 
 -- I think it configures the Auto-Group "Packer" to run automatically after
@@ -11,14 +11,15 @@ vim.api.nvim_exec(
 	[[
 	augroup Packer
 		autocmd!
-		autocmd BufWritePost init.lua PackerCompile
+		autocmd BufWritePost init.lua | PackerCompile
 	augroup end
 	]],
 	false
 )
 
 -- Define plugins
-require("packer").startup(function(use)
+local packer = require("packer")
+packer.startup(function(use)
 	-- Let Packer manage itself from here onwards!
 	use "wbthomason/packer.nvim"
 
@@ -59,7 +60,7 @@ require("packer").startup(function(use)
 end)
 
 
-require("argv.sanity").setup()
+require("argv.defaults").setup()
 require("argv.visual").setup()
 require("argv.narrower").setup()
 require("argv.git").setup()
