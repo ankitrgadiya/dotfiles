@@ -155,10 +155,8 @@ set -x GOPRIVATE "bitbucket.org/rapyutians,github.com/rapyuta-robotics"
 set -x GOROOT "$HOMEBREW_PREFIX/opt/golang/libexec"
 {{- else if eq .distro "fedora" }}
 set -x GOROOT "/usr/lib/golang"
-{{- else if eq .distro "ubuntu" }}
-set -x GOROOT "/usr/lib/go-1.13"
 {{- else if eq .distro "arch" }}
-set -x GOROOT "/usr/lib/go"
+set -x GOROOT "/usr/local/lib/go-1.17"
 {{- end }}
 set -x GOPATH $HOME/.local/go
 set -x GO111MODULE "auto"
