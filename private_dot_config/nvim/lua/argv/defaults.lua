@@ -1,11 +1,6 @@
-local sanity = {}
+local M = {}
 
-local convenience = function()
-	vim.api.nvim_set_keymap("n", "<leader>db", "<Cmd>:bdelete<CR>", { noremap = true, silent = true })
-	vim.api.nvim_set_keymap("n", "<leader>fs", "<Cmd>:w<CR>", { noremap = true, silent = true })
-end
-
-sanity.setup = function()
+function M.setup()
 	vim.cmd [[set undofile]]
 	vim.o.hidden = true
 	vim.o.updatetime = 250
@@ -19,7 +14,8 @@ sanity.setup = function()
 	vim.o.path = vim.o.path.."**"
 
 	-- More Convenience Key Bindings
-	convenience()
+	vim.api.nvim_set_keymap("n", "<leader>db", "<Cmd>:bdelete<CR>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("n", "<leader>fs", "<Cmd>:w<CR>", { noremap = true, silent = true })
 end
 
-return sanity
+return M
