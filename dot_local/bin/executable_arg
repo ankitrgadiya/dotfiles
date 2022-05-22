@@ -60,13 +60,13 @@ function shrt -a url path
 	set -l token (command cloudflared access token -app=https://argv.in/api)
 	if test (count $argv) -eq 0
 		xh GET https://argv.in/api/urls/ "cf-access-token:$token" |
-			jq -r ".routes[] | [.name, .url] | @sh" |
+			jq -r ".routes[] | [.slug, .url] | @sh" |
 			awk -v FS="'" 'BEGIN{printf("%30s | %-120s\n", "PATH", "URL");printf("%30s | %-120s\n", "====", "===")};{printf("%30s | %-120s\n",$2, substr($4, 1, 120))}'
 		return
 	end
 	set -l output (command xh POST "https://argv.in/api/url/$path" "cf-access-token:$token" "url=$url")
 	if test (command echo $output | jq -r .ok) = "true"
-		set -l route (command echo $output | jq -r .route.name)
+		set -l route (command echo $output | jq -r .route.slug)
 		echo "https://argv.in/$route"
 	end
 end
