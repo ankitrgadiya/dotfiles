@@ -166,4 +166,5 @@
 
        :arg
        path                  ; Get Path from Environment variables)
+       database              ; Sets Emacsql with SQLite backend
 )
