@@ -8,55 +8,60 @@ Host github.com
   HostName github.com
   User git
   Port 22
-  IdentityFile ~/.ssh/git
+  IdentityFile ~/.ssh/id_ed25519
 
 ## Gitlab
 Host gitlab.com
   HostName gitlab.com
   User git
   Port 22
-  IdentityFile ~/.ssh/git
+  IdentityFile ~/.ssh/id_ed25519
 
 ## Bitbucket
 Host bitbucket.org
-  HostkeyAlgorithms +ssh-rsa
-  PubkeyAcceptedAlgorithms +ssh-rsa
   HostName bitbucket.org
   User git
   Port 22
-  IdentityFile ~/.ssh/git
+  IdentityFile ~/.ssh/id_ed25519
 
 ## Archlinux AUR
 Host aur.archlinux.com
   HostName aur.archlinux.org
   User git
   Port 22
-  IdentityFile ~/.ssh/git
+  IdentityFile ~/.ssh/id_ed25519
 
 ## SDF
 Host sdf
   HostName sdf.org
   User argv
   Port 22
-  IdentityFile ~/.ssh/server
+  IdentityFile ~/.ssh/id_ed25519
 
-## Rsync
-Host rsync
-  HostName hk-s020.rsync.net
-  User 20400
-  Port 22
-  IdentityFile ~/.ssh/server
+## Servers
 
-## Server
-Host web
-  HostName web.argd.in
+Host web-1
+  HostName web-1.ts.argd.in
   User ankit4922
-  ProxyCommand bash -c 'cloudflared access ssh-gen --hostname %h; ssh -tt %r@cfpipe-web.argd.in >&2 <&1'
+  Port 22
+  IdentityFile ~/.ssh/id_ed25519
 
-Host cfpipe-web.argd.in
-  HostName web.argd.in
-  ProxyCommand cloudflared access ssh --hostname %h
-  IdentityFile ~/.cloudflared/web.argd.in-cf_key
-  CertificateFile ~/.cloudflared/web.argd.in-cf_key-cert.pub
+Host data-1
+  HostName data-1.ts.argd.in
+  User ankit4922
+  Port 22
+  IdentityFile ~/.ssh/id_ed25519
+
+Host rpi-1
+  HostName rpi-1.ts.argd.in
+  User ankit4922
+  Port 22
+  IdentityFile ~/.ssh/id_ed25519
+
+Host kepler
+  HostName kepler.ts.argd.in
+  User ankit
+  Port 22
+  IdentityFile ~/.ssh/id_ed25519
 
 # End ~/.ssh/config
