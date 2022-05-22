@@ -135,6 +135,18 @@ set -x DOCKER_BUILDKIT 1
 # Elixir configuration
 set -x PATH $PATH "$HOME/.mix/escripts"
 
+# Luarocks configuration
+set -x LUA_PATH_5_4 "/usr/share/lua/5.4/?.lua"
+set -x LUA_PATH_5_4 "$LUA_PATH_5_4;/usr/share/lua/5.4/?/init.lua"
+set -x LUA_PATH_5_4 "$LUA_PATH_5_4;/usr/local/share/lua/5.4/?.lua"
+set -x LUA_PATH_5_4 "$LUA_PATH_5_4;/usr/local/share/lua/5.4/?/init.lua"
+set -x LUA_PATH_5_4 "$LUA_PATH_5_4;$HOME/.luarocks/share/lua/5.4/?.lua"
+set -x LUA_PATH_5_4 "$LUA_PATH_5_4;$HOME/.luarocks/share/lua/5.4/?/init.lua"
+set -x LUA_PATH_5_4 "$LUA_PATH_5_4;./?.lua;./?/init.lua"
+
+set -x LUA_CPATH_5_4 "/usr/share/lib/lua/5.4/?.so;/usr/share/local/lib/5.4/?.so"
+set -x LUA_CPATH_5_4 "$LUA_CPATH_5_4;$HOME/.luarocks/lib/lua/5.4/?.so"
+
 # Golang configurations
 {{- if eq .machine "work" }}
 set -x GOPRIVATE "bitbucket.org/rapyutians,github.com/rapyuta-robotics"
