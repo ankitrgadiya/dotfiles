@@ -1,0 +1,8 @@
+-- Begin ~/.sqliterc
+
+-- Copyright 2022, Ankit R Gadiya
+-- BSD License
+
+.headers on
+.mode table
+.timer on
