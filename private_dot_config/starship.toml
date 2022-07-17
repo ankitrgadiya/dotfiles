@@ -39,7 +39,8 @@ threshold = 15
 style = "bold red"
 
 [hostname]
-disabled = true
+ssh_only = true
+disabled = false
 
 [cmd_duration]
 disabled = true
