@@ -19,7 +19,8 @@
        ophints                 ; highlight the region an operation acts on
        (popup +all
               +defaults)       ; tame sudden yet inevitable temporary windows
-       (treemacs +lsp)         ; a project drawer, like neotree but cooler
+       neotree                 ; a project drawer, like NERDTree for vim
+       ;; (treemacs +lsp)      ; a project drawer, like neotree but cooler
        unicode                 ; extended unicode support for various languages
        workspaces              ; tab emulation, persistence & separate workspaces
 
