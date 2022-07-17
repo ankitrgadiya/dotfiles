@@ -53,6 +53,7 @@
        lsp                    ; M-x vscode
        magit                  ; a git porcelain for Emacs
        ;;make                 ; run make tasks from Emacs
+       ansible                ;
 
        :os
        (:if IS-MAC macos)     ; improve compatibility with macOS
