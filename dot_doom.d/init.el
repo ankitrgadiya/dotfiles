@@ -70,8 +70,8 @@
        rest                   ; Emacs as a REST client
        (sh +lsp +fish)        ; she sells {ba,z,fi}sh shells on the C xor
        (yaml +lsp)            ; JSON, but readable
-       (org +journal
-            +roam2)           ; organize your plain life in plain text
+       (org +journal)         ; organize your plain life in plain text
+       (scheme +guile)        ; a fully conniving family of lisps
 
        :email
        ;;(mu4e +org +gmail)
