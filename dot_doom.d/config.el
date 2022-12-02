@@ -15,7 +15,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type 'visual)
 
 ;; Configure Fossil backend for VC Mode
 (add-to-list 'vc-handled-backends 'Fossil t)
