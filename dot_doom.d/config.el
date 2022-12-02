@@ -19,22 +19,3 @@
 
 ;; Configure Fossil backend for VC Mode
 (add-to-list 'vc-handled-backends 'Fossil t)
-
-;; Enable interactive JQ for JSON Documents
-(use-package! jq-mode
-  :defer t
-  :init
-  (map! :after json-mode
-        :map json-mode-map
-        :localleader
-        "i" #'jq-interactively))
-
-;; Enable JQ integration for Restclient
-(use-package! restclient-jq
-  :after restclient)
-
-;; Set Org configuration
-(setq org-directory "~/Nextcloud/Org"
-      org-journal-dir "~/Nextcloud/Org"
-      org-journal-file-format "journal-%Y"
-      org-journal-file-type 'yearly)

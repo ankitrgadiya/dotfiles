@@ -69,6 +69,7 @@
        (python +lsp +pyright) ; beautiful is better than ugly
        rest                   ; Emacs as a REST client
        (sh +lsp +fish)        ; she sells {ba,z,fi}sh shells on the C xor
+       (rest +jq)             ; Emacs as a REST client
        (yaml +lsp)            ; JSON, but readable
        (org +journal)         ; organize your plain life in plain text
        (scheme +guile)        ; a fully conniving family of lisps
