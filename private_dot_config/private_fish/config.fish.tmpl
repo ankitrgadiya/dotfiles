@@ -156,7 +156,7 @@ set -x GOROOT "$HOMEBREW_PREFIX/opt/golang/libexec"
 {{- else if eq .distro "fedora" }}
 set -x GOROOT "/usr/lib/golang"
 {{- else if eq .distro "arch" }}
-set -x GOROOT "/usr/local/lib/go-1.17"
+set -x GOROOT "/usr/lib/go"
 {{- end }}
 set -x GOPATH $HOME/.local/go
 set -x GO111MODULE "auto"
