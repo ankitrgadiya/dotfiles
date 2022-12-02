@@ -15,14 +15,15 @@
        ;;doom-dashboard          ; a nifty splash screen for Emacs
        hl-todo                 ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        (ligatures +iosevka)    ; ligatures and symbols to make your code pretty again
-       modeline                ; snazzy, Atom-inspired modeline, plus API
+       (modeline +light)       ; snazzy, Atom-inspired modeline, plus API
        ophints                 ; highlight the region an operation acts on
        (popup +all
               +defaults)       ; tame sudden yet inevitable temporary windows
        neotree                 ; a project drawer, like NERDTree for vim
-       ;; (treemacs +lsp)      ; a project drawer, like neotree but cooler
        unicode                 ; extended unicode support for various languages
        workspaces              ; tab emulation, persistence & separate workspaces
+       (emoji +github
+              +unicode)
 
        :editor
        (evil +everywhere)      ; come to the dark side, we have cookies
@@ -52,7 +53,7 @@
        lookup                 ; navigate your code and its documentation
        lsp                    ; M-x vscode
        magit                  ; a git porcelain for Emacs
-       ;;make                 ; run make tasks from Emacs
+       make                   ; run make tasks from Emacs
        ansible                ;
        tree-sitter
 
