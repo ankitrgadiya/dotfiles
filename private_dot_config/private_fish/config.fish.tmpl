@@ -26,6 +26,14 @@ set PATH "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin" $PATH
 set PATH "$HOMEBREW_PREFIX/opt/ruby/bin" "$HOMEBREW_PREFIX/lib/ruby/gems/3.1.0/bin" $PATH
 {{- end }}
 
+# GUIX Configuration
+if test -e "$HOME/.guix-profile"
+    set -x GUIX_PROFILE "$HOME/.guix-profile"
+
+    if test -f "$GUIX_PROFILE/etc/profile"
+        bass source "$GUIX_PROFILE/etc/profile"
+    end
+end
 
 # Enable direnv hook for fish if it is installed
 if type direnv &> /dev/null
