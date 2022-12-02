@@ -54,6 +54,7 @@
        magit                  ; a git porcelain for Emacs
        ;;make                 ; run make tasks from Emacs
        ansible                ;
+       tree-sitter
 
        :os
        (:if IS-MAC macos)     ; improve compatibility with macOS
@@ -62,14 +63,19 @@
        :lang
        data                   ; config/data formats
        emacs-lisp             ; drown in parentheses
-       (go +lsp)              ; the hipster dialect
-       (json +lsp)            ; At least it ain't XML
+       (go +lsp
+           +tree-sitter)      ; the hipster dialect
+       (json +lsp
+             +tree-sitter)    ; At least it ain't XML
        (lua +lsp)             ; one-based indices? one-based indices
        markdown               ; writing docs for people to ignore
-       (python +lsp +pyright) ; beautiful is better than ugly
-       rest                   ; Emacs as a REST client
-       (sh +lsp +fish)        ; she sells {ba,z,fi}sh shells on the C xor
+       (python +lsp
+               +pyright
+               +tree-sitter)  ; beautiful is better than ugly
        (rest +jq)             ; Emacs as a REST client
+       (sh +lsp
+           +fish
+           +tree-sitter)      ; she sells {ba,z,fi}sh shells on the C xor
        (yaml +lsp)            ; JSON, but readable
        (org +journal)         ; organize your plain life in plain text
        (scheme +guile)        ; a fully conniving family of lisps
