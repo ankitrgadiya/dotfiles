@@ -1,6 +1,6 @@
 # Begin ~/.config/fish/config.fish
 
-# Copyright 2021, Ankit R Gadiya
+# Copyright 2021-2022, Ankit R Gadiya
 # BSD License
 
 # vi: ft=fish
@@ -26,14 +26,31 @@ set PATH "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin" $PATH
 set PATH "$HOMEBREW_PREFIX/opt/ruby/bin" "$HOMEBREW_PREFIX/lib/ruby/gems/3.1.0/bin" $PATH
 {{- end }}
 
-# GUIX Configuration
-if test -e "$HOME/.guix-profile"
+{{- if .guix }}
+# GNU GUIX is a package managed from GNU. It is implemented in GNU Guile and
+# uses it for packages definitions as well. This means that package definitions
+# are also Code. It strives to implement reproducible systems.
+
+# Current User Profile
+if test -L "$HOME/.guix-profile"
     set -x GUIX_PROFILE "$HOME/.guix-profile"
 
-    if test -f "$GUIX_PROFILE/etc/profile"
-        bass source "$GUIX_PROFILE/etc/profile"
+    if test -f "$HOME/.guix-profile/etc/profile"
+        bass source "$HOME/.guix-profile/etc/profile"
+    end
+
+    if test -d "$GUIX_PROFILE/lib/locale"
+        set -x GUIX_LOCPATH $GUIX_PROFILE/lib/locale
     end
 end
+
+# Current GUIX Profile
+if test -L "$HOME/.config/guix/current"
+    if test -f "$HOME/.config/guix/current/etc/profile"
+       bass source "$HOME/.config/guix/current/etc/profile"
+    end
+end
+{{- end }}
 
 # Enable direnv hook for fish if it is installed
 if type direnv &> /dev/null
@@ -47,7 +64,12 @@ if test -e "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.fish"
    fzf_key_bindings
 end
 {{- else if eq .chezmoi.os "linux" }}
-    {{- if eq .distro "fedora" }}
+    {{- if .guix }}
+if test -e "$GUIX_PROFILE/share/fish/vendor_functions.d/fzf_key_bindings.fish"
+   source "$GUIX_PROFILE/share/fish/vendor_functions.d/fzf_key_bindings.fish"
+   fzf_key_bindings
+end
+    {{- else if eq .distro "fedora" }}
 if test -e "/usr/share/fzf/shell/key-bindings.fish"
    source /usr/share/fzf/shell/key-bindings.fish
    fzf_key_bindings
