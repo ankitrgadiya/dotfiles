@@ -8,6 +8,8 @@
 {{- if eq .chezmoi.os "darwin" }}
 # Homebrew package manager requires some environment variables. This is a Fish
 # compatible version of (brew shellenv).
+#
+# Note: These variables are updated for Apple Silicon version of Homebrew.
 set -x HOMEBREW_PREFIX "/opt/homebrew"
 set -x HOMEBREW_CELLAR "$HOMEBREW_PREFIX/Cellar"
 set -x HOMEBREW_REPOSITORY "$HOMEBREW_PREFIX"
@@ -16,6 +18,7 @@ set -x MANPATH "$HOMEBREW_PREFIX/share/man" $MANPATH
 set -x INFOPATH "$HOMEBREW_PREFIX/share/info" $INFOPATH
 
 # Mac specific settings.
+#
 # The pre-installed coreutils in Mac are BSD version. Brew installs the GNU
 # versions but prepends "g" in front of them. The symlinks exists for directly
 # using the commands. The following adds the symlinks before PATH so it takes
@@ -109,12 +112,6 @@ alias gsl='git shortlog'
 alias ga='git shortlog -s'
 alias magit='emacs-editor -e \(magit-status\)'
 
-# Misc aliases
-alias f='free'
-alias g='grep'
-alias t='tmux -u'
-alias u='uptime -p'
-
 # Enable Human readable versions
 alias df='df --human'
 alias du='du --human'
@@ -162,6 +159,42 @@ alias axel='axel -n 15 -a -k'
 # Enable Docker BuildKit
 set -x DOCKER_BUILDKIT 1
 
+# I use Emacs for editing text files. Emacs can also be configured to
+# work in Client-Server fashion which means reduced time for launching
+# client. Emacs 26+ (atleast on Debian) also comes with a user service
+# (systemd) to run Emacs daemon automatically. However, if the daemon
+# is not running the desirable result is to start a daemon and connect
+# to it as client. I had some trouble in past where some command was
+# not accepting flags in the $EDITOR variable and so the client was
+# not working. So, I wrapped up the logic described in a simple shell
+# script. I am using it as EDITOR now.
+set -x EDITOR "emacs-editor"
+set -x VISUAL "emacs-visual"
+
+# I <3 Vi key-bindings.
+fish_vi_key_bindings
+
+# Prompt
+if type starship &> /dev/null;
+   starship init fish | source
+end
+
+# Bat Settings
+set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -x MANROFFOPT "-c"
+
+# Enable dircolors
+bass (dircolors ~/.dir_colors)
+
+# Add local directories to the Path
+set -x PATH $HOME/.local/bin $PATH
+set -x MANPATH $HOME/.local/share/man:$MANPATH
+
+# Programming Languages
+
+# Deno configuration
+set -x PATH $PATH "$HOME/.deno/bin"
+
 # Elixir configuration
 set -x PATH $PATH "$HOME/.mix/escripts"
 
@@ -188,45 +221,16 @@ set -x GOROOT "/usr/lib/golang"
 {{- else if eq .distro "arch" }}
 set -x GOROOT "/usr/lib/go"
 {{- end }}
-set -x GOPATH $HOME/.local/go
-set -x GO111MODULE "auto"
+
 {{- if eq .machine "work" }}
 set -x GOPROXY "direct"
 {{- else }}
 set -x GOPROXY "https://proxy.golang.org,direct"
 {{- end }}
+
+set -x GO111MODULE "auto"
+set -x GOPATH $HOME/.local/go
 set -x PATH $GOROOT/bin $GOPATH/bin $PATH
-
-# Add local directories to the Path
-set -x PATH $HOME/.local/bin $PATH
-set -x MANPATH $HOME/.local/share/man:$MANPATH
-
-# I use Emacs for editing text files. Emacs can also be configured to
-# work in Client-Server fashion which means reduced time for launching
-# client. Emacs 26+ (atleast on Debian) also comes with a user service
-# (systemd) to run Emacs daemon automatically. However, if the daemon
-# is not running the desirable result is to start a daemon and connect
-# to it as client. I had some trouble in past where some command was
-# not accepting flags in the $EDITOR variable and so the client was
-# not working. So, I wrapped up the logic described in a simple shell
-# script. I am using it as EDITOR now.
-set -x EDITOR "nvim"
-set -x VISUAL "emacs-visual"
-
-# I <3 Vi key-bindings.
-fish_vi_key_bindings
-
-# Prompt
-if type starship &> /dev/null;
-   starship init fish | source
-end
-
-# Bat Settings
-set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
-set -x MANROFFOPT "-c"
-
-# Enable dircolors
-bass (dircolors ~/.dir_colors)
 
 # Assign appropriate TTY for GPG
 set -x GPG_TTY (tty)
