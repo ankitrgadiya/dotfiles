@@ -216,6 +216,8 @@ set -x GOPRIVATE "bitbucket.org/rapyutians,github.com/rapyuta-robotics"
 {{- end }}
 {{- if eq .chezmoi.os "darwin" }}
 set -x GOROOT "$HOMEBREW_PREFIX/opt/golang/libexec"
+{{- else if .guix }}
+set -x GOROOT "$GUIX_PROFILE/lib/go"
 {{- else if eq .distro "fedora" }}
 set -x GOROOT "/usr/lib/golang"
 {{- else if eq .distro "arch" }}
