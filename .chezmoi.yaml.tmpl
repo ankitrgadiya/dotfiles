@@ -29,9 +29,17 @@
 {{-   $distro = promptString "distro (mac, fedora, ubuntu, arch)" }}
 {{- end }}
 
+{{- $guix := "true" }}
+{{- if (hasKey . "guix")}}
+{{-   $guix = .guix }}
+{{- else }}
+{{-   $guix = promptBool "using guix"}}
+{{- end }}
+
 data:
   machine: {{ $machineType }}
   desktop: {{ $desktop }}
   distro: {{ $distro }}
+  guix: {{ $guix }}
 
 # End ~/.config/chezmoi/chezmoi.yaml
