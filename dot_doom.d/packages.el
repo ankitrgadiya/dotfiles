@@ -1,15 +1,10 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
-(package! emacsql)
-(package! emacsql-sqlite)
-(package! protobuf-mode)
-(package! salt-mode)
-(package! vc-fossil)
-
-(when (package! restclient)
-  (package! jq-mode)
-  (package! restclient-jq
-    :recipe (:host github
-             :repo "pashky/restclient.el"
-             :files ("restclient-jq.el"))))
+;; Emacs GUIX is a Magit-like interface for GNU GUIX package manager.
+;;
+;; Note: The Github repository is not being updated, I'm pulling directly from
+;; Savannah.
+(package! guix
+  :recipe (:host nil
+            :repo "https://git.savannah.gnu.org/git/guix/emacs-guix.git"))
