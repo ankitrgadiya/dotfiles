@@ -2,15 +2,13 @@
 Description=GNU Shepherd Daemon Manager
 
 [Service]
-Type=forking
-ExecStart=/bin/bash -c 'shepherd --pid=/run/user/1000/shepherd/shepherd.pid'
-ExecStop=/bin/bash -c 'herd stop root && rm /run/user/1000/shepherd/socket'
-PIDFile=/run/user/1000/shepherd/shepherd.pid
+ExecStart=/bin/bash -c 'shepherd --logfile=$HOME/.local/var/log/shepherd/shepherd.log'
+ExecStop=/bin/bash -c  'herd stop root && rm /run/user/$(id -u)/shepherd/socket'
 TimeoutSec=30
 Restart=on-failure
 RestartSec=30
 StartLimitInterval=350
 StartLimitBurst=10
-
+ 
 [Install]
 WantedBy=default.target
