@@ -34,10 +34,15 @@ set PATH "$HOMEBREW_PREFIX/opt/ruby/bin" "$HOMEBREW_PREFIX/lib/ruby/gems/3.1.0/b
 # uses it for packages definitions as well. This means that package definitions
 # are also Code. It strives to implement reproducible systems.
 
-# Current User Profile
-if test -L "$HOME/.guix-profile"
+# Check if we are in a GUIX Environment
+if set -q GUIX_ENVIRONMENT
+    set -x GUIX_PROFILE $GUIX_ENVIRONMENT
+else if test -L "$HOME/.guix-profile"
     set -x GUIX_PROFILE "$HOME/.guix-profile"
+end
 
+# Current User Profile
+if set -q GUIX_PROFILE
     if test -f "$HOME/.guix-profile/etc/profile"
         bass source "$HOME/.guix-profile/etc/profile"
     end
