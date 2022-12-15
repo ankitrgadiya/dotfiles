@@ -22,6 +22,13 @@
   (add-to-list 'eglot-server-programs
                '((python-mode python-ts-mode) . ("pyright"))))
 
+;; Folding Configuration
+;;
+;; Disable comment folding in Go
+(advice-add #'ts-fold-parsers-go
+            ;; Removes comment parser from the pre-registered Go parsers.
+            :filter-return (lambda (parsers) (list (car parsers))))
+
 ;; Load Project-specific ELisp module
 ;;
 ;; I'm using this to implement RunConfigurations with Emacs integration.
