@@ -1,0 +1,95 @@
+api.kepler.lan {
+	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
+	}
+
+    reverse_proxy https://localhost:31001 {
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
+}
+
+coreapi.kepler.lan {
+	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
+	}
+
+    reverse_proxy https://localhost:30001 {
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
+}
+
+rip.kepler.lan {
+	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
+	}
+
+    reverse_proxy https://localhost:30002 {
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
+}
+
+authz.kepler.lan {
+	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
+	}
+
+    reverse_proxy https://localhost:30003 {
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
+}
+
+iobroker.kepler.lan {
+	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
+	}
+
+    reverse_proxy https://localhost:30004 {
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
+}
+
+helmbroker.kepler.lan {
+	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
+	}
+
+    reverse_proxy https://localhost:30005 {
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
+}
+
+devicebroker.kepler.lan {
+	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
+	}
+
+    reverse_proxy https://localhost:30006 {
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
+}
+
+es.kepler.lan {
+	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
+	}
+
+    reverse_proxy https://localhost:39001 {
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
+}
