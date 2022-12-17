@@ -1,8 +1,7 @@
 ;; init.scm -- Shepherd Configuration
 (use-modules (shepherd service)
              (oop goops)
-             (ice-9 popen))
-
+             (ice-9 rdelim))
 
 ;; Postgres - An open-source object-relational database
 (define (make-postgres)
@@ -88,30 +87,64 @@
                    "/.local/var/log/oc/"
                    (if log-file log-file name)))
 
-  (define (get-namespace)
-    (when namespace
-        (string-append "--namespace=" namespace)))
+  (define (get-namespace ns)
+    (when ns
+        (string-append "--namespace=" ns)))
+
+  (define (get-service-namespace-from-pid pid)
+      (let* ((proc-cmdline    (string-append "/proc/" (number->string pid) "/cmdline"))
+             (cmdline         (string-split (call-with-input-file proc-cmdline read-line) #\x00))
+             (namespace-flag  (caddr cmdline))
+             (namespace       (cadr (string-split namespace-flag #\=))))
+        namespace))
+
+  (define (get-staging-environment-from-namespace ns)
+    (let ((parts (string-split ns #\-)))
+      (cond ((and (= 3 (length parts))
+                  (string=? "core" (caddr parts)))   ;; vX Environments
+             (car parts))
+            ((and (= 2 (length parts))
+                  (string=? "io" (car parts)))       ;; Ephemeral Environments
+             (cadr parts))
+            (else "Port forwarding is outside a staging environment."))))
+
+  (define (action-namespace pid . _)
+    (when pid
+      (display (get-service-namespace-from-pid pid))
+      (newline)))
+
+  (define (action-environment pid . _)
+    (when pid
+      (let* ((ns  (get-service-namespace-from-pid pid))
+             (env (get-staging-environment-from-namespace ns)))
+        (display env)
+        (newline))))
 
   (let* ((service   (get-service))
-         (namespace (get-namespace))
          (log-file  (get-logfile))
-         (command   (oc-command "port-forward" namespace service port))
          (provide   (list (string->symbol (string-append "proxy-" name))
                           (string->symbol name)))
          (docstring (string-join (list "Kubernetes proxy for" name "service"))))
-
     (make <service>
       #:docstring docstring
       #:provides  provide
-      #:start     (make-forkexec-constructor command #:log-file log-file)
+      #:start     (lambda args
+                    (let* ((namespace (if (null? args)
+                                          (get-namespace namespace)
+                                          (get-namespace (car args))))
+                           (command (oc-command "port-forward" namespace service port)))
+                      (apply (make-forkexec-constructor command #:log-file log-file) args)))
       #:stop      (make-kill-destructor)
       #:actions   (make-actions
+                   (namespace
+                    "Display the current namespace"
+                    action-namespace)
+                   (environment
+                    "Display the current staging environment"
+                    action-environment)
                    (logs
                     "Display the path for Logfile"
-                    (lambda args (display log-file)))
-                   (command
-                    "Displays the command used"
-                    (lambda args (display (string-join command))))))))
+                    (lambda args (display log-file)))))))
 
 ;; IO Service - A function to generate Rapyuta IO Services.
 (define* (make-io-service name
