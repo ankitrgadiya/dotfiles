@@ -66,3 +66,35 @@
 ;; Unload module when I kill all projectile buffers.
 (advice-add #'projectile-kill-buffers :before #'arg/unload-project-module)
 
+
+;; Restclient Hacks
+;;
+;; The upstream restclient does not support substituting variables in ELisp
+;; S-expressions for variables. These advices add the support for it.
+
+;; To get all the variables, it needs to parse each variable until the current
+;; point.
+;;
+;; This advice overrides the upstream function with this. It passes the vars
+;; alist until now to the restclient-eval-var function as replacements.
+(advice-add #'restclient-find-vars-before-point
+            :override
+            (lambda ()
+              (let ((vars nil)
+                    (bound (point)))
+                (save-excursion
+                  (goto-char (point-min))
+                  (while (search-forward-regexp restclient-var-regexp bound t)
+                    (let ((name (match-string-no-properties 1))
+                          (should-eval (> (length (match-string 2)) 0))
+                          (value (or (restclient-chop (match-string-no-properties 4)) (match-string-no-properties 3))))
+                      (setq vars (cons (cons name (if should-eval (restclient-eval-var value vars) value)) vars))))
+                  (append restclient-var-overrides vars)))))
+
+;; Before we try to evaluate the string, replace all the variables with there
+;; values from the replacement alist.
+(advice-add #'restclient-eval-var
+            :override
+            (lambda (content vars)
+              (let ((input (restclient-replace-all-in-string vars content)))
+                (with-output-to-string (princ (eval (read input)))))))
