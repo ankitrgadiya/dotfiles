@@ -202,12 +202,38 @@
 
 (register-services (make-postgres)
                    (make-caddy)
+                   (make-oc-proxy "coreapi"
+                                  #:port "30001:80"
+                                  #:log-file "coreapi"
+                                  #:namespace "qa-rapyuta-core"
+                                  #:service "apiserver")
+                   (make-oc-proxy "rip"
+                                  #:port "30002:80"
+                                  #:log-file "rip"
+                                  #:namespace "qa-rapyuta-core"
+                                  #:service "rip")
                    (make-oc-proxy "authz"
-                                  #:port "8081:80"
+                                  #:port "30003:80"
                                   #:log-file "authz"
+                                  #:namespace "qa-rapyuta-core"
                                   #:service "authz")
+                   (make-oc-proxy "iobroker"
+                                  #:port "30004:80"
+                                  #:log-file "iobroker"
+                                  #:namespace "qa-rapyuta-core"
+                                  #:service "iobroker")
+                   (make-oc-proxy "helmbroker"
+                                  #:port "30005:80"
+                                  #:log-file "helmbroker"
+                                  #:namespace "qa-rapyuta-core"
+                                  #:service "helmbroker")
+                   (make-oc-proxy "devicebroker"
+                                  #:port "30006:80"
+                                  #:log-file "devicebroker"
+                                  #:namespace "qa-rapyuta-core"
+                                  #:service "devicebroker")
                    (make-oc-proxy "es"
-                                  #:port "9200:9200"
+                                  #:port "39001:9200"
                                   #:log-file "test-es"
                                   #:namespace "test-es"
                                   #:service "elasticsearch-master")
