@@ -28,6 +28,46 @@
                   "Re-load the configuration"
                   (make-system-constructor (control-command "reload"))))))
 
+;; Caddy - A modern webserver written in Go.
+(define (make-caddy)
+  (define (get-base-directory)
+    (string-append (getenv "HOME")
+                   "/.config/caddy"))
+
+  (define (get-log-file)
+    (string-append (getenv "HOME")
+                   "/.local/var/log/caddy/caddy.log"))
+
+  (define (get-config-file)
+    (string-append (get-base-directory) "/Caddyfile"))
+
+  (define (caddy-command . args)
+    (cons* "caddy" args))
+
+  (let* ((base-directory    (get-base-directory))
+         (config-file       (get-config-file))
+         (log-file          (get-log-file))
+         (run-command       (caddy-command "run" "--environ" "--config"
+                                           config-file))
+         (validate-command  (caddy-command "validate" "--config"
+                                           config-file))
+         (reload-command    (caddy-command "reload" "--config"
+                                           config-file)))
+    (make <service>
+      #:docstring "A modern webserver written in Go."
+      #:provides  (list 'caddy 'webserver 'reverse-proxy)
+      #:start     (make-forkexec-constructor run-command
+                                             #:directory base-directory
+                                             #:log-file  log-file)
+      #:stop      (make-kill-destructor)
+      #:actions   (make-actions
+                   (validate
+                    "Validate the Caddyfile"
+                    (make-system-constructor (string-join validate-command)))
+                   (reload
+                    "Reload the Caddyfile"
+                    (make-system-constructor (string-join reload-command)))))))
+
 ;; OC Proxy - A function to generate Kubernetes Proxy Services.
 (define* (make-oc-proxy name
                         #:key
@@ -128,6 +168,7 @@
                     (lambda args (display (string-join command))))))))
 
 (register-services (make-postgres)
+                   (make-caddy)
                    (make-oc-proxy "authz"
                                   #:port "8081:80"
                                   #:log-file "authz"
