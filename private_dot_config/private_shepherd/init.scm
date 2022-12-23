@@ -3,6 +3,23 @@
              (oop goops)
              (ice-9 rdelim))
 
+(define (register-oneshot-mkdir-run name directory)
+  (let* ((provides (string->symbol (string-append "mkdir-run-" name)))
+         (svc      (make <service>
+                     #:docstring (string-append "Create /var/run directory for " name)
+                     #:provides  (list provides)
+                     #:one-shot? #t
+                     #:start     (make-system-constructor
+                                  (string-join
+                                   (list "mkdir" "-p"
+                                         (string-append "/run/user/"
+                                                        (number->string (getuid))
+                                                        "/"
+                                                        directory)))))))
+    (register-services svc)
+    provides))
+
+
 ;; Postgres - An open-source object-relational database
 (define (make-postgres)
   (define (control-command . args)
@@ -17,15 +34,17 @@
             (string-append "--host=" "/run/user/" (number->string (getuid)) "/postgresql")
             "--dbname=postgres"
             args)))
-  (make <service>
-    #:docstring "An open-source object-relational database"
-    #:provides  '(postgres sql-db)
-    #:start     (make-system-constructor (control-command "start"))
-    #:stop      (make-system-constructor (control-command "stop"))
-    #:actions   (make-actions
-                 (reload
-                  "Re-load the configuration"
-                  (make-system-constructor (control-command "reload"))))))
+  (let ((mkdir-one-shot (register-oneshot-mkdir-run "postgres" "postgresql")))
+    (make <service>
+      #:docstring "An open-source object-relational database"
+      #:provides  '(postgres sql-db)
+      #:start     (make-system-constructor (control-command "start"))
+      #:stop      (make-system-constructor (control-command "stop"))
+      #:requires  (list mkdir-one-shot)
+      #:actions   (make-actions
+                   (reload
+                    "Re-load the configuration"
+                    (make-system-constructor (control-command "reload")))))))
 
 ;; Caddy - A modern webserver written in Go.
 (define (make-caddy)
