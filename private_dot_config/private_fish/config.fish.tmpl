@@ -231,12 +231,7 @@ set -x GOROOT "/usr/lib/golang"
 set -x GOROOT "/usr/lib/go"
 {{- end }}
 
-{{- if eq .machine "work" }}
-set -x GOPROXY "direct"
-{{- else }}
 set -x GOPROXY "https://proxy.golang.org,direct"
-{{- end }}
-
 set -x GO111MODULE "auto"
 set -x GOPATH $HOME/.local/go
 set -x PATH $GOROOT/bin $GOPATH/bin $PATH
