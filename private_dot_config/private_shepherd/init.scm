@@ -91,15 +91,26 @@
                         #:key
                         (port      "80")
                         (service    #f)
+                        (pod        #f)
                         (log-file   #f)
-                        (namespace  #f))
+                        (namespace  #f)
+                        (address    #f))
 
   (define (oc-command . args)
     (cons* (string-append (getenv "HOME") "/.local/bin/oc")
            (filter (negate unspecified?) args)))
 
+  (define (get-address)
+    (when address
+      (string-append "--address="address)))
+
   (define (get-service)
-    (string-append "svc/" (if service service name)))
+    (when service
+      (string-append "svc/" service)))
+
+  (define (get-pod)
+    (when pod
+      (string-append "pod/" pod)))
 
   (define (get-logfile)
     (string-append (getenv "HOME")
@@ -140,6 +151,8 @@
         (newline))))
 
   (let* ((service   (get-service))
+         (pod       (get-pod))
+         (address   (get-address))
          (log-file  (get-logfile))
          (provide   (list (string->symbol (string-append "proxy-" name))
                           (string->symbol name)))
@@ -151,7 +164,7 @@
                     (let* ((namespace (if (null? args)
                                           (get-namespace namespace)
                                           (get-namespace (car args))))
-                           (command (oc-command "port-forward" namespace service port)))
+                           (command (oc-command "port-forward" namespace service pod address port)))
                       (apply (make-forkexec-constructor command #:log-file log-file) args)))
       #:stop      (make-kill-destructor)
       #:actions   (make-actions
@@ -256,6 +269,29 @@
                                   #:log-file "test-es"
                                   #:namespace "test-es"
                                   #:service "elasticsearch-master")
+                   (make-oc-proxy "kafka-0"
+                                  #:port "9092:9092"
+                                  #:log-file "kafka-0"
+                                  #:namespace "kafka"
+                                  #:pod "kafka-kafka-0"
+                                  #:address "127.7.0.1")
+                   (make-oc-proxy "kafka-1"
+                                  #:port "9092:9092"
+                                  #:log-file "kafka-1"
+                                  #:namespace "kafka"
+                                  #:pod "kafka-kafka-1"
+                                  #:address "127.7.0.2")
+                   (make-oc-proxy "kafka-2"
+                                  #:port "9092:9092"
+                                  #:log-file "kafka-2"
+                                  #:namespace "kafka"
+                                  #:pod "kafka-kafka-2"
+                                  #:address "127.7.0.3")
+                   (make-oc-proxy "kafdrop"
+                                  #:port "39005:9000"
+                                  #:log-file "kafdrop"
+                                  #:namespace "kafka"
+                                  #:service "kafdrop")
                    (make-io-service "apiserver"
                                     #:v2? #t
                                     #:args '("--config" "config.yaml")))
