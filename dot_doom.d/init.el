@@ -43,7 +43,7 @@
        :tools
        (eval       +overlay)         ; run code, run (also, repls)
        lookup                        ; navigate your code and its documentation
-       lsp                           ; M-x vscode
+       (lsp        +eglot)           ; M-x vscode
        magit                         ; a git porcelain for Emacs
        make                          ; run make tasks from Emacs
        ansible                       ;
@@ -60,7 +60,6 @@
                    +tree-sitter)     ; the hipster dialect
        (json       +tree-sitter)     ; At least it ain't XML
        lua                           ; one-based indices? one-based indices
-       markdown                      ; writing docs for people to ignore
        (python     +pyright
                    +tree-sitter)     ; beautiful is better than ugly
        (rest       +jq)              ; Emacs as a REST client
@@ -70,6 +69,7 @@
        (scheme     +guile)           ; a fully conniving family of lisps
        (javascript +lsp
                    +tree-sitter)     ; all(hope(abandon(ye(who(enter(here))))))
+       markdown                      ; writing docs for people to ignore
 
        :config
        (default    +bindings
