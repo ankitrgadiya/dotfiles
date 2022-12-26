@@ -64,8 +64,7 @@
        (python     +pyright
                    +tree-sitter)     ; beautiful is better than ugly
        (rest       +jq)              ; Emacs as a REST client
-       (sh         +lsp
-                   +fish
+       (sh         +fish
                    +tree-sitter)     ; she sells {ba,z,fi}sh shells on the C xor
        yaml                          ; JSON, but readable
        (scheme     +guile)           ; a fully conniving family of lisps
