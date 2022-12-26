@@ -15,11 +15,7 @@ coreapi.kepler.lan {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
-    reverse_proxy https://localhost:30001 {
-        transport http {
-            tls_insecure_skip_verify
-        }
-    }
+    reverse_proxy http://localhost:30001
 }
 
 rip.kepler.lan {
@@ -27,11 +23,7 @@ rip.kepler.lan {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
-    reverse_proxy https://localhost:30002 {
-        transport http {
-            tls_insecure_skip_verify
-        }
-    }
+    reverse_proxy http://localhost:30002
 }
 
 authz.kepler.lan {
@@ -39,11 +31,7 @@ authz.kepler.lan {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
-    reverse_proxy https://localhost:30003 {
-        transport http {
-            tls_insecure_skip_verify
-        }
-    }
+    reverse_proxy http://localhost:30003
 }
 
 iobroker.kepler.lan {
@@ -51,11 +39,7 @@ iobroker.kepler.lan {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
-    reverse_proxy https://localhost:30004 {
-        transport http {
-            tls_insecure_skip_verify
-        }
-    }
+    reverse_proxy http://localhost:30004
 }
 
 helmbroker.kepler.lan {
@@ -63,11 +47,7 @@ helmbroker.kepler.lan {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
-    reverse_proxy https://localhost:30005 {
-        transport http {
-            tls_insecure_skip_verify
-        }
-    }
+    reverse_proxy http://localhost:30005
 }
 
 devicebroker.kepler.lan {
@@ -75,11 +55,7 @@ devicebroker.kepler.lan {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
-    reverse_proxy https://localhost:30006 {
-        transport http {
-            tls_insecure_skip_verify
-        }
-    }
+    reverse_proxy http://localhost:30006
 }
 
 es.kepler.lan {
