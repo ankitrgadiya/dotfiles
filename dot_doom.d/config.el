@@ -13,6 +13,10 @@
 ;; Gruvbox.
 (setq doom-theme 'doom-gruvbox)
 
+;; White-label Doom Emacs
+(setq icon-title-format "%b – Emacs"
+      frame-title-format "%b - Emacs")
+
 ;; Use visual to display the line numbers. Visual is like relative numbers, but
 ;; also works with folds.
 (setq display-line-numbers-type 'visual)
