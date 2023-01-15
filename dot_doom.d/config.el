@@ -60,35 +60,35 @@
 ;;   - If projects are switched using persp-mode, the hooks are not triggered.
 ;;   - If buffers are not closed using projectile functions, the hooks are not
 ;;     triggered.
-(defun arg/project-module-filename ()
+(defun arg/runconf-module-filename ()
   (concat (projectile-project-root)
-          (string-replace "_" "" (concat (projectile-project-name) ".el"))))
+          "runconf.el"))
 
-(defun arg/project-module-name ()
+(defun arg/runconf-module-name ()
   (intern (string-replace "_" "" (projectile-project-name))))
 
-(defun arg/load-project-module ()
-  (let ((name (arg/project-module-filename)))
+(defun arg/runconf-load-module ()
+  (let ((name (arg/runconf-module-filename)))
     (when (file-exists-p! name (projectile-project-root))
       (message "loading %s now" name)
       (load-file name))))
 
-(defun arg/unload-project-module ()
-  (let ((name (arg/project-module-name)))
+(defun arg/runconf-unload-module ()
+  (let ((name (intern "runconf")))
     (when (featurep name)
       (message "unloading %s" name)
       (unload-feature name))))
 
 ;; Auto-load module when I switch projects using Projectile.
 (add-hook 'projectile-after-switch-project-hook
-          #'arg/load-project-module)
+          #'arg/runconf-load-module)
 
 ;; Unload module when I switch to a different project.
 (add-hook 'projectile-before-switch-project-hook
-          #'arg/unload-project-module)
+          #'arg/runconf-unload-module)
 
 ;; Unload module when I kill all projectile buffers.
-(advice-add #'projectile-kill-buffers :before #'arg/unload-project-module)
+(advice-add #'projectile-kill-buffers :before #'arg/runconf-unload-module)
 
 
 ;; Restclient Hacks
