@@ -56,6 +56,7 @@
        :lang
        data                          ; config/data formats
        emacs-lisp                    ; drown in parentheses
+       common-lisp                   ; if you've seen one lisp, you've seen them all
        (scheme     +guile)           ; a fully conniving family of lisps
        (cc         +lsp
                    +tree-sitter)     ; C > C++ == 1
