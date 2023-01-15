@@ -7,4 +7,6 @@
 ;; Savannah.
 (package! guix
   :recipe (:host nil
-            :repo "https://git.savannah.gnu.org/git/guix/emacs-guix.git"))
+           :repo "https://git.savannah.gnu.org/git/guix/emacs-guix.git"))
+
+(package! flycheck-golangci-lint :disable t)
