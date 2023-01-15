@@ -72,12 +72,7 @@ if test -e "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.fish"
    fzf_key_bindings
 end
 {{- else if eq .chezmoi.os "linux" }}
-    {{- if .guix }}
-if test -e "$GUIX_PROFILE/share/fish/vendor_functions.d/fzf_key_bindings.fish"
-   source "$GUIX_PROFILE/share/fish/vendor_functions.d/fzf_key_bindings.fish"
-   fzf_key_bindings
-end
-    {{- else if eq .distro "fedora" }}
+    {{- if eq .distro "fedora" }}
 if test -e "/usr/share/fzf/shell/key-bindings.fish"
    source /usr/share/fzf/shell/key-bindings.fish
    fzf_key_bindings
@@ -90,6 +85,11 @@ end
     {{- else if eq .distro "arch" }}
 if test -e "/usr/share/fish/vendor_functions.d/fzf_key_bindings.fish"
    source /usr/share/fish/vendor_functions.d/fzf_key_bindings.fish
+   fzf_key_bindings
+end
+    {{- else if .guix }}
+if test -e "$GUIX_PROFILE/share/fish/vendor_functions.d/fzf_key_bindings.fish"
+   source "$GUIX_PROFILE/share/fish/vendor_functions.d/fzf_key_bindings.fish"
    fzf_key_bindings
 end
     {{- end }}
@@ -223,12 +223,12 @@ set -x GOPRIVATE "bitbucket.org/rapyutians,github.com/rapyuta-robotics"
 {{- end }}
 {{- if eq .chezmoi.os "darwin" }}
 set -x GOROOT "$HOMEBREW_PREFIX/opt/golang/libexec"
-{{- else if .guix }}
-set -x GOROOT "$GUIX_PROFILE/lib/go"
 {{- else if eq .distro "fedora" }}
 set -x GOROOT "/usr/lib/golang"
 {{- else if eq .distro "arch" }}
 set -x GOROOT "/usr/lib/go"
+{{- else if .guix }}
+set -x GOROOT "$GUIX_PROFILE/lib/go"
 {{- end }}
 
 set -x GOPROXY "https://proxy.golang.org,direct"
