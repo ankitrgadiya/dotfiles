@@ -56,6 +56,9 @@
        :lang
        data                          ; config/data formats
        emacs-lisp                    ; drown in parentheses
+       (scheme     +guile)           ; a fully conniving family of lisps
+       (cc         +lsp
+                   +tree-sitter)     ; C > C++ == 1
        (go         +lsp
                    +tree-sitter)     ; the hipster dialect
        (json       +tree-sitter)     ; At least it ain't XML
@@ -66,7 +69,6 @@
        (sh         +fish
                    +tree-sitter)     ; she sells {ba,z,fi}sh shells on the C xor
        yaml                          ; JSON, but readable
-       (scheme     +guile)           ; a fully conniving family of lisps
        (javascript +lsp
                    +tree-sitter)     ; all(hope(abandon(ye(who(enter(here))))))
        markdown                      ; writing docs for people to ignore
