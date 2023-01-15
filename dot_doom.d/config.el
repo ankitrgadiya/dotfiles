@@ -41,10 +41,15 @@
   (set-lookup-handlers! '(dest-file-mode)
     :definition #'dest-file-follow-thing-at-point
     :file #'dest-file-follow-thing-at-point))
+
 ;; Language Server - Eglot Configuration
-(with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs
-               '((python-mode python-ts-mode) . ("pyright"))))
+(setq
+ ;; Don't ask for Edits.
+ ;; Example: Code Actions to format file
+ eglot-confirm-server-initiated-edits nil
+ ;; Disable Eldoc on Hover. This is very distracting in bigger frames but
+ ;; unusable in smaller frames.
+ eglot-ignored-server-capabilities (list :hoverProvider))
 
 ;; Folding Configuration
 ;;
