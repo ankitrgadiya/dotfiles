@@ -21,6 +21,26 @@
 ;; also works with folds.
 (setq display-line-numbers-type 'visual)
 
+;; Markdown Configuration
+(setq markdown-wiki-link-search-parent-directories t
+      markdown-fontify-code-blocks-natively t)
+
+;; Dest Mode
+(use-package! dest
+  :config
+  (map! :leader
+        (:prefix-map ("d" . "Dest")
+        :desc "Today's Work Note"         "t" #'dest-work-today
+        :desc "Find file in notes"        "f" #'dest-find-file
+        :desc "Browse notes"              "F" #'dest-find-file
+        :desc "Search notes Titles"       "S" #'dest-find-file
+        :desc "Search notes"              "s" #'dest-search-notes
+        :desc "Search notes for Keyword"  "*" #'dest-search-notes-at-point
+        :map dest-file-mode-map))
+  ;; For Doom, gd will jump to the Wiki link destination.
+  (set-lookup-handlers! '(dest-file-mode)
+    :definition #'dest-file-follow-thing-at-point
+    :file #'dest-file-follow-thing-at-point))
 ;; Language Server - Eglot Configuration
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs

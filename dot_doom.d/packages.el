@@ -10,3 +10,8 @@
            :repo "https://git.savannah.gnu.org/git/guix/emacs-guix.git"))
 
 (package! flycheck-golangci-lint :disable t)
+
+(package! dest :recipe
+  (:host nil
+   :repo "https://git.argc.in/ankit/dest"
+   :files ("*.el")))
