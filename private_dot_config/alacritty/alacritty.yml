@@ -7,26 +7,28 @@ import:
 window:
   decorations: full
   dynamic_padding: true
-  dynamic_title: true
+  dynamic_title: false
   opacity: 1
+  padding:
+    x: 5
+    y: 5
 
 scrolling:
   history: 10000
 
 font:
   normal:
-    family: Iosevka
+    family: Iosevka SS07
     style: Extended
   bold:
-    family: Iosevka
+    family: Iosevka SS07
     style: Heavy Extended
   italic:
-    family: Iosevka
+    family: Iosevka SS07
     style: Medium Extended Italic
   bold_italic:
-    family: Iosevka
+    family: Iosevka SS07
     style: Heavy Extended Italic
-  size: 12
-  use_thin_strokes: false
+  size: 14
 
 draw_bold_text_with_bright_colors: false

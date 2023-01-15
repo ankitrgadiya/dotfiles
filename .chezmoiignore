@@ -13,6 +13,23 @@
 .config/i3status-rust/
 {{- end }}
 
+{{- if ne .desktop "sway" }}
+.config/sway/
+.config/tofi/
+.config/waybar/
+{{- end }}
+
+{{- if ne .chezmoi.os "linux" }}
+.config/shepherd/
+.config/alacritty/
+.config/caddy/
+.config/systemd/
+{{- end }}
+
+{{- if ne .machine "work" }}
+.config/caddy/enabled/rapyuta-io
+{{- end }}
+
 # Ignore unused stuff
 .config/i3/i3blocks.conf
 

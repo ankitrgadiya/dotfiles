@@ -19,7 +19,7 @@
 {{- if (hasKey . "desktop") }}
 {{-   $desktop = .desktop }}
 {{- else }}
-{{-   $desktop = promptString "desktop (mac, gnome, i3)" }}
+{{-   $desktop = promptString "desktop (mac, gnome, i3, sway)" }}
 {{- end }}
 
 {{- $distro := "" }}
