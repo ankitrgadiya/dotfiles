@@ -144,7 +144,7 @@ include ~/.config/sway/config.d/*
 #
 	bindsym XF86AudioRaiseVolume  exec pactl set-sink-volume 0 +5%
 	bindsym XF86AudioLowerVolume  exec pactl set-sink-volume 0 -5%
-	bindsym XF86AudioMute         exec pactl set-sink-mute 0 toggle
+	bindsym XF86AudioMute         exec pactl set-sink-mute   0 toggle
 	bindsym XF86AudioMicMute      exec pactl set-source-mute 1 toggle
 #
 # Brightness Controls:
@@ -202,9 +202,8 @@ include ~/.config/sway/config.d/*
 ### Gaps
 #
 #
-	smart_gaps on
 	gaps inner 10
-	gaps outer 10
+	gaps outer 5
 
 ### Eye Candy
 #
@@ -220,10 +219,16 @@ include ~/.config/sway/config.d/*
 # Borders:
 # for_window [class="^.*"] border pixel 0
 
-for_window [app_id="Alacritty"]   border pixel 0
-for_window [app_id="firefox"]     border pixel 0
-for_window [app_id="emacs"]       border pixel 0
-for_window [app_id="org.gnome.*"] border pixel 0
+for_window {
+	[app_id="Alacritty"]         border pixel 0
+	[app_id="emacs"]             border pixel 0
+	[app_id="org.gnome.*"]       border pixel 0
+	[app_id="firefox"]           border pixel 0
+	[title="Firefox — Sharing Indicator"] {
+		floating enable
+		move position top
+	}
+}
 
 # Startup Programs
   exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS XAUTHORITY
