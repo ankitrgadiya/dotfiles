@@ -21,7 +21,7 @@
 /* The whole bar */
 #waybar {
     border-radius: 0px;
-    background: @bg;
+    background: transparent;
     color: @text;
     font-family: "Iosevka Aile", "Symbols Nerd Font Mono";
     font-size: 14px;
@@ -65,7 +65,7 @@
 /* Modules Center */
 
 #workspaces {
-    background: @bg;
+    background: transparent;
 }
 
 #workspaces button {
