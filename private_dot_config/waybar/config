@@ -74,10 +74,11 @@
     },
     "custom/vpn": {
         "format": "",
-        "exec": "echo '{\"class\": \"connected\"}'",
+        "exec": "echo '{\"class\": \"connected\", \"tooltip\": \"Mullvad VPN\"}'",
         "exec-if": "test -d /proc/sys/net/ipv4/conf/wg-mullvad",
         "return-type": "json",
         "interval": 5,
-        "on-click": "mullvad-vpn"
+        "on-click": "mullvad-vpn",
+        "tooltip": true
     }
 }
