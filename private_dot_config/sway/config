@@ -232,6 +232,6 @@ for_window {
 
 # Startup Programs
   exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS XAUTHORITY
-  exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY DBUS_SESSION_BUS_ADDRESS
+  exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY DBUS_SESSION_BUS_ADDRESS XDG_CURRENT_DESKTOP=sway
 
 # End ~/.config/sway/config
