@@ -137,8 +137,8 @@ include ~/.config/sway/config.d/*
 #
 # Screen Capture:
 #
-	bindsym Print                 exec 'grim "~/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S)";  $notify "Screenshot Captured!"'
-	bindsym --release Shift+Print exec 'grim -g "$(slurp)" "~/Screenshots/Screenshot from $(date +%Y-%m-%d\ %H-%M-%S)"; $notify "Screenshot Captured!"'
+	bindsym Print                 exec grim "$HOME/Screenshots/Screenshot-$(date +%Y-%m-%d-%T).png" && $notify "Screenshot Captured!"
+	bindsym --release Shift+Print exec grim -g "$(slurp)" "$HOME/Screenshots/Screenshot-$(date +%Y-%m-%d-%T).png" && $notify "Screenshot Captured!"
 #
 # Volume Controls:
 #
