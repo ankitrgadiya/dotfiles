@@ -84,6 +84,13 @@
 
 /* Modules Right */
 
+#custom-shepherd.running {
+    background: @green;
+    color: @surface;
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+}
+
 #network.disconnected {
     background: @warning;
     color: @surface;

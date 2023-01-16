@@ -32,7 +32,15 @@
         "all-outputs": true,
         "format": "{icon}"
     },
-    "modules-right": [ "bluetooth", "network", "clock", "battery", "custom/vpn"],
+    "modules-right": [ "custom/shepherd", "bluetooth", "network", "clock", "battery", "custom/vpn"],
+    "custom/shepherd": {
+        "format": "🐑",
+        "exec": "echo '{\"class\": \"running\", \"tooltip\": \"Shepherd running\"}'",
+        "exec-if": "pgrep shepherd",
+        "return-type": "json",
+        "interval": 30,
+        "tooltip": true
+    },
     "bluetooth": {
         "interval": 30,
         "format": "{icon}",
