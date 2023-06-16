@@ -58,6 +58,14 @@ devicebroker.kepler.lan {
     reverse_proxy http://localhost:30006
 }
 
+rcb.kepler.lan {
+	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
+	}
+
+    reverse_proxy http://localhost:30007
+}
+
 es.kepler.lan {
 	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
@@ -68,6 +76,26 @@ es.kepler.lan {
             tls_insecure_skip_verify
         }
     }
+}
+
+headscale.kepler.lan {
+	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
+	}
+
+    reverse_proxy https://localhost:39002 {
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
+}
+
+loki.kepler.lan {
+	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
+	}
+
+    reverse_proxy http://localhost:39003
 }
 
 kafka.kepler.lan {
