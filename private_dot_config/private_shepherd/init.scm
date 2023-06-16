@@ -264,6 +264,11 @@
                                   #:log-file "devicebroker"
                                   #:namespace "qa-rapyuta-core"
                                   #:service "devicebroker")
+                   (make-oc-proxy "rcb"
+                                  #:port "30007:80"
+                                  #:log-file "rcb"
+                                  #:namespace "qa-rapyuta-core"
+                                  #:service "rcb")
                    (make-oc-proxy "es"
                                   #:port "39001:9200"
                                   #:log-file "test-es"
@@ -292,6 +297,16 @@
                                   #:log-file "kafdrop"
                                   #:namespace "kafka"
                                   #:service "kafdrop")
+                   (make-oc-proxy "headscale"
+                                  #:port "39002:50443"
+                                  #:log-file "headscale"
+                                  #:namespace "headscale"
+                                  #:service "headscale")
+                   (make-oc-proxy "loki"
+                                  #:port "39003:3100"
+                                  #:log-file "loki"
+                                  #:namespace "logging"
+                                  #:service "loki")
                    (make-io-service "apiserver"
                                     #:v2? #t
                                     #:args '("--config" "config.yaml")))
