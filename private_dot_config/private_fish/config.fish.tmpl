@@ -206,6 +206,12 @@ set -x MANPATH $HOME/.local/share/man:$MANPATH
 set -x FISH_LIBRARY_PATH $FISH_LIBRARY_PATH $HOME/.local/src/scripts/lib
 {{- end }}
 
+# Enable Zoxide, a smarter cd
+if type zoxide &> /dev/null;
+   zoxide init fish | source
+   alias cd='z'
+end
+
 # Programming Languages
 
 # Deno configuration
