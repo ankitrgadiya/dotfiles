@@ -133,31 +133,34 @@ alias mkdir='mkdir --verbose'
 # Following are the newer alternatives to some Unix tools. These aliases are
 # optional and will only be enabled if the programs are present.
 if type nvim &> /dev/null;
-    alias vi='nvim'
-    alias vim='nvim'
-    alias v='nvim'
-    alias nv='nvim'
+   alias vi='nvim'
+   alias vim='nvim'
+   alias v='nvim'
+   alias nv='nvim'
 end
 if type bat &> /dev/null;
-    alias cat='bat'
+   alias cat='bat'
 end
 if type prettyping &> /dev/null;
-    alias ping='prettyping'
+   alias ping='prettyping'
 end
 if type fd &> /dev/null;
-    alias find='fd'
+   alias find='fd'
 end
 if type rg &> /dev/null;
-    alias grep='rg'
+   alias grep='rg'
 end
 if type lf &> /dev/null;
-    alias ranger='lf'
+   alias ranger='lf'
 end
 if type lazygit &> /dev/null;
-    alias lg='lazygit'
+   alias lg='lazygit'
 end
 if type exa &> /dev/null;
-    alias ls='exa --git --classify'
+   alias ls='exa --git --classify'
+end
+if type just &> /dev/null;
+   alias j='just'
 end
 
 # Enable default download options for Axel
