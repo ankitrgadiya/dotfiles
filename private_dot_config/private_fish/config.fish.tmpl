@@ -60,6 +60,8 @@ if test -L "$HOME/.config/guix/current"
 end
 {{- end }}
 
+set -x FISH_LIBRARY_PATH $HOME/.config/fish/lib
+
 # Enable direnv hook for fish if it is installed
 if type direnv &> /dev/null
     eval (direnv hook fish)
@@ -196,6 +198,10 @@ end
 # Add local directories to the Path
 set -x PATH $HOME/.local/bin $PATH
 set -x MANPATH $HOME/.local/share/man:$MANPATH
+
+{{- if eq .machine "work" }}
+set -x FISH_LIBRARY_PATH $FISH_LIBRARY_PATH $HOME/.local/src/scripts/lib
+{{- end }}
 
 # Programming Languages
 
