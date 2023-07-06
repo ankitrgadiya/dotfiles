@@ -2,9 +2,9 @@
 Description=GNU Shepherd Daemon Manager
 
 [Service]
-ExecStart=/bin/sh -c '~/.local/bin/shepherd --logfile=$HOME/.local/var/log/shepherd/shepherd.log'
-ExecStop=/bin/sh -c '~/.local/bin/herd stop root && rm /run/user/$(id -u)/shepherd/socket'
-ExecReload=/bin/sh -c '~/.local/bin/herd load root $HOME/.config/shepherd/init.scm'
+ExecStart=/bin/sh -c 'shepherd --logfile=$HOME/.local/var/log/shepherd/shepherd.log'
+ExecStop=/bin/sh -c 'herd stop root && rm /run/user/$(id -u)/shepherd/socket'
+ExecReload=/bin/sh -c 'herd load root $HOME/.config/shepherd/init.scm'
 TimeoutSec=30
 Restart=on-failure
 RestartSec=30

@@ -89,6 +89,11 @@ if test -e "/usr/share/fish/vendor_functions.d/fzf_key_bindings.fish"
    source /usr/share/fish/vendor_functions.d/fzf_key_bindings.fish
    fzf_key_bindings
 end
+    {{- else if eq .distro "debian" }}
+if test -e "/usr/share/fish/vendor_functions.d/fzf_key_bindings.fish"
+   source /usr/share/fish/vendor_functions.d/fzf_key_bindings.fish
+   fzf_key_bindings
+end
     {{- else if .guix }}
 if test -e "$GUIX_PROFILE/share/fish/vendor_functions.d/fzf_key_bindings.fish"
    source "$GUIX_PROFILE/share/fish/vendor_functions.d/fzf_key_bindings.fish"
@@ -138,9 +143,20 @@ if type nvim &> /dev/null;
    alias v='nvim'
    alias nv='nvim'
 end
+{{- if eq .distro "debian" }}
+if type batcat &> /dev/null;
+   alias cat='batcat'
+   alias bat='batcat'
+   set -x MANPAGER "sh -c 'col -bx | batcat -l man -p'"
+   set -x MANROFFOPT "-c"
+end
+{{- else }}
 if type bat &> /dev/null;
    alias cat='bat'
+   set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+   set -x MANROFFOPT "-c"
 end
+{{- end }}
 if type prettyping &> /dev/null;
    alias ping='prettyping'
 end
@@ -189,9 +205,6 @@ if type starship &> /dev/null;
    starship init fish | source
 end
 
-# Bat Settings
-set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
-set -x MANROFFOPT "-c"
 
 # Enable dircolors
 if type dircolors &> /dev/null;
@@ -232,6 +245,9 @@ set -x LUA_PATH_5_4 "$LUA_PATH_5_4;./?.lua;./?/init.lua"
 set -x LUA_CPATH_5_4 "/usr/share/lib/lua/5.4/?.so;/usr/share/local/lib/5.4/?.so"
 set -x LUA_CPATH_5_4 "$LUA_CPATH_5_4;$HOME/.luarocks/lib/lua/5.4/?.so"
 
+# Guile configuration
+set -x GUILE_LOAD_PATH /usr/local/share/guile/site/3.0
+
 # Golang configurations
 {{- if eq .machine "work" }}
 set -x GOPRIVATE "bitbucket.org/rapyutians,github.com/rapyuta-robotics"
@@ -242,6 +258,8 @@ set -x GOROOT "$HOMEBREW_PREFIX/opt/golang/libexec"
 set -x GOROOT "/usr/lib/golang"
 {{- else if eq .distro "arch" }}
 set -x GOROOT "/usr/lib/go"
+{{- else if eq .distro "debian" }}
+set -x GOROOT "/usr/local/share/go"
 {{- else if .guix }}
 set -x GOROOT "$GUIX_PROFILE/lib/go"
 {{- end }}
