@@ -60,6 +60,30 @@
                     "Reload the Caddyfile"
                     (make-system-constructor (string-join reload-command)))))))
 
+;; mdbook - Watch and generate Notes
+(define (make-mdbook)
+  (define (get-base-directory)
+    (string-append (getenv "HOME")
+                   "/Documents/notes"))
+
+  (define (get-log-file)
+    (string-append (getenv "HOME")
+                   "/.local/var/log/mdbook/mdbook.log"))
+
+  (define (mdbook-command . args)
+    (cons* "mdbook" args))
+
+  (let ((base-directory    (get-base-directory))
+        (log-file          (get-log-file))
+        (run-command       (mdbook-command "watch")))
+    (make <service>
+      #:docstring "A Static site generator for notes."
+      #:provides  (list 'mdbook 'notes)
+      #:start     (make-forkexec-constructor run-command
+                                             #:directory base-directory
+                                             #:log-file  log-file)
+      #:stop      (make-kill-destructor))))
+
 ;; OC Proxy - A function to generate Kubernetes Proxy Services.
 (define* (make-oc-proxy name
                         #:key
@@ -207,6 +231,7 @@
                     (lambda args (display (string-join command))))))))
 
 (register-services (make-caddy)
+                   (make-mdbook)
                    (make-oc-proxy "coreapi"
                                   #:port "30001:80"
                                   #:log-file "coreapi"
