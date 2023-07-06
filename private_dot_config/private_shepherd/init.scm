@@ -20,32 +20,6 @@
     provides))
 
 
-;; Postgres - An open-source object-relational database
-(define (make-postgres)
-  (define (control-command . args)
-    (string-join
-     (cons* "pg_ctl"
-            (string-append "--pgdata=" (getenv "HOME") "/.local/var/databases/postgres")
-            (string-append "--log="    (getenv "HOME") "/.local/var/log/postgres/postgres.log")
-            args)))
-  (define (client-command . args)
-    (string-join
-     (cons* "psql"
-            (string-append "--host=" "/run/user/" (number->string (getuid)) "/postgresql")
-            "--dbname=postgres"
-            args)))
-  (let ((mkdir-one-shot (register-oneshot-mkdir-run "postgres" "postgresql")))
-    (make <service>
-      #:docstring "An open-source object-relational database"
-      #:provides  '(postgres sql-db)
-      #:start     (make-system-constructor (control-command "start"))
-      #:stop      (make-system-constructor (control-command "stop"))
-      #:requires  (list mkdir-one-shot)
-      #:actions   (make-actions
-                   (reload
-                    "Re-load the configuration"
-                    (make-system-constructor (control-command "reload")))))))
-
 ;; Caddy - A modern webserver written in Go.
 (define (make-caddy)
   (define (get-base-directory)
@@ -232,8 +206,7 @@
                     "Displays the command used"
                     (lambda args (display (string-join command))))))))
 
-(register-services (make-postgres)
-                   (make-caddy)
+(register-services (make-caddy)
                    (make-oc-proxy "coreapi"
                                   #:port "30001:80"
                                   #:log-file "coreapi"
