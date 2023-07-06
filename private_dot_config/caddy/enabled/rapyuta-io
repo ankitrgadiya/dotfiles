@@ -1,5 +1,5 @@
-api.kepler.lan {
-	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+api.t14.lan {
+	tls /home/ankit/.config/caddy/ssl/t14.lan.crt /home/ankit/.config/caddy/ssl/t14.lan.key {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
@@ -10,64 +10,64 @@ api.kepler.lan {
     }
 }
 
-coreapi.kepler.lan {
-	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+coreapi.t14.lan {
+	tls /home/ankit/.config/caddy/ssl/t14.lan.crt /home/ankit/.config/caddy/ssl/t14.lan.key {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
     reverse_proxy http://localhost:30001
 }
 
-rip.kepler.lan {
-	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+rip.t14.lan {
+	tls /home/ankit/.config/caddy/ssl/t14.lan.crt /home/ankit/.config/caddy/ssl/t14.lan.key {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
     reverse_proxy http://localhost:30002
 }
 
-authz.kepler.lan {
-	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+authz.t14.lan {
+	tls /home/ankit/.config/caddy/ssl/t14.lan.crt /home/ankit/.config/caddy/ssl/t14.lan.key {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
     reverse_proxy http://localhost:30003
 }
 
-iobroker.kepler.lan {
-	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+iobroker.t14.lan {
+	tls /home/ankit/.config/caddy/ssl/t14.lan.crt /home/ankit/.config/caddy/ssl/t14.lan.key {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
     reverse_proxy http://localhost:30004
 }
 
-helmbroker.kepler.lan {
-	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+helmbroker.t14.lan {
+	tls /home/ankit/.config/caddy/ssl/t14.lan.crt /home/ankit/.config/caddy/ssl/t14.lan.key {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
     reverse_proxy http://localhost:30005
 }
 
-devicebroker.kepler.lan {
-	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+devicebroker.t14.lan {
+	tls /home/ankit/.config/caddy/ssl/t14.lan.crt /home/ankit/.config/caddy/ssl/t14.lan.key {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
     reverse_proxy http://localhost:30006
 }
 
-rcb.kepler.lan {
-	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+rcb.t14.lan {
+	tls /home/ankit/.config/caddy/ssl/t14.lan.crt /home/ankit/.config/caddy/ssl/t14.lan.key {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
     reverse_proxy http://localhost:30007
 }
 
-es.kepler.lan {
-	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+es.t14.lan {
+	tls /home/ankit/.config/caddy/ssl/t14.lan.crt /home/ankit/.config/caddy/ssl/t14.lan.key {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
@@ -78,8 +78,8 @@ es.kepler.lan {
     }
 }
 
-headscale.kepler.lan {
-	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+headscale.t14.lan {
+	tls /home/ankit/.config/caddy/ssl/t14.lan.crt /home/ankit/.config/caddy/ssl/t14.lan.key {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
@@ -90,16 +90,16 @@ headscale.kepler.lan {
     }
 }
 
-loki.kepler.lan {
-	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+loki.t14.lan {
+	tls /home/ankit/.config/caddy/ssl/t14.lan.crt /home/ankit/.config/caddy/ssl/t14.lan.key {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
     reverse_proxy http://localhost:39003
 }
 
-kafka.kepler.lan {
-	tls /home/ankit/.config/caddy/ssl/kepler.lan.crt /home/ankit/.config/caddy/ssl/kepler.lan.key {
+kafka.t14.lan {
+	tls /home/ankit/.config/caddy/ssl/t14.lan.crt /home/ankit/.config/caddy/ssl/t14.lan.key {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
