@@ -62,6 +62,8 @@
                    +tree-sitter)     ; C > C++ == 1
        (go         +lsp
                    +tree-sitter)     ; the hipster dialect
+       (rust       +lsp
+                   +tree-sitter)     ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        (json       +tree-sitter)     ; At least it ain't XML
        lua                           ; one-based indices? one-based indices
        (python     +pyright
