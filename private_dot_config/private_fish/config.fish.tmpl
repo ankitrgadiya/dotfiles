@@ -269,6 +269,11 @@ set -x GO111MODULE "auto"
 set -x GOPATH $HOME/.local/go
 set -x PATH $GOROOT/bin $GOPATH/bin $PATH
 
+# Rust configuration
+set -x RUSTUP_HOME $HOME/.local/share/rustup
+set -x CARGO_HOME  $HOME/.local/share/cargo
+set -x PATH $CARGO_HOME/bin $PATH
+
 # Assign appropriate TTY for GPG
 set -x GPG_TTY (tty)
 
