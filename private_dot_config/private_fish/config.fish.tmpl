@@ -102,6 +102,10 @@ end
     {{- end }}
 {{- end }}
 
+# Eget Directory
+set -x EGET_BIN "$HOME/.local/share/eget/bin"
+set -x PATH "$HOME/.local/share/eget/bin" $PATH
+
 # Customize options for Fzf keybindings The configured keybindings for Fzf can
 # be configured using the flags. Fzf requires the specific variables to be set
 # with the flags for it to recognise it. I have configured C-t which is used to
