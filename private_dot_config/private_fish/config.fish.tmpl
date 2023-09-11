@@ -284,4 +284,7 @@ set -x PATH $CARGO_HOME/bin $PATH
 # Assign appropriate TTY for GPG
 set -x GPG_TTY (tty)
 
+# Load SSH Keychain
+eval (keychain --eval --quiet)
+
 # End ~/.config/fish/config.fish
