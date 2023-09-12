@@ -387,7 +387,7 @@
     "p&" 'project-async-shell-command
     "pf" 'project-find-file
     "pF" 'project-or-external-find-file
-    "pb" 'project-switch-to-buffer
+    "pb" 'consult-project-buffer
     "ps" 'project-shell
     "pd" 'project-find-dir
     "pD" 'project-dired
