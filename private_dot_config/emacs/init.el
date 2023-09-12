@@ -133,6 +133,128 @@
   :config
   (evil-collection-init))
 
+;;; Minibuffer and Autocompletion
+
+(use-package consult
+  :ensure t
+  ;; Other good things to bind: consult-ripgrep, consult-line-multi,
+  ;; consult-history, consult-outline
+  :bind (("C-x b" . consult-buffer) ; orig. switch-to-buffer
+         ("M-y" . consult-yank-pop) ; orig. yank-pop
+         ("C-s" . consult-line))    ; orig. isearch
+  :config
+  ;; Narrowing lets you restrict results to certain groups of candidates
+  (setq consult-narrow-key "<"))
+
+(use-package embark
+  :ensure t
+  :demand t
+  :after avy
+  :bind (("C-c a" . embark-act))        ; bind this to an easy key to hit
+  :init
+  ;; Add the option to run embark when using avy
+  (defun bedrock/avy-action-embark (pt)
+    (unwind-protect
+        (save-excursion
+          (goto-char pt)
+          (embark-act))
+      (select-window
+       (cdr (ring-ref avy-ring 0))))
+    t)
+
+  ;; After invoking avy-goto-char-timer, hit "." to run embark at the next
+  ;; candidate you select
+  (setf (alist-get ?. avy-dispatch-alist) 'bedrock/avy-action-embark))
+
+(use-package embark-consult
+  :ensure t)
+
+(use-package prescient
+  :ensure t
+  :config
+  ;; (setq completion-styles '(prescient basic initials substring)))
+  (setq completion-styles '(prescient)))
+
+;; Vertico: better vertical completion for minibuffer commands
+(use-package vertico
+  :ensure t
+  :init
+  ;; You'll want to make sure that e.g. fido-mode isn't enabled
+  (vertico-mode))
+
+(use-package vertico-directory
+  :after vertico
+  :bind (:map vertico-map
+              ("M-DEL" . vertico-directory-delete-word)))
+
+(use-package vertico-prescient
+  :ensure t
+  :config
+  (setq vertico-prescient-enable-filtering t
+	vertico-prescient-enable-sorting t)
+  (vertico-prescient-mode))
+
+;; Marginalia: annotations for minibuffer
+(use-package marginalia
+  :ensure t
+  :config
+  (marginalia-mode))
+
+;; Popup completion-at-point
+(use-package corfu
+  :ensure t
+  :init
+  (global-corfu-mode)
+  :bind
+  (:map corfu-map
+        ("SPC" . corfu-insert-separator)
+        ("C-n" . corfu-next)
+        ("C-p" . corfu-previous)))
+
+(use-package corfu-prescient
+  :ensure t
+  :config
+  (setq corfu-prescient-enable-filtering t
+	corfu-prescient-enable-sorting t)
+  (corfu-prescient-mode))
+
+;; Part of corfu
+(use-package corfu-popupinfo
+  :after corfu
+  :hook (corfu-mode . corfu-popupinfo-mode)
+  :custom
+  (corfu-popupinfo-delay '(0.25 . 0.1))
+  (corfu-popupinfo-hide nil)
+  :config
+  (corfu-popupinfo-mode))
+
+;; Make corfu popup come up in terminal overlay
+(use-package corfu-terminal
+  :if (not (display-graphic-p))
+  :ensure t
+  :config
+  (corfu-terminal-mode))
+
+;; Pretty icons for corfu
+(use-package kind-icon
+  :if (display-graphic-p)
+  :ensure t
+  :after corfu
+  :custom
+  (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+  (setq kind-icon-use-icons nil))
+
+(use-package eshell
+  :bind (("C-r" . consult-history)))
+
+;; Orderless: powerful completion style
+(use-package orderless
+  :ensure t
+  :config
+  (setq completion-styles '(orderless)))
+
 
 
 ;;; Programming
@@ -286,122 +408,3 @@
 	 ("C-c c" . avy-goto-char)
          ("s-j"   . avy-goto-char-timer)))
 
-(use-package consult
-  :ensure t
-  ;; Other good things to bind: consult-ripgrep, consult-line-multi,
-  ;; consult-history, consult-outline
-  :bind (("C-x b" . consult-buffer) ; orig. switch-to-buffer
-         ("M-y" . consult-yank-pop) ; orig. yank-pop
-         ("C-s" . consult-line))    ; orig. isearch
-  :config
-  ;; Narrowing lets you restrict results to certain groups of candidates
-  (setq consult-narrow-key "<"))
-
-(use-package embark
-  :ensure t
-  :demand t
-  :after avy
-  :bind (("C-c a" . embark-act))        ; bind this to an easy key to hit
-  :init
-  ;; Add the option to run embark when using avy
-  (defun bedrock/avy-action-embark (pt)
-    (unwind-protect
-        (save-excursion
-          (goto-char pt)
-          (embark-act))
-      (select-window
-       (cdr (ring-ref avy-ring 0))))
-    t)
-
-  ;; After invoking avy-goto-char-timer, hit "." to run embark at the next
-  ;; candidate you select
-  (setf (alist-get ?. avy-dispatch-alist) 'bedrock/avy-action-embark))
-
-(use-package embark-consult
-  :ensure t)
-
-(use-package prescient
-  :ensure t
-  :config
-  ;; (setq completion-styles '(prescient basic initials substring)))
-  (setq completion-styles '(prescient)))
-
-;; Vertico: better vertical completion for minibuffer commands
-(use-package vertico
-  :ensure t
-  :init
-  ;; You'll want to make sure that e.g. fido-mode isn't enabled
-  (vertico-mode))
-
-(use-package vertico-directory
-  :after vertico
-  :bind (:map vertico-map
-              ("M-DEL" . vertico-directory-delete-word)))
-
-(use-package vertico-prescient
-  :ensure t
-  :config
-  (setq vertico-prescient-enable-filtering t
-	vertico-prescient-enable-sorting t)
-  (vertico-prescient-mode))
-
-;; Marginalia: annotations for minibuffer
-(use-package marginalia
-  :ensure t
-  :config
-  (marginalia-mode))
-
-;; Popup completion-at-point
-(use-package corfu
-  :ensure t
-  :init
-  (global-corfu-mode)
-  :bind
-  (:map corfu-map
-        ("SPC" . corfu-insert-separator)
-        ("C-n" . corfu-next)
-        ("C-p" . corfu-previous)))
-
-(use-package corfu-prescient
-  :ensure t
-  :config
-  (setq corfu-prescient-enable-filtering t
-	corfu-prescient-enable-sorting t)
-  (corfu-prescient-mode))
-
-;; Part of corfu
-(use-package corfu-popupinfo
-  :after corfu
-  :hook (corfu-mode . corfu-popupinfo-mode)
-  :custom
-  (corfu-popupinfo-delay '(0.25 . 0.1))
-  (corfu-popupinfo-hide nil)
-  :config
-  (corfu-popupinfo-mode))
-
-;; Make corfu popup come up in terminal overlay
-(use-package corfu-terminal
-  :if (not (display-graphic-p))
-  :ensure t
-  :config
-  (corfu-terminal-mode))
-
-;; Pretty icons for corfu
-(use-package kind-icon
-  :if (display-graphic-p)
-  :ensure t
-  :after corfu
-  :custom
-  (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
-  :config
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
-  (setq kind-icon-use-icons nil))
-
-(use-package eshell
-  :bind (("C-r" . consult-history)))
-
-;; Orderless: powerful completion style
-(use-package orderless
-  :ensure t
-  :config
-  (setq completion-styles '(orderless)))
