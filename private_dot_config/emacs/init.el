@@ -13,7 +13,7 @@
 
 (setq line-number-mode t                              ; Display Line number in Modeline
       column-number-mode t                            ; Display Column number in Modeline
-      display-line-numbers-type 'relative             ; Relative Line numbers
+      display-line-numbers-type 'visual               ; Relative Line numbers
       x-underline-at-descent-line nil                 ; Prettier underlines
       tab-bar-show 1)                                 ; Show Tab bar if there is more than one tab
 
@@ -258,6 +258,10 @@
 
 
 ;;; Programming
+
+; Enable Code Folding
+(add-hook 'prog-mode-hook 'hs-minor-mode)
+(add-hook 'prog-mode-hook 'electric-pair-mode)
 
 ; Go Configuration
 (add-to-list 'auto-mode-alist (cons "\\.go\\'" 'go-ts-mode))
