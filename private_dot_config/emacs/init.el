@@ -20,7 +20,8 @@
 (setq-default display-line-numbers-width 3            ; Sets Line number's minimum width
 	      fill-column 80                          ; Sets Fill Column width
 	      show-trailing-whitespace nil            ; By default, don't underline trailing spaces
-	      indicate-buffer-boundaries 'left)       ; Show buffer top and bottom in the margin, Looks Good!
+	      indicate-buffer-boundaries 'left        ; Show buffer top and bottom in the margin, Looks Good!
+	      tab-width 4)
 
 ; Display Line numbers for Programming Buffers
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
@@ -268,6 +269,7 @@
 ; Go Configuration
 (add-to-list 'auto-mode-alist (cons "\\.go\\'" 'go-ts-mode))
 (add-to-list 'auto-mode-alist (cons "go\\.mod\\'" 'go-mod-ts-mode))
+(setq go-ts-mode-indent-offset 4)
 
 ; Rust Configuration
 (add-to-list 'auto-mode-alist (cons "\\.rs\\'" 'rust-ts-mode))
