@@ -324,6 +324,14 @@
 	  (html . ("https://github.com/tree-sitter/tree-sitter-html"))
 	  (yaml . ("https://github.com/ikatyang/tree-sitter-yaml")))))
 
+; Eglot can use yasnippet for expansions.
+(use-package yasnippet
+  :ensure t
+  :hook
+  (prog-mode-hook . yas-minor-mode)
+  :config
+  (evil-leader/set-key "y" 'yas-next-field))
+
 ; Use built-in Language Server Client for Language-aware features.
 (use-package eglot
   :hook
@@ -336,11 +344,18 @@
   :custom
   (eglot-send-changes-idle-time 0.1)
   :config
-  (fset #'jsonrpc--log-event #'ignore)               ; massive perf boost---don't log every event
+  ; (fset #'jsonrpc--log-event #'ignore)               ; massive perf boost---don't log every event
   (setq eglot-extend-to-xref t                       ; Allows Eglot to add out of project files under LSP Server
 	eglot-report-progress t
-	eglot-ignored-server-capabilities '(:codeLensProvider :documentHighlightProvider))
-  ;; Use Eglot to Format the buffer before saving.
+	eglot-ignored-server-capabilities '(:documentHighlightProvider))
+
+  ; Workspace configuration per server
+  (setq-default eglot-workspace-configuration
+				'(:gopls (:usePlaceholders t)))
+
+
+
+  ; Use Eglot to Format the buffer before saving.
   (defun arg/format-buffer ()
     (when (eglot-managed-p)
       (eglot-format-buffer)))
