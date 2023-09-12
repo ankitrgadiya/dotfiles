@@ -136,6 +136,13 @@
   :config
   (evil-collection-init))
 
+(use-package evil-commentary
+  :after evil
+  :ensure t
+  :config
+  (evil-commentary-mode))
+
+
 ;;; Minibuffer and Autocompletion
 
 (use-package consult
