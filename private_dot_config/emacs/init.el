@@ -44,8 +44,7 @@
 (setq switch-to-buffer-obey-display-actions t         ; Make switching buffers more consistent
       initial-major-mode 'fundamental-mode            ; Default mode for the *scratch* buffer
       display-time-default-load-average nil           ; This information is useless for most
-      sentence-end-double-space nil
-      make-backup-files nil)                          ; Disable backup by Emacs
+      sentence-end-double-space nil)
 
 (setq auto-revert-interval 1                          ; Updates the File if modified outside Emacs
       auto-revert-check-vc-info t)                    ; Updates the File if Version control modifies it
@@ -64,6 +63,9 @@
                (recentf-expand-file-name no-littering-var-directory))
   (add-to-list 'recentf-exclude
                (recentf-expand-file-name no-littering-etc-directory))
+
+  ; Configure backups explicitly.
+  (no-littering-theme-backups)
 
   ; Set a dedicated file for Emacs customizations.
   (setq custom-file (no-littering-expand-etc-file-name "custom.el")))
