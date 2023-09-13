@@ -391,6 +391,15 @@
 
 ;;; Project and Workspace Management
 
+; Magical Git experience
+(use-package magit
+  :ensure t
+  :config
+  (evil-leader/set-key
+    "gg" 'magit-status
+    "gR" 'magit-refresh-all
+    "gd" 'magit-dispatch))
+
 ; Use built-in Project management
 (use-package project
   :config
@@ -406,6 +415,7 @@
     "pF" 'project-or-external-find-file
     "pb" 'consult-project-buffer
     "ps" 'project-shell
+	"pS" 'magit-save-repository-buffers
     "pd" 'project-find-dir
     "pD" 'project-dired
     "pv" 'project-vc-dir
@@ -413,7 +423,7 @@
     "pe" 'project-eshell
     "pk" 'project-kill-buffers
     "pp" 'project-switch-project
-    "pg" 'project-find-regexp
+    "pg" 'consult-ripgrep
     "pG" 'project-or-external-find-regexp
     "pr" 'project-query-replace-regexp
     "px" 'project-execute-extended-command
@@ -435,14 +445,6 @@
   :config
   (which-key-mode))
 
-; Magical Git experience
-(use-package magit
-  :ensure t
-  :config
-  (evil-leader/set-key
-    "gg" 'magit-status
-    "gR" 'magit-refresh-all
-    "gd" 'magit-dispatch))
 
 ; Command Runner akin to Make
 (use-package just-mode
