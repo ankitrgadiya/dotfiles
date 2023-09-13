@@ -277,6 +277,12 @@
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 (add-hook 'prog-mode-hook 'electric-pair-mode)
 
+; Persistent Scratch
+(use-package persistent-scratch
+  :ensure t
+  :config
+  (persistent-scratch-setup-default))
+
 ; Go Configuration
 (add-to-list 'auto-mode-alist (cons "\\.go\\'" 'go-ts-mode))
 (add-to-list 'auto-mode-alist (cons "go\\.mod\\'" 'go-mod-ts-mode))
