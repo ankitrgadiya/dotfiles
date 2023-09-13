@@ -284,7 +284,7 @@ set -x PATH $CARGO_HOME/bin $PATH
 {{- if eq .chezmoi.os "linux" }}
 # Zig configuration
 set -x PATH /usr/local/share/zig $PATH
-{{- endif }}
+{{- end }}
 
 # Assign appropriate TTY for GPG
 set -x GPG_TTY (tty)
