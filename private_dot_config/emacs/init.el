@@ -291,6 +291,10 @@
 ; Rust Configuration
 (add-to-list 'auto-mode-alist (cons "\\.rs\\'" 'rust-ts-mode))
 
+; Zig Configuration
+(use-package zig-mode
+  :ensure t)
+
 ; C Configuration
 (add-to-list 'auto-mode-alist (cons "\\.c\\'" 'c-ts-mode))
 
@@ -308,11 +312,13 @@
   :init
   (setq markdown-command '("pandoc" "--from=gfm" "--to=html5")))
 
+; YAML Configuration
 (use-package yaml-mode
   :ensure t
   :config
   (add-to-list 'major-mode-remap-alist '(yaml-mode . yaml-ts-mode)))
 
+; Dockerfile Configuration
 (use-package dockerfile-mode
   :ensure t
   :config
@@ -357,6 +363,7 @@
   (rust-ts-mode . eglot-ensure)
   (bash-ts-mode . eglot-ensure)
   (c-ts-mode . eglot-ensure)
+  (zig-mode . eglot-ensure)
   :defines eglot-managed-p
   :custom
   (eglot-send-changes-idle-time 0.1)
