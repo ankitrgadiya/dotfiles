@@ -51,7 +51,10 @@
       auto-revert-check-vc-info t)                    ; Updates the File if Version control modifies it
 (global-auto-revert-mode)
 
-(savehist-mode)                                       ; Persist Minibuffer history
+(use-package savehist
+  :config
+  (setq savehist-ignored-variables '(sql-connect))
+  (savehist-mode))
 
 ; Fix various packages (built-in and 3rd party) to use standard directories
 ; instead of littering the `user-emacs-directory'.
@@ -141,6 +144,7 @@
   :ensure t
   :config
   (evil-commentary-mode))
+
 
 
 ;;; Minibuffer and Autocompletion
