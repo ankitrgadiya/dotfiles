@@ -5,3 +5,6 @@
   (arg-hwil-setup)
   (evil-leader/set-key
 	"he" 'arg-hwil-eshell-device))
+
+(use-package arg-stern
+  :commands arg-stern-follow)
