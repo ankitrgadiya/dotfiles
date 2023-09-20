@@ -20,29 +20,6 @@ export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 {{- end }}
 
-{{- if and (eq .chezmoi.os "linux") (.guix) }}
-# GUIX Configuration
-if [ -L "$HOME/.guix-profile" ]
-then
-    export GUIX_PROFILE="$HOME/.guix-profile"
-
-    if [ -f "$GUIX_PROFILE/etc/profile" ]
-    then
-       source "$GUIX_PROFILE/etc/profile"
-    fi
-
-    if [ -f "$GUIX_PROFILE/lib/locale" ]
-    then
-        export GUIX_LOCPATH="$GUIX_PROFILE/lib/locale"
-    fi
-fi
-
-if [ -f "$HOME/.config/guix/current/etc/profile" ]
-then
-    source "$HOME/.config/guix/current/etc/profile"
-fi
-{{- end }}
-
 # Golang configuration
 {{- if eq .machine "work" }}
 export GOROOT="/usr/local/lib/go-1.11"

@@ -29,37 +29,6 @@ set PATH "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin" $PATH
 set PATH "$HOMEBREW_PREFIX/opt/ruby/bin" "$HOMEBREW_PREFIX/lib/ruby/gems/3.1.0/bin" $PATH
 {{- end }}
 
-{{- if .guix }}
-# GNU GUIX is a package managed from GNU. It is implemented in GNU Guile and
-# uses it for packages definitions as well. This means that package definitions
-# are also Code. It strives to implement reproducible systems.
-
-# Check if we are in a GUIX Environment
-if set -q GUIX_ENVIRONMENT
-    set -x GUIX_PROFILE $GUIX_ENVIRONMENT
-else if test -L "$HOME/.guix-profile"
-    set -x GUIX_PROFILE "$HOME/.guix-profile"
-end
-
-# Current User Profile
-if set -q GUIX_PROFILE
-    if test -f "$HOME/.guix-profile/etc/profile"
-        bass source "$HOME/.guix-profile/etc/profile"
-    end
-
-    if test -d "$GUIX_PROFILE/lib/locale"
-        set -x GUIX_LOCPATH $GUIX_PROFILE/lib/locale
-    end
-end
-
-# Current GUIX Profile
-if test -L "$HOME/.config/guix/current"
-    if test -f "$HOME/.config/guix/current/etc/profile"
-       bass source "$HOME/.config/guix/current/etc/profile"
-    end
-end
-{{- end }}
-
 set -x FISH_LIBRARY_PATH $HOME/.config/fish/lib
 
 # Enable direnv hook for fish if it is installed
