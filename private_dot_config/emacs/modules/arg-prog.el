@@ -173,7 +173,7 @@
   (defun arg-prog--format-buffer ()
     (when (eglot-managed-p)
       (eglot-format-buffer)))
-  (add-hook 'before-save-hook #'arg/format-buffer))
+  (add-hook 'before-save-hook #'arg-prog--format-buffer))
 
 ;; `eldoc' is the built-in documentation system for Emacs.
 (use-package eldoc
