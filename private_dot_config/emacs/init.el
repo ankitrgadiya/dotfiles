@@ -18,7 +18,11 @@
   (load-theme 'modus-vivendi))
 
 ;; Configure Iosevka Fonts.
-(set-face-attribute 'default nil :font "Iosevka Term SS04" :height 120)
+(set-face-attribute 'default nil :font "Iosevka" :height 120)
+(if (daemonp)
+	(add-hook 'after-make-frame-functions
+			  (lambda (frame)
+				(set-face-attribute 'default nil :font "Iosevka" :height 120))))
 
 (load-file (expand-file-name "modules/arg-base.el" user-emacs-directory))
 (load-file (expand-file-name "modules/arg-vi.el" user-emacs-directory))
