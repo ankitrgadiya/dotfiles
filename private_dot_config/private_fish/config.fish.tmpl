@@ -261,4 +261,11 @@ set -x GPG_TTY (tty)
 # Load SSH Keychain
 eval (keychain --eval --quiet)
 
+# My custom variables
+{{- if eq .machine "work" }}
+set -x ARG_STATUS_PATH $HOME/.local/src/personal/blog/content/status
+{{- else }}
+set -x ARG_STATUS_PATH $HOME/.local/src/blog/content/status
+{{- end }}
+
 # End ~/.config/fish/config.fish
