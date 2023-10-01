@@ -42,6 +42,6 @@
 				   (tramp-login-args (("ssh") ("%h")))
 				   (tramp-remote-shell "/bin/bash")
 				   (tramp-remote-shell-args ("-i" "-c"))))
-	(tramp-set-completion-function "hwil" '((hwil--tramp-completion "")))))
+	(tramp-set-completion-function "hwil" '((arg-hwil--tramp-completion "")))))
 
 (provide 'arg-hwil)
