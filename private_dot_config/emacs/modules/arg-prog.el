@@ -197,4 +197,5 @@
   :hook
   (prog-mode-hook . yas-minor-mode)
   :config
+  (require 'evil-leader)
   (evil-leader/set-key "y" 'yas-next-field))

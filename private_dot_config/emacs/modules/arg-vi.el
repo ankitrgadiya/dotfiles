@@ -28,6 +28,12 @@
     "bB" 'ibuffer
     "bk" 'kill-this-buffer
     "bo" 'delete-other-windows)
+  (require 'magit)
+  ;; Configure (some of) Doomemacs' key-bindings for Magit.
+  (evil-leader/set-key
+    "gg" 'magit-status
+    "gR" 'magit-refresh-all
+    "gd" 'magit-dispatch)
   (global-evil-leader-mode)
   (evil-mode))
 

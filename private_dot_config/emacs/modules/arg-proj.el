@@ -2,14 +2,7 @@
 
 ;; `magit' is the magical Git client for Emacs.
 (use-package magit
-  :ensure t
-  :config
-  ;; Configure (some of) Doomemacs' key-bindings for Magit.
-  (require 'evil-leader)
-  (evil-leader/set-key
-    "gg" 'magit-status
-    "gR" 'magit-refresh-all
-    "gd" 'magit-dispatch))
+  :ensure t)
 
 ;; `project' is the built-in Project management package in Emacs.
 (use-package project
