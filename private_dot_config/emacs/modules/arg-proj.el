@@ -17,6 +17,14 @@
   ;; find-file.
   (setq project-switch-commands 'project-find-file)
 
+  (require 'markdown-mode)
+  (defun arg-proj--project-notes ()
+	"Opens the Project-local Notes"
+	(interactive)
+	(let ((notes-file (expand-file-name "notes.md"
+										(project-root (project-current)))))
+	  (find-file notes-file)))
+
   ;; Maps Project's built-in Keymap to "<LEADER> p". Some of the commands are
   ;; overwritten to use the consult alternatives.
   (require 'evil-leader)
@@ -41,7 +49,8 @@
     "pG" 'project-or-external-find-regexp
     "pr" 'project-query-replace-regexp
     "px" 'project-execute-extended-command
-    "p\C-b" 'project-list-buffers))
+    "p\C-b" 'project-list-buffers
+	"pn" #'arg-proj--project-notes))
 
 ;; `tab-bar' is the built-in Tabbar in Emacs.
 (use-package tab-bar
