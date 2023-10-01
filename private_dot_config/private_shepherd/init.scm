@@ -267,6 +267,11 @@
                                   #:log-file "rcb"
                                   #:namespace "qa-rapyuta-core"
                                   #:service "rcb")
+				   (make-oc-proxy "v2-apiserver"
+								  #:port "31001:80"
+								  #:log-file "v2-apiserver"
+								  #:namespace "qa-rapyuta-core"
+								  #:service "v2-apiserver")
                    (make-oc-proxy "es"
                                   #:port "39001:9200"
                                   #:log-file "test-es"
@@ -304,7 +309,4 @@
                                   #:port "39003:3100"
                                   #:log-file "loki"
                                   #:namespace "logging"
-                                  #:service "loki")
-                   (make-io-service "apiserver"
-                                    #:v2? #t
-                                    #:args '("--config" "config.yaml")))
+                                  #:service "loki"))
