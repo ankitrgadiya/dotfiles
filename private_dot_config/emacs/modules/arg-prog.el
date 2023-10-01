@@ -147,11 +147,11 @@
 ;; `eglot' is the built-in language server client for Emacs. LSP Clients can add
 ;; rich semantics understanding of languages to Emacs.
 (use-package eglot
-  :hook ((go-ts-mode   . eglot-ensure)
-		 (rust-ts-mode . eglot-ensure)
-		 (bash-ts-mode . eglot-ensure)
-		 (c-or-c++-ts-mode    . eglot-ensure)
-		 (zig-mode     . eglot-ensure))
+  :hook ((go-ts-mode        . eglot-ensure)
+		 (rust-ts-mode      . eglot-ensure)
+		 (bash-ts-mode      . eglot-ensure)
+		 (c-or-c++-ts-mode  . eglot-ensure)
+		 (zig-mode          . eglot-ensure))
   :custom
   (eglot-send-changes-idle-time 0.1)
   :config
@@ -174,6 +174,14 @@
     (when (eglot-managed-p)
       (eglot-format-buffer)))
   (add-hook 'before-save-hook #'arg-prog--format-buffer))
+
+;; `geiser' is the super-powerful mode for Lisp goodness.
+(use-package geiser
+  :ensure t)
+
+;; `geiser-guile' adds support for GNU Guile in `geiser'.
+(use-package geiser-guile
+  :ensure t)
 
 ;; `eldoc' is the built-in documentation system for Emacs.
 (use-package eldoc

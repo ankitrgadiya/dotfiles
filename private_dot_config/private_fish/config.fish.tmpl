@@ -222,7 +222,14 @@ set -x LUA_CPATH_5_4 "/usr/share/lib/lua/5.4/?.so;/usr/share/local/lib/5.4/?.so"
 set -x LUA_CPATH_5_4 "$LUA_CPATH_5_4;$HOME/.luarocks/lib/lua/5.4/?.so"
 
 # Guile configuration
+{{- if eq .chezmoi.os "darwin" }}
+set -x GUILE_LOAD_PATH "$HOME/.local/share/guile/site/3.0" "/opt/homebrew/share/guile/site/3.0"
+set -x GUILE_LOAD_COMPILED_PATH "/opt/homebrew/lib/guile/3.0/site-ccache"
+set -x GUILE_SYSTEM_EXTENSIONS_PATH "/opt/homebrew/lib/guile/3.0/extensions"
+set -x GUILE_TLS_CERTIFICATE_DIRECTORY "/opt/homebrew/etc/gnutls/"
+{{- else }}
 set -x GUILE_LOAD_PATH /usr/local/share/guile/site/3.0
+{{- end }}
 
 # Golang configurations
 {{- if eq .machine "work" }}

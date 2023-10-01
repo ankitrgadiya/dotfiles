@@ -74,7 +74,10 @@
 		'("PATH" "MANPATH" "SSH_AUTH_SOCK" "SSH_AGENT_PID"
 		  "GPG_AGENT_INFO" "LANG" "LC_CTYPE"
 		  "GOROOT" "GOPATH" "GOPRIVATE" "GOPROXY"
-		  "RUSTUP_HOME" "CARGO_HOME"))
+		  "RUSTUP_HOME" "CARGO_HOME"
+		  "GUILE_LOAD_PATH" "GUILE_LOAD_COMPILED_PATH"
+		  "GUILE_SYSTEM_EXTENSIONS_PATH" "GUILE_TLS_CERTIFICATE_DIRECTORY"
+		  ))
   (if (or (eq system-type 'darwin)
 		  (daemonp))
       (exec-path-from-shell-initialize)))
