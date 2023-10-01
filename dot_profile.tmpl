@@ -41,6 +41,10 @@ export GOPROXY="https://proxy.golang.org,direct"
 {{- end }}
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
+# Eget Directory
+export EGET_BIN="$HOME/.local/share/eget/bin"
+export PATH="$HOME/.local/share/eget/bin:$PATH"
+
 # Prepend ".local" directory in PATH and MANPATH
 export PATH="$HOME/.local/bin:$PATH"
 export MANPATH="$HOME/.local/share/man:$MANPATH"
