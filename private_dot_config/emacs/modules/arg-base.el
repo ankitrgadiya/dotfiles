@@ -125,7 +125,11 @@
   (:map corfu-map
         ("SPC" . corfu-insert-separator)
         ("C-n" . corfu-next)
+        ("C-p" . corfu-previous))
   :config
+  (setq corfu-auto t
+		corfu-auto-delay 0.1
+		corfu-quit-no-match 'separator))
 
 (use-package corfu-popupinfo
   :after corfu
@@ -153,10 +157,15 @@
   (setq kind-icon-use-icons nil))
 
 (use-package eshell
-  :bind (("C-r" . consult-history)))
+  :bind (("C-r" . consult-history))
+  :config
+  (add-hook 'eshell-mode-hook (lambda ()
+								(setq-local corfu-auto nil)
+								(corfu-mode))))
 
 ;; Orderless: powerful completion style
 (use-package orderless
   :ensure t
   :config
-  (setq completion-styles '(orderless)))
+  (setq completion-styles '(orderless basic)
+		completion-category-defaults nil))
