@@ -146,16 +146,6 @@
   :config
   (corfu-terminal-mode))
 
-(use-package kind-icon
-  :if (display-graphic-p)
-  :ensure t
-  :after corfu
-  :custom
-  (kind-icon-default-face 'corfu-default)
-  :config
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
-  (setq kind-icon-use-icons nil))
-
 (use-package eshell
   :bind (("C-r" . consult-history))
   :config
