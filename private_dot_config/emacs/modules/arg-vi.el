@@ -34,6 +34,10 @@
     "gg" 'magit-status
     "gR" 'magit-refresh-all
     "gd" 'magit-dispatch)
+
+  (require 'eshell)
+  (evil-leader/set-key
+	"oe" 'eshell)
   (global-evil-leader-mode)
   (evil-mode))
 
