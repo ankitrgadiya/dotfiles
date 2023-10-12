@@ -20,6 +20,7 @@
       completions-detailed t                          ; Show annotations
       completion-auto-help 'always                    ; Open completion always; `lazy' another option
       completions-max-height 20                       ; This is arbitrary
+	  create-lockfiles nil                            ; Prevent creating lockfiles. I'm the only editor.
       completions-format 'one-column
       completions-group t
       completion-auto-select 'second-tab)             ; Much more eager
