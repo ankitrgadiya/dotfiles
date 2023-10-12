@@ -162,6 +162,8 @@
    eglot-extend-to-xref t
    ;; Eglot will report progress for long-running RPCs.
    eglot-report-progress t
+   ;; Disable logging of events.
+   eglot-events-buffer-size 0
    ;; Capabilities that I want to disable globally.
    eglot-ignored-server-capabilities '(:documentHighlightProvider))
 
