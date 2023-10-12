@@ -106,22 +106,10 @@
   :config
   (setq consult-narrow-key "<"))
 
-(use-package prescient
-  :ensure t
-  :config
-  (setq completion-styles '(prescient)))
-
 (use-package vertico
   :ensure t
   :init
   (vertico-mode))
-
-(use-package vertico-prescient
-  :ensure t
-  :config
-  (setq vertico-prescient-enable-filtering t
-	vertico-prescient-enable-sorting t)
-  (vertico-prescient-mode))
 
 (use-package marginalia
   :ensure t
@@ -136,14 +124,7 @@
   (:map corfu-map
         ("SPC" . corfu-insert-separator)
         ("C-n" . corfu-next)
-        ("C-p" . corfu-previous)))
-
-(use-package corfu-prescient
-  :ensure t
   :config
-  (setq corfu-prescient-enable-filtering t
-		corfu-prescient-enable-sorting t)
-  (corfu-prescient-mode))
 
 (use-package corfu-popupinfo
   :after corfu
