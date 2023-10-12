@@ -7,6 +7,9 @@
 ;; Silence stupid startup message
 (setq inhibit-startup-echo-area-message (user-login-name))
 
+;; More responsive pGTK
+(setq-default pgtk-wait-for-event-timeout 0)
+
 ;; Default frame configuration: full screen, good-looking title bar on macOS
 (setq frame-resize-pixelwise t)
 (tool-bar-mode -1)                      ; All these tools are in the menu-bar anyway
