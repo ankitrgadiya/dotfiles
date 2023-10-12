@@ -223,9 +223,9 @@ set -x GUILE_LOAD_COMPILED_PATH "/opt/homebrew/lib/guile/3.0/site-ccache"
 set -x GUILE_SYSTEM_EXTENSIONS_PATH "/opt/homebrew/lib/guile/3.0/extensions"
 set -x GUILE_TLS_CERTIFICATE_DIRECTORY "/opt/homebrew/etc/gnutls/"
 {{- else }}
-set -x GUILE_LOAD_PATH "$HOME/.local/share/guile/site/3.0" "/usr/local/share/guile/site/3.0"
-set -x GUILE_LOAD_COMPILED_PATH "/usr/local/lib/guile/3.0/site-ccache"
-set -x GUILE_SYSTEM_EXTENSIONS_PATH "/usr/local/lib/guile/3.0/extensions"
+set -x GUILE_LOAD_PATH "$HOME/.local/share/guile/site/3.0" "/usr/local/share/guile/site/3.0" "/usr/share/guile/3.0"
+set -x GUILE_LOAD_COMPILED_PATH "/usr/local/lib/guile/3.0/site-ccache" "/usr/lib/x86_64-linux-gnu/guile/3.0/ccache"
+set -x GUILE_SYSTEM_EXTENSIONS_PATH "/usr/local/lib/guile/3.0/extensions" "/usr/lib/x86_64-linux-gnu/guile/3.0/extensions"
 {{- end }}
 
 # Golang configurations
