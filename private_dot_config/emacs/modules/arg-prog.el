@@ -36,7 +36,21 @@
 (use-package persistent-scratch
   :ensure t
   :config
-  (persistent-scratch-setup-default))
+  (defun arg-prog--scratch-buffer-p ()
+	(or (persistent-scratch-default-scratch-buffer-p)
+		(string-suffix-p "*scratch*" (buffer-name))))
+  (setq persistent-scratch-scratch-buffer-p-function #'arg-prog--scratch-buffer-p)
+
+  (defun arg-prog--global-scratch-buffer ()
+	"Opens the Global persistent scratch buffer"
+	(interactive)
+	(switch-to-buffer "ARG *scratch*")
+	(persistent-scratch-restore)
+	(persistent-scratch-mode))
+
+  (require 'evil-leader)
+  (evil-leader/set-key
+	"x" 'arg-prog--global-scratch-buffer))
 
 ;; The Treesitter library implements Syntax-tree implementations for programming
 ;; languages. This gives a better way to access the language buffers as opposed
