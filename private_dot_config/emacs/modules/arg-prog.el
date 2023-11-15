@@ -2,7 +2,9 @@
 
 ;; `display-line-numbers' enables line numbers in the buffer.
 (use-package display-line-numbers
-  :hook (prog-mode . display-line-numbers-mode)
+  :hook
+  (prog-mode . display-line-numbers-mode)
+  (yaml-ts-mode . display-line-numbers-mode)
   :config
   ; Display relative numbers, accounting for folds.
   (setq display-line-numbers-type 'visual)
