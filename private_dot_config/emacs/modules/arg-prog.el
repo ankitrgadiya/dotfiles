@@ -180,6 +180,8 @@
    eglot-report-progress t
    ;; Disable logging of events.
    eglot-events-buffer-size 0
+   ;; Shutdown LSP Server after closing the last buffer.
+   eglot-autoshutdown t
    ;; Capabilities that I want to disable globally.
    eglot-ignored-server-capabilities '(:documentHighlightProvider))
 
