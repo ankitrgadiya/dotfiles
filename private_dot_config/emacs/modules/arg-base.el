@@ -101,7 +101,6 @@
 									 tramp-file-name-regexp)
 		tramp-verbose 1))
 
-
 (use-package consult
   :ensure t
   :config
@@ -129,6 +128,7 @@
   :config
   (setq corfu-auto t
 		corfu-auto-delay 0.1
+		corfu-auto-prefix 2
 		corfu-quit-no-match 'separator))
 
 (use-package corfu-popupinfo
