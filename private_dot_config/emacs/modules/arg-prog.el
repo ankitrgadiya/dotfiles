@@ -186,7 +186,8 @@
    ;; Shutdown LSP Server after closing the last buffer.
    eglot-autoshutdown t
    ;; Capabilities that I want to disable globally.
-   eglot-ignored-server-capabilities '(:documentHighlightProvider))
+   eglot-ignored-server-capabilities '(:documentHighlightProvider
+									   :hoverProvider))
 
   ;; Workspace configuration per Server
   (setq-default eglot-workspace-configuration
@@ -196,7 +197,10 @@
   (defun arg-prog--format-buffer ()
     (when (eglot-managed-p)
       (eglot-format-buffer)))
-  (add-hook 'before-save-hook #'arg-prog--format-buffer))
+  (add-hook 'before-save-hook #'arg-prog--format-buffer)
+
+  (require 'eldoc)
+  (setq eldoc-idle-delay 0.75))
 
 ;; `geiser' is the super-powerful mode for Lisp goodness.
 (use-package geiser
