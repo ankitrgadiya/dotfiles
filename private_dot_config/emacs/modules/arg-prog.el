@@ -141,6 +141,9 @@
   (arg-prog--install-ts-grammer 'json)
   :mode "\\.json\\'")
 
+(use-package jq-mode
+  :ensure t)
+
 ;; Markdown Configurations
 (use-package markdown-mode
   :ensure t
