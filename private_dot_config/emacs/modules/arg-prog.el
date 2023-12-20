@@ -219,3 +219,11 @@
   :config
   (require 'evil-leader)
   (evil-leader/set-key "y" 'yas-next-field))
+
+;; `restclient' is the HTTP REST API client for Emacs.
+(use-package restclient
+  :ensure t
+  :mode ("\\.http\\'" . restclient-mode)
+  :hook (restclient-mode . display-line-numbers-mode)
+  :config
+  (setq restclient-same-buffer-response t))
