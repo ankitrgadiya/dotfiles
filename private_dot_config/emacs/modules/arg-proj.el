@@ -52,7 +52,11 @@
     "pr" 'project-query-replace-regexp
     "px" 'project-execute-extended-command
     "p\C-b" 'project-list-buffers
-	"px" #'arg-proj--project-scratch))
+	"px" #'arg-proj--project-scratch)
+
+  ;; Override the key-bindings to the Global Tab Switching
+  (evil-define-key evil-collection-magit-state magit-status-mode-map "gt" 'evil-tab-next)
+  (evil-define-key evil-collection-magit-state magit-status-mode-map "gT" 'tab-bar-switch-to-prev-tab))
 
 ;; `tab-bar' is the built-in Tabbar in Emacs.
 (use-package tab-bar
