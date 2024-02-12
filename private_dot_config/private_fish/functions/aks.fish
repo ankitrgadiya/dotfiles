@@ -2,6 +2,8 @@ function aks
 	switch $argv[1]
 	case "stern"
 		KUBECONFIG=$HOME/.kube/aks-config stern $argv[2..]
+	case "kubectx"
+		KUBECONFIG=$HOME/.kube/aks-config kubectx $argv[2..]
 	case "kubens"
 		KUBECONFIG=$HOME/.kube/aks-config kubens $argv[2..]
 	case "k9s"
