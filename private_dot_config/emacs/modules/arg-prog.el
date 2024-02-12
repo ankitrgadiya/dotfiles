@@ -202,6 +202,36 @@
   (require 'eldoc)
   (setq eldoc-idle-delay 0.75))
 
+;; `dape' is the DAP client for Emacs. DAP Clients add a generic Debugging
+;; Client for languages that implement Debug Adapter Protocol based Debuggers.
+(use-package dape
+  :ensure t
+  :init
+  (setq dape-buffer-window-arrangement 'right)
+  :config
+  (require 'evil-leader)
+  (evil-leader/set-key
+    "dd" #'dape
+    "dp" #'dape-pause
+    "dc" #'dape-continue
+    "dn" #'dape-next
+    "ds" #'dape-step-in
+    "do" #'dape-step-out
+    "dr" #'dape-restart
+    "di" #'dape-info
+    "dR" #'dape-repl
+    "dm" #'dape-read-memory
+    "dl" #'dape-breakpoint-log
+    "de" #'dape-breakpoint-expression
+    "db" #'dape-breakpoint-toggle
+    "dB" #'dape-breakpoint-remove-all
+    "dt" #'dape-select-thread
+    "dS" #'dape-select-stack
+    "dx" #'dape-evaluate-expression
+    "dw" #'dape-watch-dwim
+    "dD" #'dape-disconnect-quit
+    "dq" #'dape-quit))
+
 ;; `geiser' is the super-powerful mode for Lisp goodness.
 (use-package geiser
   :ensure t)
