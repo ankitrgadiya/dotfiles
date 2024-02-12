@@ -49,7 +49,7 @@ disabled = true
 disabled = true
 
 [kubernetes]
-disabled = true
+disabled = false
 
 [gcloud]
 disabled = true
