@@ -94,7 +94,30 @@
   :mode (("\\.go\\'"    . go-ts-mode)
   		 ("go\\.mod\\'" . go-mod-ts-mode))
   :config
-  (setq go-ts-mode-indent-offset 4))
+  (setq go-ts-mode-indent-offset 4)
+  (defun arg-prog--go-test-function-at-point ()
+	"Runs Go Test for the function at point"
+	(interactive)
+	(compile (format "go test -v -run %s %s"
+					 (treesit-defun-name (treesit-defun-at-point))
+					 default-directory)))
+  (defun arg-prog--go-test-file-at-point ()
+	"Runs Go Test for the File at point"
+	(interactive)
+	(compile (format "go test -v -run '%s' %s"
+					 (string-join (mapcar #'car (cdr (assoc "Function"
+															(treesit-simple-imenu))))
+								  "|")
+					 default-directory)))
+  (defun arg-prog--go-test-directory-at-point ()
+	"Runs Go Test for the Directory at point"
+	(interactive)
+	(compile (format "go test -v -run %s" default-directory)))
+  (require 'evil-leader)
+  (evil-leader/set-key-for-mode 'go-ts-mode
+	"mtt" #'arg-prog--go-test-function-at-point
+	"mtf" #'arg-prog--go-test-file-at-point
+	"mtd" #'arg-prog--go-test-directory-at-point))
 
 ;; Rust Configurations
 ;; Emacs 29.1 comes built-in with `rust-ts-mode'.
