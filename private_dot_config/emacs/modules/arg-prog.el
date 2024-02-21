@@ -33,26 +33,18 @@
   :hook (prog-mode . electric-pair-mode))
 
 ;; Scratch buffers are very useful to keep floating notes. However, by default
-;; the Scratch buffers are not persisted. The `persistent-scratch' package
-;; enables persistence for Scratch buffers.
-(use-package persistent-scratch
-  :ensure t
+;; the Scratch buffers are not persisted. The `remember' package implements a
+;; persistent form of Scratch buffer.
+(use-package remember
   :config
-  (defun arg-prog--scratch-buffer-p ()
-	(or (persistent-scratch-default-scratch-buffer-p)
-		(string-suffix-p "*scratch*" (buffer-name))))
-  (setq persistent-scratch-scratch-buffer-p-function #'arg-prog--scratch-buffer-p)
-
-  (defun arg-prog--global-scratch-buffer ()
-	"Opens the Global persistent scratch buffer"
-	(interactive)
-	(switch-to-buffer "ARG *scratch*")
-	(persistent-scratch-restore)
-	(persistent-scratch-mode))
-
+  (require 'markdown-mode)
+  (setq initial-buffer-choice 'remember-notes
+		remember-notes-initial-major-mode 'markdown-mode
+		remember-notes-auto-save-visited-file-name t)
+  (require 'evil-leader)
   (require 'evil-leader)
   (evil-leader/set-key
-	"x" 'arg-prog--global-scratch-buffer))
+	"x" 'remember-notes))
 
 ;; The Treesitter library implements Syntax-tree implementations for programming
 ;; languages. This gives a better way to access the language buffers as opposed
