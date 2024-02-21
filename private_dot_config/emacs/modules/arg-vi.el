@@ -35,6 +35,11 @@
     "gR" 'magit-refresh-all
     "gd" 'magit-dispatch)
 
+  (require 'winner)
+  (evil-leader/set-key
+	"wh" 'winner-undo
+	"wl" 'winner-redo)
+
   (require 'eshell)
   (evil-leader/set-key
 	"oe" 'eshell)

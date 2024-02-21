@@ -159,3 +159,8 @@
   :config
   (setq completion-styles '(orderless basic)
 		completion-category-defaults nil))
+
+;; `winner' is a simple Window management for Emacs.
+(use-package winner
+  :config
+  (winner-mode 1))
