@@ -22,14 +22,10 @@
   ;; find-file.
   (setq project-switch-commands 'project-find-file)
 
-  (require 'persistent-scratch)
-  (defun arg-proj--project-scratch ()
-	"Opens the Project-local persistent scratch buffer"
+  (defun arg-proj--get-project-hyperbole-buttons-file ()
+	"Opens the Project-local Hyperbole Buttons File"
 	(interactive)
-	  (switch-to-buffer (concat (project-name (project-current))
-								" *scratch*"))
-	  (persistent-scratch-restore)
-	  (persistent-scratch-mode))
+	(find-file (concat (project-root (project-current)) "HYPB")))
 
 
   ;; Maps Project's built-in Keymap to "<LEADER> p". Some of the commands are
@@ -57,7 +53,7 @@
     "pr" 'project-query-replace-regexp
     "px" 'project-execute-extended-command
     "p\C-b" 'project-list-buffers
-	"px" #'arg-proj--project-scratch)
+	"ph" #'arg-proj--get-project-hyperbole-buttons-file)
 
   ;; Override the key-bindings to the Global Tab Switching
   (evil-define-key evil-collection-magit-state magit-status-mode-map "gt" 'evil-tab-next)
