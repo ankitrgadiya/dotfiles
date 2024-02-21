@@ -4,6 +4,11 @@
 (use-package magit
   :ensure t)
 
+;; `force' integrates Git Force support in Magit.
+(use-package forge
+  :ensure t
+  :after magit)
+
 ;; `project' is the built-in Project management package in Emacs.
 (use-package project
   :config
