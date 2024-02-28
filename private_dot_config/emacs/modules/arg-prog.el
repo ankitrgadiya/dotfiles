@@ -41,10 +41,8 @@
   (setq initial-buffer-choice 'remember-notes
 		remember-notes-initial-major-mode 'markdown-mode
 		remember-notes-auto-save-visited-file-name t)
-  (require 'evil-leader)
-  (require 'evil-leader)
-  (evil-leader/set-key
-	"x" 'remember-notes))
+  (require 'evil)
+  (evil-define-key 'normal 'global (kbd "<leader>x") 'remember-notes))
 
 ;; The Treesitter library implements Syntax-tree implementations for programming
 ;; languages. This gives a better way to access the language buffers as opposed
@@ -105,11 +103,11 @@
 	"Runs Go Test for the Directory at point"
 	(interactive)
 	(compile (format "go test -v -run %s" default-directory)))
-  (require 'evil-leader)
-  (evil-leader/set-key-for-mode 'go-ts-mode
-	"mtt" #'arg-prog--go-test-function-at-point
-	"mtf" #'arg-prog--go-test-file-at-point
-	"mtd" #'arg-prog--go-test-directory-at-point))
+  (require 'evil)
+  (evil-define-key 'normal 'go-ts-mode
+	(kbd "<localleader>tt") #'arg-prog--go-test-function-at-point
+	(kbd "<localleader>tf") #'arg-prog--go-test-file-at-point
+	(kbd "<localleader>td") #'arg-prog--go-test-directory-at-point))
 
 ;; Rust Configurations
 ;; Emacs 29.1 comes built-in with `rust-ts-mode'.
@@ -224,28 +222,28 @@
   :init
   (setq dape-buffer-window-arrangement 'right)
   :config
-  (require 'evil-leader)
-  (evil-leader/set-key
-    "dd" #'dape
-    "dp" #'dape-pause
-    "dc" #'dape-continue
-    "dn" #'dape-next
-    "ds" #'dape-step-in
-    "do" #'dape-step-out
-    "dr" #'dape-restart
-    "di" #'dape-info
-    "dR" #'dape-repl
-    "dm" #'dape-read-memory
-    "dl" #'dape-breakpoint-log
-    "de" #'dape-breakpoint-expression
-    "db" #'dape-breakpoint-toggle
-    "dB" #'dape-breakpoint-remove-all
-    "dt" #'dape-select-thread
-    "dS" #'dape-select-stack
-    "dx" #'dape-evaluate-expression
-    "dw" #'dape-watch-dwim
-    "dD" #'dape-disconnect-quit
-    "dq" #'dape-quit))
+  (require 'evil)
+  (evil-define-key
+    (kbd "<leader>d") #'dape
+    (kbd "<leader>p") #'dape-pause
+    (kbd "<leader>c") #'dape-continue
+    (kbd "<leader>n") #'dape-next
+    (kbd "<leader>s") #'dape-step-in
+    (kbd "<leader>o") #'dape-step-out
+    (kbd "<leader>r") #'dape-restart
+    (kbd "<leader>i") #'dape-info
+    (kbd "<leader>R") #'dape-repl
+    (kbd "<leader>m") #'dape-read-memory
+    (kbd "<leader>l") #'dape-breakpoint-log
+    (kbd "<leader>e") #'dape-breakpoint-expression
+    (kbd "<leader>b") #'dape-breakpoint-toggle
+    (kbd "<leader>B") #'dape-breakpoint-remove-all
+    (kbd "<leader>t") #'dape-select-thread
+    (kbd "<leader>S") #'dape-select-stack
+    (kbd "<leader>x") #'dape-evaluate-expression
+    (kbd "<leader>w") #'dape-watch-dwim
+    (kbd "<leader>D") #'dape-disconnect-quit
+    (kbd "<leader>q") #'dape-quit))
 
 ;; `geiser' is the super-powerful mode for Lisp goodness.
 (use-package geiser
@@ -267,10 +265,7 @@
 (use-package yasnippet
   :ensure t
   :hook
-  (prog-mode-hook . yas-minor-mode)
-  :config
-  (require 'evil-leader)
-  (evil-leader/set-key "y" 'yas-next-field))
+  (prog-mode-hook . yas-minor-mode))
 
 ;; `restclient' is the HTTP REST API client for Emacs.
 (use-package restclient

@@ -2,7 +2,16 @@
 
 ;; `magit' is the magical Git client for Emacs.
 (use-package magit
-  :ensure t)
+  :ensure t
+  :config
+  (require 'evil)
+  (evil-define-key 'normal 'global
+	(kbd "<leader>gg") 'magit-status
+	(kbd "<leader>gR") 'magit-refresh-all
+	(kbd "<leader>gd") 'magit-dispatch)
+
+  ;; Remove Leader key from Magit's modemap.
+  (define-key magit-status-mode-map (kbd "SPC") nil))
 
 ;; `project' is the built-in Project management package in Emacs.
 (use-package project
@@ -25,30 +34,30 @@
 
   ;; Maps Project's built-in Keymap to "<LEADER> p". Some of the commands are
   ;; overwritten to use the consult alternatives.
-  (require 'evil-leader)
+  (require 'evil)
   (require 'consult)
   (require 'magit)
-  (evil-leader/set-key
-    "p!" 'project-shell-command
-    "p&" 'project-async-shell-command
-    "pf" 'project-find-file
-    "pF" 'project-or-external-find-file
-    "pb" 'consult-project-buffer
-    "ps" 'project-shell
-	"pS" 'magit-save-repository-buffers
-    "pd" 'project-find-dir
-    "pD" 'project-dired
-    "pv" 'project-vc-dir
-    "pc" 'project-compile
-    "pe" 'project-eshell
-    "pk" 'project-kill-buffers
-    "pp" 'project-switch-project
-    "pg" 'consult-ripgrep
-    "pG" 'project-or-external-find-regexp
-    "pr" 'project-query-replace-regexp
-    "px" 'project-execute-extended-command
-    "p\C-b" 'project-list-buffers
-	"ph" #'arg-proj--get-project-hyperbole-buttons-file)
+  (evil-define-key 'normal 'global
+	(kbd "<leader>p!") 'project-shell-command
+	(kbd "<leader>p&") 'project-async-shell-command
+	(kbd "<leader>pf") 'project-find-file
+	(kbd "<leader>pF") 'project-or-external-find-file
+	(kbd "<leader>pb") 'consult-project-buffer
+	(kbd "<leader>ps") 'project-shell
+	(kbd "<leader>pS") 'magit-save-repository-buffers
+	(kbd "<leader>pd") 'project-find-dir
+	(kbd "<leader>pD") 'project-dired
+	(kbd "<leader>pv") 'project-vc-dir
+	(kbd "<leader>pc") 'project-compile
+	(kbd "<leader>pe") 'project-eshell
+	(kbd "<leader>pe") 'project-eshell
+	(kbd "<leader>pk") 'project-kill-buffers
+	(kbd "<leader>pp") 'project-switch-project
+	(kbd "<leader>pg") 'consult-ripgrep
+	(kbd "<leader>pG") 'project-or-external-find-regexp
+	(kbd "<leader>pr") 'project-query-replace-regexp
+	(kbd "<leader>px") 'project-execute-extended-command
+	(kbd "<leader>ph") #'arg-proj--get-project-hyperbole-buttons-file)
 
   ;; Override the key-bindings to the Global Tab Switching
   (evil-define-key evil-collection-magit-state magit-status-mode-map "gt" 'evil-tab-next)
@@ -72,9 +81,9 @@
 		tab-bar-show 1)
 
   ;; Configure (some of) Doomemacs' key-bindings for Magit.
-  (require 'evil-leader)
-  (evil-leader/set-key
-    "<tab>n" 'tab-bar-new-tab
-    "<tab>r" 'tab-bar-rename-tab
-    "<tab>d" 'tab-bar-close-tab
-    "<tab><tab>" 'tab-bar-switch-to-tab))
+  (require 'evil)
+  (evil-define-key 'normal 'global
+	(kbd "<leader><tab>n") 'tab-bar-new-tab
+	(kbd "<leader><tab>r") 'tab-bar-rename-tab
+	(kbd "<leader><tab>d") 'tab-bar-close-tab
+	(kbd "<leader><tab><tab>") 'tab-bar-switch-to-tab))

@@ -4,6 +4,6 @@
   :ensure t
   :config
   (hyperbole-mode 1)
-  (require 'evil-leader)
-  (evil-leader/set-key
-	"h" 'hyperbole))
+  (require 'evil)
+  (evil-define-key 'normal 'global
+	(kbd "<leader>h") 'hyperbole))

@@ -10,41 +10,22 @@
 		evil-want-keybinding nil)
   :config
   ;; Configuring initial major mode for some modes
-  (evil-set-initial-state 'vterm-mode 'emacs))
+  (evil-set-initial-state 'vterm-mode 'emacs)
+  (evil-set-leader nil (kbd "C-SPC"))
+  (evil-set-leader 'normal (kbd "SPC"))
+  (evil-set-leader 'normal (kbd "m") t)
 
-;; `evil-leader' brings the Leader key from Vi. It exposes convenice functions
-;; to use them.
-(use-package evil-leader
-  :ensure t
-  :after evil
-  :config
   (require 'consult)
-  (evil-leader/set-leader "<SPC>")
-  (evil-leader/set-key
-   "fs" 'save-buffer
-   "ff" 'find-file)
-  (evil-leader/set-key
-    "bb" 'consult-buffer
-    "bB" 'ibuffer
-    "bk" 'kill-this-buffer
-    "bo" 'delete-other-windows)
-  (require 'magit)
-  ;; Configure (some of) Doomemacs' key-bindings for Magit.
-  (evil-leader/set-key
-    "gg" 'magit-status
-    "gR" 'magit-refresh-all
-    "gd" 'magit-dispatch)
-
-  (require 'winner)
-  (evil-leader/set-key
-	"wh" 'winner-undo
-	"wl" 'winner-redo)
-
-  (require 'eshell)
-  (evil-leader/set-key
-	"oe" 'eshell)
-  (global-evil-leader-mode)
-  (evil-mode))
+  (evil-define-key 'normal 'global
+	(kbd "<leader>fs") 'save-buffer
+	(kbd "<leader>ff") 'find-file
+	(kbd "<leader>bb") 'consult-buffer
+	(kbd "<leader>bB") 'ibuffer
+	(kbd "<leader>bk") 'kill-this-buffer
+	(kbd "<leader>bo") 'delete-other-windows
+	(kbd "<leader>wh") 'winner-undo
+	(kbd "<leader>wl") 'winner-redo
+    (kbd "<leader>se") 'eshell))
 
 ;; `evil-collection' package configures various popular packages (build-in and
 ;; 3rd Party) to play well with `evil-mode'.
@@ -52,6 +33,7 @@
   :after evil
   :ensure t
   :config
+  (evil-mode)
   (evil-collection-init))
 
 ;; `evil-commentary' is Emacs implementation of Tim Pope's popular plugin.
