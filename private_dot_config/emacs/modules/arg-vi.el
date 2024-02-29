@@ -25,7 +25,8 @@
 	(kbd "<leader>bo") 'delete-other-windows
 	(kbd "<leader>wh") 'winner-undo
 	(kbd "<leader>wl") 'winner-redo
-    (kbd "<leader>se") 'eshell))
+    (kbd "<leader>se") 'eshell
+	(kbd "<leader>x")  'scratch-buffer))
 
 ;; `evil-collection' package configures various popular packages (build-in and
 ;; 3rd Party) to play well with `evil-mode'.

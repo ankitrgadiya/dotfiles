@@ -32,17 +32,6 @@
 (use-package elec-pair
   :hook (prog-mode . electric-pair-mode))
 
-;; Scratch buffers are very useful to keep floating notes. However, by default
-;; the Scratch buffers are not persisted. The `remember' package implements a
-;; persistent form of Scratch buffer.
-(use-package remember
-  :config
-  (require 'markdown-mode)
-  (setq initial-buffer-choice 'remember-notes
-		remember-notes-initial-major-mode 'markdown-mode
-		remember-notes-auto-save-visited-file-name t)
-  (require 'evil)
-  (evil-define-key 'normal 'global (kbd "<leader>x") 'remember-notes))
 
 ;; The Treesitter library implements Syntax-tree implementations for programming
 ;; languages. This gives a better way to access the language buffers as opposed
