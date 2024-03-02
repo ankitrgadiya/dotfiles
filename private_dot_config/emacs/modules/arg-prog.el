@@ -92,11 +92,12 @@
 	"Runs Go Test for the Directory at point"
 	(interactive)
 	(compile (format "go test -v -run %s" default-directory)))
+
   (require 'evil)
-  (evil-define-key 'normal 'go-ts-mode
-	(kbd "<localleader>tt") #'arg-prog--go-test-function-at-point
-	(kbd "<localleader>tf") #'arg-prog--go-test-file-at-point
-	(kbd "<localleader>td") #'arg-prog--go-test-directory-at-point))
+  (evil-define-key 'normal 'go-ts-mode-map
+	(kbd "<leader>mtt") #'arg-prog--go-test-function-at-point
+	(kbd "<leader>mtf") #'arg-prog--go-test-file-at-point
+	(kbd "<leader>mtd") #'arg-prog--go-test-directory-at-point))
 
 ;; Rust Configurations
 ;; Emacs 29.1 comes built-in with `rust-ts-mode'.
