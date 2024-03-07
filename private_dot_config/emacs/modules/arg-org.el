@@ -2,6 +2,7 @@
 
 (use-package org
   :ensure t
+  :hook (org-mode . org-indent-mode)
   :config
   ;; Global Configuration
   (setq org-directory "~/.local/share/org"

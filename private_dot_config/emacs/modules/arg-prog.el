@@ -93,6 +93,9 @@
 	(interactive)
 	(compile (format "go test -v -run %s" default-directory)))
 
+  (require 'mode-local)
+  (setq-mode-local go-ts-mode adaptive-fill-regexp "[ \t]*//+[ \t]*")
+
   (require 'evil)
   (evil-define-key 'normal 'go-ts-mode-map
 	(kbd "<leader>mtt") #'arg-prog--go-test-function-at-point
