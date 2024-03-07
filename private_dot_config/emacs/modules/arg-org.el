@@ -24,9 +24,10 @@
 		   "* TODO %?\n  %i\n  %a")))
 
   ;; Agenda Configuration
-  (setq org-agenda-files '("inbox.org")
-		org-todo-keywords '((sequence "BACKLOG" "TODO" "IN PROGRESS" "BLOCKED"
-									  "|" "DONE"))
+  (setq org-agenda-files '("inbox.org" "archive.org")
+		org-archive-location (concat org-directory "/archive.org::datetree/")
+		org-todo-keywords '((sequence "BACKLOG(b)" "|")
+							(sequence "TODO(t)" "IN PROGRESS(p)" "BLOCKED(p)" "|" "DONE(d)"))
 		org-log-done 'time)
   (require 'evil)
   (evil-define-key 'normal 'global
