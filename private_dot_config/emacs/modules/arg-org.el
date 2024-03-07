@@ -8,7 +8,8 @@
   (setq org-directory "~/.local/share/org"
 		org-tags-column 0
 		org-fold-catch-invisible-edits 'show-and-error
-		org-insert-heading-respect-content t)
+		org-insert-heading-respect-content t
+		org-startup-folded t)
 
   ;; Babel Configuration
   (setq org-src-fontify-natively t
