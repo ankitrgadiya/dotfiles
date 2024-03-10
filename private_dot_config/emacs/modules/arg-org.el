@@ -27,7 +27,7 @@
   (setq org-agenda-files '("inbox.org" "archive.org")
 		org-archive-location (concat org-directory "/archive.org::datetree/")
 		org-todo-keywords '((sequence "BACKLOG(b)" "|")
-							(sequence "TODO(t)" "IN PROGRESS(p)" "BLOCKED(p)" "|" "DONE(d)"))
+							(sequence "TODO(t)" "IN PROGRESS(p)" "BLOCKED(b)" "|" "DONE(d)"))
 		org-log-done 'time)
   (require 'evil)
   (evil-define-key 'normal 'global
