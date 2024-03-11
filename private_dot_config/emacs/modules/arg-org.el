@@ -4,7 +4,7 @@
   :ensure t
   :config
   ;; Global Configuration
-  (setq org-directory "~/.local/share/org"
+  (setq org-directory "~/Dropbox/Org"
 		org-tags-column 0
 		org-fold-catch-invisible-edits 'show-and-error
 		org-insert-heading-respect-content t
@@ -18,9 +18,11 @@
   ;; Capture Configuration
   (setq org-default-notes-file (concat org-directory "/inbox.org")
 		org-capture-templates
-		'(("w" "Work Task" entry (file+headline "~/.local/share/org/inbox.org" "Work")
+		'(("w" "Work Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Work")
 		   "* TODO %?\n  %i\n  %a")
-		  ("h" "Home Task" entry (file+headline "~/.local/share/org/inbox.org" "Home")
+		  ("p" "Personal Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Personal")
+		   "* TODO %?\n  %i\n  %a")
+		  ("h" "Household Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Household")
 		   "* TODO %?\n  %i\n  %a")))
 
   ;; Agenda Configuration
