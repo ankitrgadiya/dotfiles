@@ -33,7 +33,21 @@
   (evil-define-key 'normal 'global
 	(kbd "<leader>aa") 'org-agenda
 	(kbd "<leader>ao") 'org-cycle-agenda-files
-	(kbd "<leader>ac") 'org-capture))
+	(kbd "<leader>ac") 'org-capture
+	(kbd "<leader>ocg") 'org-clock-goto)
+
+
+  (evil-define-key 'normal org-mode-map
+	(kbd "<leader>o,") 'org-insert-structure-template
+	(kbd "<leader>ot") 'org-todo
+	(kbd "<leader>oq") 'org-set-tags-command
+	(kbd "<leader>o$") 'org-archive-subtree
+	(kbd "<leader>os") 'org-schedule
+	(kbd "<leader>od") 'org-deadline
+	(kbd "<leader>oci") 'org-clock-in
+	(kbd "<leader>oco") 'org-clock-out
+	(kbd "<leader>ocd") 'org-clock-display
+	(kbd "<leader>occ") 'org-clock-cancel))
 
 ;; `org-present' implements Presentations for org-mode documents.
 (use-package org-present
@@ -42,7 +56,8 @@
   (setq org-present-text-scale 3)
 
   (require 'evil)
-  (evil-define-key 'normal 'global (kbd "<leader>op") 'org-present)
+  (evil-define-key 'normal org-mode-map
+	(kbd "<leader>op") 'org-present)
 
   (add-hook 'org-present-mode-hook 'org-present-big)
   (add-hook 'org-present-mode-quit-hook 'org-present-small))
