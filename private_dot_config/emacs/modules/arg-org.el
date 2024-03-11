@@ -29,6 +29,13 @@
   (setq org-agenda-files '("inbox.org" "archive.org")
 		org-archive-location (concat org-directory "/archive.org::datetree/")
 		org-log-done 'time)
+
+  ;; Org Export to HTML Settings
+  (setq org-html-validation-link nil
+		org-html-head-include-scripts nil
+		org-html-head-include-default-style nil
+		org-html-head "<link rel=\"stylesheet\" href=\"https://www.w3.org/StyleSheets/Core/Midnight\" />")
+
   (require 'evil)
   (evil-define-key 'normal 'global
 	(kbd "<leader>aa") 'org-agenda
