@@ -2,13 +2,13 @@
 
 (use-package org
   :ensure t
-  :hook (org-mode . org-indent-mode)
   :config
   ;; Global Configuration
   (setq org-directory "~/.local/share/org"
 		org-tags-column 0
 		org-fold-catch-invisible-edits 'show-and-error
 		org-insert-heading-respect-content t
+		org-startup-indented t
 		org-startup-folded t)
 
   ;; Babel Configuration
