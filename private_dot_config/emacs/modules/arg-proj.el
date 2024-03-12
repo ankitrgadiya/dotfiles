@@ -21,6 +21,26 @@
   (if (eq system-type 'darwin)
       (setq find-program "gfind"))
 
+  ;; The project.el module supports detecting projects backed by VC. The
+  ;; following defines a local backend that adds support for detecting projects
+  ;; if the `.project' file is present in the root directory. This is similar to
+  ;; the `.projectile' file used by the `projectile' package. I borrowed this
+  ;; from `project-x' package.
+  ;; https://github.com/karthink/project-x/blob/master/project-x.el#L157
+  (defgroup project-local nil
+	"Non-VC backed Project backend"
+	:group 'project)
+
+  (cl-defmethod project-root ((project (head local)))
+	"Returns root directory of local project"
+	(cdr project))
+
+  (defun arg-proj--project-try-marker (dir)
+	(if-let ((root (locate-dominating-file dir ".project")))
+	  (cons 'local root)))
+
+  (add-hook 'project-find-functions #'arg-proj--project-try-marker)
+
   ;; Project's default switching behaviour prompts for the next command. It is
   ;; annoying if you switch projects a lot. This configures it to directly
   ;; find-file.
@@ -30,7 +50,6 @@
 	"Opens the Project-local Hyperbole Buttons File"
 	(interactive)
 	(find-file (concat (project-root (project-current)) "HYPB")))
-
 
   ;; Maps Project's built-in Keymap to "<LEADER> p". Some of the commands are
   ;; overwritten to use the consult alternatives.
