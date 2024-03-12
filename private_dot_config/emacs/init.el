@@ -14,7 +14,11 @@
 
 ;; Use the built-in Modus themes.
 (use-package emacs
+  :ensure t
   :config
+  (setq modus-themes-paren-match '(bold)
+		modus-themes-bold-constructs t
+		modus-themes-italic-constructs t)
   (load-theme 'modus-vivendi))
 
 ;; Configure Iosevka Fonts.
