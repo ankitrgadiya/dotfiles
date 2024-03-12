@@ -4,6 +4,8 @@
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
+(setq user-full-name "Ankit Gadiya"
+	  user-mail-address "ankit@argp.in")
 
 ;;; UI Enhancements
 
