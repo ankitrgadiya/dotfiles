@@ -1,11 +1,12 @@
-;;; arg-org.el -- The Great Org-Mode Configurations
+;;; arg-pros.el -- Prose Configurations
 
+;; `org' is the Great Outline Major mode for everything.
 (use-package org
   :ensure t
   :config
   ;; Global Configuration
   (setq org-directory "~/Dropbox/Org"
-		org-tags-column 0
+		org-tags-column -77
 		org-fold-catch-invisible-edits 'show-and-error
 		org-insert-heading-respect-content t
 		org-startup-indented t
@@ -68,6 +69,36 @@
 
   (add-hook 'org-present-mode-hook 'org-present-big)
   (add-hook 'org-present-mode-quit-hook 'org-present-small))
+
+
+;; `logos' is a generic Focus mode.
+(use-package logos
+  :ensure t
+  :config
+  (setq logos-outlines-are-pages t)
+  (setq-default logos-hide-mode-line t
+				logos-hide-header-line t)
+
+  (defun arg-pros--reveal-entry ()
+	"Reveal Org or Outline entry."
+	(cond
+	 ((and (eq major-mode 'org-mode)
+           (org-at-heading-p))
+      (org-show-entry))
+	 ((or (eq major-mode 'outline-mode)
+          (bound-and-true-p outline-minor-mode))
+      (outline-show-entry))))
+
+  (add-hook 'logos-page-motion-hook #'arg-pros--reveal-entry)
+
+  (let ((map org-mode-map))
+	(define-key map [remap forward-page] #'logos-forward-page-dwim)
+	(define-key map [remap backward-page] #'logos-backward-page-dwim))
+
+  (require 'evil)
+  (evil-define-key 'normal org-mode-map
+	(kbd "<leader>of") 'logos-focus-mode))
+
 
 ;; `org-modern' is the eye-candy package for Org-mode.
 (use-package org-modern
