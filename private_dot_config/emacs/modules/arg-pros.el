@@ -42,8 +42,10 @@
 		org-html-head "<link rel=\"stylesheet\" href=\"https://www.w3.org/StyleSheets/Core/Midnight\" />")
 
   (require 'evil)
+  (require 'consult)
   (evil-define-key 'normal 'global
 	(kbd "<leader>aa") 'org-agenda
+	(kbd "<leader>ah") 'consult-org-agenda
 	(kbd "<leader>ao") 'org-cycle-agenda-files
 	(kbd "<leader>ac") 'org-capture
 	(kbd "<leader>ocg") 'org-clock-goto)
