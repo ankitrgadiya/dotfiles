@@ -29,7 +29,11 @@
   ;; Agenda Configuration
   (setq org-agenda-files '("inbox.org" "archive.org")
 		org-archive-location (concat org-directory "/archive.org::datetree/")
-		org-log-done 'time)
+		org-log-done 'time
+		org-clock-idle-time 10
+		org-clock-persist 'history)
+
+  (org-clock-persistence-insinuate)
 
   ;; Org Export to HTML Settings
   (setq org-html-validation-link nil
