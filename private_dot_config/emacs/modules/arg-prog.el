@@ -238,6 +238,24 @@
     (kbd "<leader>D") #'dape-disconnect-quit
     (kbd "<leader>q") #'dape-quit))
 
+
+;; `compile' defines the compilation for the Project.
+(use-package compile
+  :config
+  (require 'evil)
+  (require 'consult)
+
+  (evil-define-key 'normal compilation-mode-map
+	(kbd "<leader>me") 'consult-compile-error))
+
+(use-package flymake
+  :config
+  (require 'evil)
+  (require 'consult)
+  (evil-define-key 'normal flymake-mode-map
+	(kbd "<leader>me") 'consult-flymake))
+
+
 ;; `geiser' is the super-powerful mode for Lisp goodness.
 (use-package geiser
   :ensure t)
