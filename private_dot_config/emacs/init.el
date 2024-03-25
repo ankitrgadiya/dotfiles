@@ -15,13 +15,12 @@
 (menu-bar-mode -1)                                    ; Fullscreen, no menu-bar
 
 ;; Use the built-in Modus themes.
-(use-package emacs
+(use-package modus-themes
   :ensure t
   :config
-  (setq modus-themes-paren-match '(bold)
-		modus-themes-bold-constructs t
+  (setq modus-themes-bold-constructs t
 		modus-themes-italic-constructs t)
-  (load-theme 'modus-vivendi))
+  (load-theme 'modus-vivendi t))
 
 ;; Configure Iosevka Fonts.
 (set-face-attribute 'default nil :font "Iosevka" :height 120)
