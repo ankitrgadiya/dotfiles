@@ -63,19 +63,6 @@
 	(kbd "<leader>ocd") 'org-clock-display
 	(kbd "<leader>occ") 'org-clock-cancel))
 
-;; `org-present' implements Presentations for org-mode documents.
-(use-package org-present
-  :ensure t
-  :config
-  (setq org-present-text-scale 3)
-
-  (require 'evil)
-  (evil-define-key 'normal org-mode-map
-	(kbd "<leader>op") 'org-present)
-
-  (add-hook 'org-present-mode-hook 'org-present-big)
-  (add-hook 'org-present-mode-quit-hook 'org-present-small))
-
 
 ;; `logos' is a generic Focus mode.
 (use-package logos
