@@ -36,5 +36,6 @@
 (load-file (expand-file-name "modules/arg-proj.el" user-emacs-directory))
 (load-file (expand-file-name "modules/arg-hypb.el" user-emacs-directory))
 (load-file (expand-file-name "modules/arg-pros.el" user-emacs-directory))
+(load-file (expand-file-name "modules/arg-wind.el" user-emacs-directory))
 (load-file (expand-file-name "modules/arg-pers.el" user-emacs-directory))
 (load-file (expand-file-name "modules/arg-work.el" user-emacs-directory))
