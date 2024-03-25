@@ -39,7 +39,7 @@
 	(if-let ((root (locate-dominating-file dir ".project")))
 	  (cons 'local root)))
 
-  (add-hook 'project-find-functions #'arg-proj--project-try-marker)
+  (add-hook 'project-find-functions #'arg-proj--project-try-marker 90)
 
   ;; Project's default switching behaviour prompts for the next command. It is
   ;; annoying if you switch projects a lot. This configures it to directly
