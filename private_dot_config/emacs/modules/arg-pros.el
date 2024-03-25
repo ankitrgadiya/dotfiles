@@ -117,17 +117,3 @@
   (setq org-hide-emphasis-markers t
 		org-pretty-entities t
 		org-ellipsis "…"))
-
-;; `alert' is the notification library for Emacs.
-(use-package alert
-  :ensure t
-  :config
-  (if (eq system-type 'darwin)
-	  (setq alert-default-style 'osx-notifier)
-	(setq alert-default-style 'libnotify)))
-
-;; `org-alert' notifies about the Agenda items
-(use-package org-alert
-  :ensure t
-  :config
-  (setq org-alert-notification-title "Agenda"))
