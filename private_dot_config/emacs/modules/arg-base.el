@@ -129,6 +129,7 @@
   (setq corfu-auto t
 		corfu-auto-delay 0.1
 		corfu-auto-prefix 2
+		corfu-on-exact-match 'quit
 		corfu-quit-no-match 'separator))
 
 (use-package corfu-popupinfo
