@@ -33,6 +33,7 @@
 # Ignore unused stuff
 .config/i3/i3blocks.conf
 .config/nvim
+.doom.d/
 
 # Vim Session
 Session.vim
