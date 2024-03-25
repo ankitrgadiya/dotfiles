@@ -22,6 +22,7 @@
 	(kbd "<leader>bb") 'consult-buffer
 	(kbd "<leader>bB") 'ibuffer
 	(kbd "<leader>bk") 'kill-this-buffer
+	(kbd "<leader>bl") 'consult-line
 	(kbd "<leader>bo") 'delete-other-windows
 	(kbd "<leader>wh") 'winner-undo
 	(kbd "<leader>wl") 'winner-redo
