@@ -212,6 +212,7 @@
 ;; Client for languages that implement Debug Adapter Protocol based Debuggers.
 (use-package dape
   :ensure t
+  :defer t
   :init
   (setq dape-buffer-window-arrangement 'right)
   :config
@@ -241,6 +242,7 @@
 
 ;; `compile' defines the compilation for the Project.
 (use-package compile
+  :defer t
   :config
   (require 'evil)
   (require 'consult)
@@ -249,6 +251,7 @@
 	(kbd "<leader>me") 'consult-compile-error))
 
 (use-package flymake
+  :defer t
   :config
   (require 'evil)
   (require 'consult)
@@ -258,11 +261,13 @@
 
 ;; `geiser' is the super-powerful mode for Lisp goodness.
 (use-package geiser
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;; `geiser-guile' adds support for GNU Guile in `geiser'.
 (use-package geiser-guile
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;; `eldoc' is the built-in documentation system for Emacs.
 (use-package eldoc
@@ -275,12 +280,14 @@
 ;; signature expansion feature.
 (use-package yasnippet
   :ensure t
+  :defer t
   :hook
   (prog-mode-hook . yas-minor-mode))
 
 ;; `restclient' is the HTTP REST API client for Emacs.
 (use-package restclient
   :ensure t
+  :defer t
   :mode ("\\.http\\'" . restclient-mode)
   :hook (restclient-mode . display-line-numbers-mode)
   :config

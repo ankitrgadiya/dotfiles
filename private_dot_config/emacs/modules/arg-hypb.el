@@ -2,6 +2,7 @@
 
 (use-package hyperbole
   :ensure t
+  :defer t
   :config
   (hyperbole-mode 1)
   (require 'evil)

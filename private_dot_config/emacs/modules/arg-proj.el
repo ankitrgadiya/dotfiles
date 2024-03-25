@@ -3,6 +3,7 @@
 ;; `magit' is the magical Git client for Emacs.
 (use-package magit
   :ensure t
+  :defer t
   :config
   (require 'evil)
   (evil-define-key 'normal 'global
@@ -15,6 +16,7 @@
 
 ;; `project' is the built-in Project management package in Emacs.
 (use-package project
+  :defer t
   :config
   ;; In Mac OS, the `find' command is the BSD variant. It may not support all
   ;; the flags. I usually install GNU coreutils, use that instead.
