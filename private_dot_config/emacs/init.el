@@ -19,7 +19,13 @@
   :ensure t
   :config
   (setq modus-themes-bold-constructs t
-		modus-themes-italic-constructs t)
+		modus-themes-italic-constructs t
+		modus-themes-common-palette-overrides '((bg-mode-line-active bg-blue-subtle)
+												(fg-mode-line-active fg-main)
+												(border-mode-line-active blue-intense)
+												(comment yellow-cooler)
+												(string green-warmer)
+												(fg-prompt cyan)))
   (load-theme 'modus-vivendi t))
 
 ;; Configure Iosevka Fonts.
