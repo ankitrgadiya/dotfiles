@@ -18,6 +18,6 @@
 		   (window-size . 0.2)
 		   (window-parameters . ((mode-line-format . none)))
 		   (dedicated . t))
-		  ((derived-mode . magit-mode)
+		  ((derived-mode . magit-status-mode)
 		   (display-buffer-use-some-window)
 		   (body-function . delete-other-windows)))))
