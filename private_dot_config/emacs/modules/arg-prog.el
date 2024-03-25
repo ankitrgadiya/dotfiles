@@ -97,7 +97,7 @@
   (setq-mode-local go-ts-mode adaptive-fill-regexp "[ \t]*//+[ \t]*")
 
   (require 'evil)
-  (evil-define-key 'normal 'go-ts-mode-map
+  (evil-define-key 'normal go-ts-mode-map
 	(kbd "<leader>mtt") #'arg-prog--go-test-function-at-point
 	(kbd "<leader>mtf") #'arg-prog--go-test-file-at-point
 	(kbd "<leader>mtd") #'arg-prog--go-test-directory-at-point))
