@@ -53,6 +53,17 @@
 		  ("h" "Household Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Household")
 		   "* TODO %?\n  %i\n  %a" :clock-in t :clock-resume t))
 
+		;; Custom Faces for the TODO Keywords
+		org-todo-keyword-faces
+		`(("BACKLOG" :foreground ,(modus-themes-get-color-value 'slate) :weight bold)
+		  ("TODO" :foreground ,(modus-themes-get-color-value 'red-warmer) :weight bold)
+		  ("NEXT" :foreground ,(modus-themes-get-color-value 'blue-cooler) :weight bold)
+		  ("INPROGRESS" :foreground ,(modus-themes-get-color-value 'cyan-warmer) :weight bold)
+		  ("BLOCKED" :foreground ,(modus-themes-get-color-value 'magenta) :weight bold)
+		  ("DONE" :foreground ,(modus-themes-get-color-value 'cyan-cooler) :weight bold)
+		  ("CANCELLED" :foreground ,(modus-themes-get-color-value 'cyan-faint) :weight bold)
+		  ("MEETING" :foreground ,(modus-themes-get-color-value 'cyan-warmer) :weight bold))
+
 		;; HTML Export Configuration
 		org-html-validation-link nil
 		org-html-head-include-scripts nil
