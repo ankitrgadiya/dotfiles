@@ -30,38 +30,49 @@
 		org-fold-catch-invisible-edits 'show-and-error
 		org-insert-heading-respect-content t
 		org-startup-indented t
-		org-startup-folded t)
+		org-startup-folded t
 
-  ;; Babel Configuration
-  (setq org-src-fontify-natively t
-		org-src-tab-acts-natively t)
+		;; Prose
+		org-hide-emphasis-markers t
+		org-pretty-entities t
+		org-ellipsis "…"
 
-  ;; Capture Configuration
-  (setq org-default-notes-file (concat org-directory "/inbox.org")
+		;; Babel Configuration
+		org-src-fontify-natively t
+		org-src-tab-acts-natively t
+
+		;; Capture Configuration
+		org-default-notes-file (concat org-directory "/inbox.org")
 		org-capture-templates
 		'(("w" "Work Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Work")
-		   "* TODO %?\n  %i\n  %a")
+		   "* TODO %?\n  %i\n  %a" :clock-in t :clock-resume t)
+		  ("m" "Meeting (Work)" entry (file+headline "~/Dropbox/Org/inbox.org" "Work")
+		   "* Meeting %?\n  %i\n  %a" :clock-in t :clock-resume t)
 		  ("p" "Personal Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Personal")
-		   "* TODO %?\n  %i\n  %a")
+		   "* TODO %?\n  %i\n  %a" :clock-in t :clock-resume t)
 		  ("h" "Household Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Household")
-		   "* TODO %?\n  %i\n  %a")))
+		   "* TODO %?\n  %i\n  %a" :clock-in t :clock-resume t))
 
-  ;; Agenda Configuration
-  (setq org-agenda-files '("inbox.org" "archive.org")
-		org-archive-location (concat org-directory "/archive.org::datetree/")
-		org-log-done 'time
-		org-clock-idle-time 10
-		org-clock-persist 'history)
-
-  (org-clock-persistence-insinuate)
-
-  ;; Org Export to HTML Settings
-  (setq org-html-validation-link nil
+		;; HTML Export Configuration
+		org-html-validation-link nil
 		org-html-head-include-scripts nil
 		org-html-head-include-default-style nil
-		org-html-head "<link rel=\"stylesheet\" href=\"https://www.w3.org/StyleSheets/Core/Midnight\" />"))
+		org-html-head "<link rel=\"stylesheet\" href=\"https://www.w3.org/StyleSheets/Core/Midnight\" />"
 
+		;; Agenda Configuration
+		org-agenda-files '("inbox.org" "archive.org")
+		org-archive-location (concat org-directory "/archive.org::datetree/")
+		org-log-done 'time
 
+		;; Org Clock
+		org-clock-idle-time 10
+		org-clock-persist 'history
+		org-clock-in-resume t
+		org-clock-out-remove-zero-time-clocks t
+		org-clock-out-when-done t
+		org-clock-persist-query-resume nil)
+
+  (org-clock-persistence-insinuate))
 
 
 ;; `logos' is a generic Focus mode.
