@@ -109,10 +109,5 @@
   :ensure t
   :after org
   :config
-  (add-hook 'org-mode-hook #'org-modern-mode)
-  (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
   (set-face-attribute 'org-modern-symbol nil :font "Iosevka" :weight 'bold :height 140)
-  (set-face-attribute 'org-document-title nil :font "Iosevka" :weight 'bold :height 1.3)
-  (setq org-hide-emphasis-markers t
-		org-pretty-entities t
-		org-ellipsis "…"))
+  (set-face-attribute 'org-document-title nil :font "Iosevka" :weight 'bold :height 1.3))
