@@ -40,31 +40,30 @@ end
 {{- if eq .chezmoi.os "darwin" }}
 if test -e "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.fish"
    source $HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.fish
-   fzf_key_bindings
 end
 {{- else if eq .chezmoi.os "linux" }}
     {{- if eq .distro "fedora" }}
 if test -e "/usr/share/fzf/shell/key-bindings.fish"
    source /usr/share/fzf/shell/key-bindings.fish
-   fzf_key_bindings
 end
     {{- else if eq .distro "ubuntu" }}
 if test -e "/usr/share/doc/fzf/examples/key-bindings.fish"
    source /usr/share/doc/fzf/examples/key-bindings.fish
-   fzf_key_bindings
 end
     {{- else if eq .distro "arch" }}
 if test -e "/usr/share/fish/vendor_functions.d/fzf_key_bindings.fish"
    source /usr/share/fish/vendor_functions.d/fzf_key_bindings.fish
-   fzf_key_bindings
 end
     {{- else if eq .distro "debian" }}
 if test -e "/usr/share/fish/vendor_functions.d/fzf_key_bindings.fish"
    source /usr/share/fish/vendor_functions.d/fzf_key_bindings.fish
-   fzf_key_bindings
 end
     {{- end }}
 {{- end }}
+
+if functions -q fzf_key_bindings
+   fzf_key_bindings
+end
 
 # Eget Directory
 set -x EGET_BIN "$HOME/.local/share/eget/bin"
