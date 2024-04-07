@@ -44,13 +44,13 @@
 		;; Capture Configuration
 		org-default-notes-file (concat org-directory "/inbox.org")
 		org-capture-templates
-		'(("w" "Work Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Work")
+		'(("w" "[Work] New Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Work")
 		   "* TODO %?\n  %i\n  %a" :clock-in t :clock-resume t)
-		  ("m" "Meeting (Work)" entry (file+headline "~/Dropbox/Org/inbox.org" "Work")
+		  ("m" "[Work] Meeting (Work)" entry (file+headline "~/Dropbox/Org/inbox.org" "Work")
 		   "* Meeting %?\n  %i\n  %a" :clock-in t :clock-resume t)
-		  ("p" "Personal Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Personal")
+		  ("p" "[Personal] New Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Personal")
 		   "* TODO %?\n  %i\n  %a" :clock-in t :clock-resume t)
-		  ("h" "Household Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Household")
+		  ("h" "[Household] New Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Household")
 		   "* TODO %?\n  %i\n  %a" :clock-in t :clock-resume t))
 
 		;; Custom Faces for the TODO Keywords
