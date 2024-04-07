@@ -59,6 +59,7 @@
 		  ("TODO" :foreground ,(modus-themes-get-color-value 'red-warmer) :weight bold)
 		  ("NEXT" :foreground ,(modus-themes-get-color-value 'blue-cooler) :weight bold)
 		  ("INPROGRESS" :foreground ,(modus-themes-get-color-value 'cyan-warmer) :weight bold)
+		  ("WAITING" :foreground ,(modus-themes-get-color-value 'yellow-warmer) :weight bold)
 		  ("BLOCKED" :foreground ,(modus-themes-get-color-value 'magenta) :weight bold)
 		  ("DONE" :foreground ,(modus-themes-get-color-value 'cyan-cooler) :weight bold)
 		  ("CANCELLED" :foreground ,(modus-themes-get-color-value 'cyan-faint) :weight bold)
