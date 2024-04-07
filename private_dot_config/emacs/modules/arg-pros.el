@@ -75,6 +75,8 @@
 		org-agenda-files '("inbox.org" "archive.org")
 		org-archive-location (concat org-directory "/archive.org::datetree/")
 		org-log-done 'time
+		org-enforce-todo-dependencies t
+		org-enforce-todo-checkbox-dependencies t
 
 		;; Org Clock
 		org-clock-idle-time 10
