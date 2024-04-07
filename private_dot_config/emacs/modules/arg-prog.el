@@ -269,6 +269,17 @@
   :ensure t
   :defer t)
 
+;; `sly' is like `geiser' but for Common Lisp.
+(use-package sly
+  :ensure t
+  :mode "\\.lisp\\'"
+  :defer t
+  :config
+  (if (eq system-type 'darwin)
+	  (setq inferior-lisp-program "/opt/homebrew/bin/sbcl")
+	(setq inferior-lisp-program "/usr/bin/sbcl")))
+
+
 ;; `eldoc' is the built-in documentation system for Emacs.
 (use-package eldoc
   :config
