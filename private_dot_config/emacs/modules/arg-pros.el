@@ -86,7 +86,8 @@
 		org-clock-out-when-done t
 		org-clock-persist-query-resume nil)
 
-  (org-clock-persistence-insinuate))
+  (org-clock-persistence-insinuate)
+  (require 'ox-md))
 
 
 ;; `logos' is a generic Focus mode.
