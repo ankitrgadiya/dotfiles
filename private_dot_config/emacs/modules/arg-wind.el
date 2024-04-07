@@ -1,9 +1,20 @@
 ;;; arg-wind.el -- Window Configurations
 
-;; `winner' is a simple Window management for Emacs.
-(use-package winner
-  :config
-  (winner-mode 1))
+(use-package popper
+  :ensure t ; or :straight t
+  :bind (("C-`"   . popper-toggle)
+         ("M-`"   . popper-cycle)
+         ("C-M-`" . popper-toggle-type))
+  :init
+  (setq popper-group-function #'popper-group-by-project
+		popper-reference-buffers
+        '("\\**eshell\\*"
+		  sly-mrepl-mode
+          help-mode
+          compilation-mode))
+
+  (popper-mode +1)
+  (popper-echo-mode +1))                ; For echo area hints
 
 (use-package emacs
   :config
