@@ -1,5 +1,31 @@
 ;;; arg-pros.el -- Prose Configurations
 
+;; `logos' is a generic Focus mode.
+(use-package logos
+  :ensure t
+  :defer t
+  :config
+  (setq logos-outlines-are-pages t)
+  (setq-default logos-hide-mode-line t
+				logos-hide-header-line t)
+
+  (defun arg-pros--reveal-entry ()
+	"Reveal Org or Outline entry."
+	(cond
+	 ((and (eq major-mode 'org-mode)
+           (org-at-heading-p))
+      (org-show-entry))
+	 ((or (eq major-mode 'outline-mode)
+          (bound-and-true-p outline-minor-mode))
+      (outline-show-entry))))
+
+  (add-hook 'logos-page-motion-hook #'arg-pros--reveal-entry)
+
+  (let ((map org-mode-map))
+	(define-key map [remap forward-page] #'logos-forward-page-dwim)
+	(define-key map [remap backward-page] #'logos-backward-page-dwim)))
+
+
 ;; `org' is the Great Outline Major mode for everything.
 (use-package org
   :ensure t
@@ -86,37 +112,9 @@
 		org-clock-out-when-done t
 		org-clock-persist-query-resume nil)
 
+
   (org-clock-persistence-insinuate)
   (require 'ox-md))
-
-
-;; `logos' is a generic Focus mode.
-(use-package logos
-  :ensure t
-  :defer t
-  :init
-  (evil-define-key 'normal org-mode-map
-	(kbd "<leader>of") 'logos-focus-mode)
-  :config
-  (setq logos-outlines-are-pages t)
-  (setq-default logos-hide-mode-line t
-				logos-hide-header-line t)
-
-  (defun arg-pros--reveal-entry ()
-	"Reveal Org or Outline entry."
-	(cond
-	 ((and (eq major-mode 'org-mode)
-           (org-at-heading-p))
-      (org-show-entry))
-	 ((or (eq major-mode 'outline-mode)
-          (bound-and-true-p outline-minor-mode))
-      (outline-show-entry))))
-
-  (add-hook 'logos-page-motion-hook #'arg-pros--reveal-entry)
-
-  (let ((map org-mode-map))
-	(define-key map [remap forward-page] #'logos-forward-page-dwim)
-	(define-key map [remap backward-page] #'logos-backward-page-dwim)))
 
 
 ;; `org-modern' is the eye-candy package for Org-mode.
@@ -124,5 +122,33 @@
   :ensure t
   :after org
   :config
-  (set-face-attribute 'org-modern-symbol nil :font "Iosevka" :weight 'bold :height 140)
-  (set-face-attribute 'org-document-title nil :font "Iosevka" :weight 'bold :height 1.3))
+
+  ;; Presentation
+  (defun arg-start-presentation ()
+	"Start Presentation - Configures Fonts, Style, etc."
+	(interactive)
+	(cond ((eq major-mode 'org-mode)
+		   (progn
+			 (setq-local arg-presentation t)
+			 (fontaine-set-preset 'presentation)
+			 (variable-pitch-mode 1)
+			 (org-modern-mode 1)
+			 (logos-focus-mode 1)
+			 (logos-narrow-dwim)
+			 (org-fold-show-entry)))
+		   (t (error "This command only works in Org buffers."))))
+
+  (defun arg-stop-presentation ()
+	"Stop Presentation - Reverts Fonts, Style, etc."
+	(interactive)
+	(cond ((not (eq major-mode 'org-mode))
+		   (error "This command only works in Org buffers."))
+		  ((not arg-presentation)
+		   (error "Not presenting right now."))
+		  (t (progn
+			   (org-modern-mode -1)
+			   (variable-pitch-mode -1)
+			   (logos-focus-mode -1)
+			   (fontaine-set-preset 'regular)
+			   (widen)
+			   (setq-local arg-presentation nil))))))
