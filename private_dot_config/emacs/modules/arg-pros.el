@@ -47,7 +47,7 @@
 		'(("w" "[Work] New Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Work")
 		   "* TODO %?\n  %i\n  %a" :clock-in t :clock-resume t)
 		  ("m" "[Work] Meeting (Work)" entry (file+headline "~/Dropbox/Org/inbox.org" "Work")
-		   "* Meeting %?\n  %i\n  %a" :clock-in t :clock-resume t)
+		   "* MEETING %?\n  %i\n  %a" :clock-in t :clock-resume t)
 		  ("p" "[Personal] New Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Personal")
 		   "* TODO %?\n  %i\n  %a" :clock-in t :clock-resume t)
 		  ("h" "[Household] New Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Household")
