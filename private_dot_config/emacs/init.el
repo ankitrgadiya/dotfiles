@@ -28,13 +28,8 @@
 												(fg-prompt cyan)))
   (load-theme 'modus-vivendi t))
 
-;; Configure Iosevka Fonts.
-(set-face-attribute 'default nil :font "Iosevka" :height 120)
-(if (daemonp)
-	(add-hook 'after-make-frame-functions
-			  (lambda (frame)
-				(set-face-attribute 'default nil :font "Iosevka" :height 120))))
 
+(load-file (expand-file-name "modules/arg-font.el" user-emacs-directory))
 (load-file (expand-file-name "modules/arg-base.el" user-emacs-directory))
 (load-file (expand-file-name "modules/arg-vi.el" user-emacs-directory))
 (load-file (expand-file-name "modules/arg-prog.el" user-emacs-directory))
