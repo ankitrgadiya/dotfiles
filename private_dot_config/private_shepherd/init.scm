@@ -95,7 +95,7 @@
                         (address    #f))
 
   (define (oc-command . args)
-    (cons* (string-append (getenv "HOME") "/.local/bin/oc")
+    (cons* (string-append (getenv "HOME") "/.local/bin/kubectl")
            (filter (negate unspecified?) args)))
 
   (define (get-address)
@@ -235,42 +235,42 @@
                    (make-oc-proxy "coreapi"
                                   #:port "30001:80"
                                   #:log-file "coreapi"
-                                  #:namespace "qa-rapyuta-core"
+                                  #:namespace "io-dev"
                                   #:service "apiserver")
                    (make-oc-proxy "rip"
                                   #:port "30002:80"
                                   #:log-file "rip"
-                                  #:namespace "qa-rapyuta-core"
+                                  #:namespace "io-dev"
                                   #:service "rip")
                    (make-oc-proxy "authz"
                                   #:port "30003:80"
                                   #:log-file "authz"
-                                  #:namespace "qa-rapyuta-core"
+                                  #:namespace "io-dev"
                                   #:service "authz")
                    (make-oc-proxy "iobroker"
                                   #:port "30004:80"
                                   #:log-file "iobroker"
-                                  #:namespace "qa-rapyuta-core"
+                                  #:namespace "io-dev"
                                   #:service "iobroker")
                    (make-oc-proxy "helmbroker"
                                   #:port "30005:80"
                                   #:log-file "helmbroker"
-                                  #:namespace "qa-rapyuta-core"
+                                  #:namespace "io-dev"
                                   #:service "helmbroker")
                    (make-oc-proxy "devicebroker"
                                   #:port "30006:80"
                                   #:log-file "devicebroker"
-                                  #:namespace "qa-rapyuta-core"
+                                  #:namespace "io-dev"
                                   #:service "devicebroker")
                    (make-oc-proxy "rcb"
                                   #:port "30007:80"
                                   #:log-file "rcb"
-                                  #:namespace "qa-rapyuta-core"
+                                  #:namespace "io-dev"
                                   #:service "rcb")
 				   (make-oc-proxy "v2-apiserver"
 								  #:port "31001:80"
 								  #:log-file "v2-apiserver"
-								  #:namespace "qa-rapyuta-core"
+								  #:namespace "io-dev"
 								  #:service "v2-apiserver")
                    (make-oc-proxy "es"
                                   #:port "39001:9200"
