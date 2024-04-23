@@ -51,7 +51,7 @@
 	  (python . ("https://github.com/tree-sitter/tree-sitter-python"))
 	  (c . ("https://github.com/tree-sitter/tree-sitter-c"))
 	  (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp"))
-	  (lua . ("https://github.com/Azganoth/tree-sitter-lua"))
+	  (lua . ("https://github.com/tree-sitter-grammars/tree-sitter-lua"))
 	  (bash . ("https://github.com/tree-sitter/tree-sitter-bash"))
 	  (yaml . ("https://github.com/ikatyang/tree-sitter-yaml"))
 	  (json . ("https://github.com/tree-sitter/tree-sitter-json"))
@@ -127,6 +127,11 @@
   :init
   (progn (arg-prog--install-ts-grammer 'c)
 		 (arg-prog--install-ts-grammer 'cpp)))
+
+;; Lua Configurations
+;; Emacs 30 comes built-in with `lua-ts-mode'.
+(use-package lua-ts-mode
+  :mode "\\.lua\\'")
 
 ;; Fish Shell Configurations
 (use-package fish-mode
