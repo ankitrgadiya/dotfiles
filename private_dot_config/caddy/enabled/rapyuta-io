@@ -66,6 +66,14 @@ rcb.t14.lan {
     reverse_proxy http://localhost:30007
 }
 
+blob.t14.lan {
+	tls /home/ankit/.config/caddy/ssl/t14.lan.crt /home/ankit/.config/caddy/ssl/t14.lan.key {
+		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
+	}
+
+    reverse_proxy http://localhost:30008
+}
+
 es.t14.lan {
 	tls /home/ankit/.config/caddy/ssl/t14.lan.crt /home/ankit/.config/caddy/ssl/t14.lan.key {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt

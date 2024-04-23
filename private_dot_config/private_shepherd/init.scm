@@ -267,6 +267,11 @@
                                   #:log-file "rcb"
                                   #:namespace "io-dev"
                                   #:service "rcb")
+                   (make-oc-proxy "blobservice"
+                                  #:port "30008:80"
+                                  #:log-file "blobservice"
+                                  #:namespace "io-dev"
+                                  #:service "blobservice")
 				   (make-oc-proxy "v2-apiserver"
 								  #:port "31001:80"
 								  #:log-file "v2-apiserver"
