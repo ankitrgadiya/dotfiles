@@ -172,11 +172,12 @@
 ;; `eglot' is the built-in language server client for Emacs. LSP Clients can add
 ;; rich semantics understanding of languages to Emacs.
 (use-package eglot
-  :hook ((go-ts-mode        . eglot-ensure)
-		 (rust-ts-mode      . eglot-ensure)
-		 (bash-ts-mode      . eglot-ensure)
-		 (c-or-c++-ts-mode  . eglot-ensure)
-		 (zig-mode          . eglot-ensure))
+  :hook ((go-ts-mode          . eglot-ensure)
+		 (rust-ts-mode        . eglot-ensure)
+		 (python-ts-mode      . eglot-ensure)
+		 (bash-ts-mode        . eglot-ensure)
+		 (c-or-c++-ts-mode    . eglot-ensure)
+		 (zig-mode            . eglot-ensure))
   :custom
   (eglot-send-changes-idle-time 0.1)
   :config
