@@ -49,3 +49,24 @@
         mastodon-active-user "ankit")
   (require 'evil)
   (evil-set-initial-state 'mastodon-mode 'emacs))
+
+;; `empv' is the Media manager in Emacs (backed by the MPV player).
+(use-package empv
+  :ensure t
+  :init
+  (require 'evil)
+  (evil-define-key 'normal 'global
+	(kbd "<leader>yt") 'empv-toggle
+	(kbd "<leader>ys") 'empv-youtube
+	(kbd "<leader>yr") 'empv-play-radio
+	(kbd "<leader>yq") 'empv-exit)
+  :defer t
+  :config
+  (setq empv-invidious-instance "https://vid.lilay.dev/api/v1"
+		empv-youtube-use-tabulated-results t
+		empv-radio-channels
+		'(("lofi hip hop radio 📚 - beats to relax/study". "https://www.youtube.com/watch?v=jfKfPfyJRdk")
+		  ("lofi hip hop radio 💤 - beats to sleep/chill" . "https://www.youtube.com/watch?v=rUxyKA_-grg")
+		  ("synthwave radio 🌌 - beats to chill/game" . "https://www.youtube.com/watch?v=4xDzrJKXOOY")
+		  ("dark ambient radio 🌃 - music to escape/dream" . "https://www.youtube.com/watch?v=S_MOd40zlYU"))))
+
