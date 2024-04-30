@@ -155,14 +155,6 @@
 (use-package jq-mode
   :ensure t)
 
-;; Markdown Configurations
-(use-package markdown-mode
-  :ensure t
-  :autoload gfm-mode
-  :mode ("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . gfm-mode)
-  :config
-  (setq markdown-command '("pandoc" "--from=gfm" "--to=html5")))
-
 ;; Dockerfile Configurations
 ;; Emacs 29.1 comes built-in with `dockerfile-ts-mode'.
 (use-package dockerfile-ts-mode

@@ -152,3 +152,11 @@
 			   (fontaine-set-preset 'regular)
 			   (widen)
 			   (setq-local arg-presentation nil))))))
+
+;; Markdown Configurations
+(use-package markdown-mode
+  :ensure t
+  :autoload gfm-mode
+  :mode ("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . gfm-mode)
+  :config
+  (setq markdown-command '("pandoc" "--from=gfm" "--to=html5")))
