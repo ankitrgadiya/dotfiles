@@ -9,7 +9,9 @@
   (setq epg-gpg-program "gpg2"
 		auth-sources '((:source "~/.config/emacs/secrets/authinfo.gpg"))))
 
+;; `erc' is the built-in IRC Client for Emacs.
 (use-package erc
+  :defer t
   :config
   (setq erc-autojoin-channels-alist '(("irc.libera.chat"
 									   "#emacs" "#emacsconf" "#systemcrafters"
@@ -38,8 +40,12 @@
 	(kbd "<leader>ic") #'arg-erc-libera
 	(kbd "<leader>ib") 'erc-switch-to-buffer))
 
+;; `mastodon' is the Mastodon Client for Emacs.
 (use-package mastodon
   :ensure t
+  :defer t
   :config
   (setq mastodon-instance-url "https://emacs.ch"
-        mastodon-active-user "ankit"))
+        mastodon-active-user "ankit")
+  (require 'evil)
+  (evil-set-initial-state 'mastodon-mode 'emacs))
