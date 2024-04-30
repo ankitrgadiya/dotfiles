@@ -5,23 +5,25 @@
 (use-package fontaine
   :ensure t
   :config
-  (setq fontaine-presets
-		`((t14
-		   :default-height 140
-		   :variable-pitch-height 140)
-		  (t14-presentation
-		   :default-height 180
-		   :variable-pitch-height 180)
-		  (mac
-		   :default-height 160
-		   :variable-pitch-height 160)
-		  ,(if (eq system-type 'darwin)
-			   '(regular :inherit mac)
-			 '(regular :inherit t14))
-		  ,(if (eq system-type 'darwin)
-			   '(presentation :inherit mac-presentation)
-			 '(presentation :inherit t14-presentation))
-		  (t
-		   :default-family "Iosevka SS07"
-		   :variable-pitch-family "Iosevka Aile")))
+  (defun arg-font--generate-presets ()
+	(let ((height (if (eq system-type 'darwin)
+					  160
+					140)))
+	  `((regular
+		 :default-height ,height
+		 :variable-pitch ,height)
+		(zoomed
+		 :default-height ,(+ 20 height)
+		 :variable-pitch ,(+ 20 height))
+		(presentation
+		 :default-height ,(+ 40 height)
+		 :variable-pitch ,(+ 40 height))
+		(presentation-zoomed
+		 :default-height ,(+ 60 height)
+		 :variable-pitch ,(+ 60 height))
+		(t
+		 :default-family "Iosevka SS07"
+		 :variable-pitch-family "Iosevka Aile"))))
+
+  (setq fontaine-presets (arg-font--generate-presets))
   (fontaine-set-preset 'regular))
