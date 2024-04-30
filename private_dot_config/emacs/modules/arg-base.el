@@ -122,7 +122,6 @@
   (global-corfu-mode)
   :bind
   (:map corfu-map
-        ("SPC" . corfu-insert-separator)
         ("C-n" . corfu-next)
         ("C-p" . corfu-previous))
   :config
@@ -130,6 +129,7 @@
 		corfu-auto-delay 0.1
 		corfu-auto-prefix 2
 		corfu-on-exact-match 'quit
+		corfu-quit-at-boundary 'separator
 		corfu-quit-no-match 'separator))
 
 (use-package corfu-popupinfo
