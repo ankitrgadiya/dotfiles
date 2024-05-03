@@ -11,7 +11,8 @@
         '("\\**eshell\\*"
 		  sly-mrepl-mode
           help-mode
-          compilation-mode))
+          compilation-mode
+		  dired-mode))
 
   (popper-mode +1)
   (popper-echo-mode +1))                ; For echo area hints
@@ -28,6 +29,13 @@
 		   (body-function . select-window)
 		   (window-height . 0.3)
 		   (window-parameters . ((mode-line-format . none)))
+		   (dedicated . t))
+		  ((derived-mode . dired-mode)
+		   (display-buffer-reuse-mode-window
+			display-buffer-in-side-window)
+		   (body-function . select-window)
+		   (window-width . 0.5)
+		   (side . right)
 		   (dedicated . t))
 		  ((derived-mode . compilation-mode)
 		   (display-buffer-reuse-mode-window
