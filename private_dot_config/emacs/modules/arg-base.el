@@ -79,9 +79,7 @@
 		  "GUILE_LOAD_PATH" "GUILE_LOAD_COMPILED_PATH"
 		  "GUILE_SYSTEM_EXTENSIONS_PATH" "GUILE_TLS_CERTIFICATE_DIRECTORY"
 		  ))
-  (if (or (eq system-type 'darwin)
-		  (daemonp))
-      (exec-path-from-shell-initialize)))
+  (exec-path-from-shell-initialize))
 
 
 ;; `which-key' is a convenient cheatsheet for key-bindings in Minibuffer.
