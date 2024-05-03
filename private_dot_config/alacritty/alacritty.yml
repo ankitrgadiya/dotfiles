@@ -31,4 +31,7 @@ font:
     style: Heavy Italic
   size: 16
 
+selection:
+  save_to_clipboard: true
+
 draw_bold_text_with_bright_colors: false
