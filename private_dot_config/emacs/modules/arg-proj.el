@@ -58,6 +58,7 @@
   (require 'evil)
   (require 'consult)
   (require 'magit)
+  (require 'eat)
   (evil-define-key 'normal 'global
 	(kbd "<leader>p!") 'project-shell-command
 	(kbd "<leader>p&") 'project-async-shell-command
@@ -71,7 +72,7 @@
 	(kbd "<leader>pv") 'project-vc-dir
 	(kbd "<leader>pc") 'project-compile
 	(kbd "<leader>pe") 'project-eshell
-	(kbd "<leader>pe") 'project-eshell
+	(kbd "<leader>pt") 'eat-project
 	(kbd "<leader>pk") 'project-kill-buffers
 	(kbd "<leader>pp") 'project-switch-project
 	(kbd "<leader>pg") 'consult-ripgrep

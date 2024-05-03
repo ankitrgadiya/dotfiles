@@ -32,6 +32,7 @@
 (load-file (expand-file-name "modules/arg-font.el" user-emacs-directory))
 (load-file (expand-file-name "modules/arg-base.el" user-emacs-directory))
 (load-file (expand-file-name "modules/arg-vi.el" user-emacs-directory))
+(load-file (expand-file-name "modules/arg-term.el" user-emacs-directory))
 (load-file (expand-file-name "modules/arg-prog.el" user-emacs-directory))
 (load-file (expand-file-name "modules/arg-proj.el" user-emacs-directory))
 (load-file (expand-file-name "modules/arg-pros.el" user-emacs-directory))

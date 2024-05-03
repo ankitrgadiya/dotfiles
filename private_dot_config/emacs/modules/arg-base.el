@@ -145,13 +145,6 @@
   :config
   (corfu-terminal-mode))
 
-(use-package eshell
-  :bind (("C-r" . consult-history))
-  :config
-  (add-hook 'eshell-mode-hook (lambda ()
-								(setq-local corfu-auto nil)
-								(corfu-mode))))
-
 ;; Orderless: powerful completion style
 (use-package orderless
   :ensure t

@@ -9,6 +9,8 @@
   (setq popper-group-function #'popper-group-by-project
 		popper-reference-buffers
         '("\\**eshell\\*"
+		  ".*-eat\\*"
+		  term-mode
 		  sly-mrepl-mode
           help-mode
           compilation-mode
@@ -20,7 +22,8 @@
 (use-package emacs
   :config
   (setq display-buffer-alist
-		`(("\\**eshell\\*"
+		`(((or . ("\\**eshell\\*"
+				  ".*-eat\\*"))
 		   (display-buffer-at-bottom)
 		   (dedicated . t))
 		  ((derived-mode . help-mode)
