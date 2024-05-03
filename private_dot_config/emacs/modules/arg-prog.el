@@ -242,9 +242,10 @@
 (use-package compile
   :defer t
   :config
+  (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+
   (require 'evil)
   (require 'consult)
-
   (evil-define-key 'normal compilation-mode-map
 	(kbd "<leader>me") 'consult-compile-error))
 
