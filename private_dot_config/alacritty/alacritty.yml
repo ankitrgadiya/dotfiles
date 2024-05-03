@@ -19,16 +19,16 @@ scrolling:
 font:
   normal:
     family: Iosevka SS07
-    style: Extended
+    style: Bold
   bold:
     family: Iosevka SS07
-    style: Heavy Extended
+    style: Heavy
   italic:
     family: Iosevka SS07
-    style: Medium Extended Italic
+    style: Bold Italic
   bold_italic:
     family: Iosevka SS07
-    style: Heavy Extended Italic
-  size: 14
+    style: Heavy Italic
+  size: 16
 
 draw_bold_text_with_bright_colors: false
