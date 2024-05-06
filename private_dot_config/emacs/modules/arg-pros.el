@@ -116,6 +116,10 @@
   (org-clock-persistence-insinuate)
   (require 'ox-md))
 
+(use-package arg-ol-github
+  :after org
+  (require 'arg-ol-github))
+
 
 ;; `org-modern' is the eye-candy package for Org-mode.
 (use-package org-modern
