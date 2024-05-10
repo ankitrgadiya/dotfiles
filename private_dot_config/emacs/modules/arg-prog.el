@@ -302,3 +302,11 @@
   :hook (restclient-mode . display-line-numbers-mode)
   :config
   (setq restclient-same-buffer-response t))
+
+;; `pikchr' is a markup language for Diagrams.
+(use-package pikchr-mode
+  :ensure t
+  :mode ("\\.pikchr" . pikchr-mode)
+  :after org
+  :config
+  (require 'pikchr-mode))
