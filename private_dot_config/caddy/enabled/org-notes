@@ -3,7 +3,7 @@ notes.t14.lan {
 		ca_root /home/ankit/.config/caddy/ssl/root-ca.crt
 	}
 
-    root * /home/ankit/Documents/notes/book
+    root * /home/ankit/Documents/notes/public
     file_server
 
     handle_errors {
