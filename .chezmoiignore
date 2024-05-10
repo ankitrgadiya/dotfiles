@@ -20,7 +20,6 @@
 {{- end }}
 
 {{- if ne .chezmoi.os "linux" }}
-.config/shepherd/
 .config/alacritty/
 .config/caddy/
 .config/systemd/
@@ -34,6 +33,7 @@
 .config/i3/i3blocks.conf
 .config/nvim
 .doom.d/
+.config/shepherd/
 
 # Vim Session
 Session.vim
