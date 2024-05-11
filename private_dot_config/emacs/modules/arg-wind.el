@@ -10,6 +10,7 @@
 		popper-reference-buffers
         '("\\**eshell\\*"
 		  ".*-eat\\*"
+		  inferior-emacs-lisp-mode
 		  term-mode
 		  sly-mrepl-mode
           help-mode
@@ -22,7 +23,8 @@
 (use-package emacs
   :config
   (setq display-buffer-alist
-		`(((or . ("\\**eshell\\*"
+		`(((or . ((derived-mode . inferior-emacs-lisp-mode)
+				  "\\**eshell\\*"
 				  ".*-eat\\*"))
 		   (display-buffer-at-bottom)
 		   (dedicated . t))
