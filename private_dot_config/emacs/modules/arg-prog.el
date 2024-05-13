@@ -86,7 +86,10 @@
 		  nil
 		  (cons name (arg-prog--go-test-get-functions-in-range (treesit-node-end curnode) end)))))
   (defun arg-prog--go-test-compile (regexp dir)
-	(compile (format "go test -v -run '%s' %s" regexp dir)))
+	(let ((build-tags (if (local-variable-p 'go-build-tags)
+						  (format "-tags %s" go-build-tags)
+						  "")))
+	  (compile (format "go test -v %s -run '%s' %s" build-tags regexp dir))))
   (defun arg-prog--go-test-function-at-point ()
 	"Runs Go Test for the function at point"
 	(interactive)
