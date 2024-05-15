@@ -100,6 +100,7 @@
 		;; Agenda Configuration
 		org-agenda-files '("inbox.org" "archive.org")
 		org-archive-location (concat org-directory "/archive.org::datetree/")
+		org-archive-subtree-add-inherited-tags t
 		org-log-done 'time
 		org-enforce-todo-dependencies t
 		org-enforce-todo-checkbox-dependencies t
