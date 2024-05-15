@@ -104,7 +104,7 @@
 		org-html-validation-link nil
 		org-html-head-include-scripts nil
 		org-html-head-include-default-style nil
-		org-html-head "<link rel=\"stylesheet\" href=\"https://www.w3.org/StyleSheets/Core/Midnight\" />"
+		org-html-head "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.jade.min.css\" />"
 
 		;; Agenda Configuration
 		org-agenda-files '("inbox.org" "archive.org")
