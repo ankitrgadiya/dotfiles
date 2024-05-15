@@ -131,8 +131,11 @@
   (org-clock-persistence-insinuate)
   (require 'ox-md))
 
+
+;; `arg-ol-github' adds support for Github Links in Orgmode.
 (use-package arg-ol-github
   :after org
+  :config
   (require 'arg-ol-github))
 
 
