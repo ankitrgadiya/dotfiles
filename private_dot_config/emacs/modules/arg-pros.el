@@ -31,9 +31,18 @@
   :ensure t
   :defer t
   :init
+  (defun arg-pros--org-work-agenda ()
+	(interactive)
+	(org-agenda nil "w"))
+
+  (defun arg-pros--org-home-agenda ()
+	(interactive)
+	(org-agenda nil "h"))
+
   (evil-define-key 'normal 'global
 	(kbd "<leader>aa") 'org-agenda
-	(kbd "<leader>ah") 'consult-org-agenda
+	(kbd "<leader>aw") #'arg-pros--org-work-agenda
+	(kbd "<leader>ah") #'arg-pros--org-home-agenda
 	(kbd "<leader>ao") 'org-cycle-agenda-files
 	(kbd "<leader>ac") 'org-capture
 	(kbd "<leader>ocg") 'org-clock-goto)
@@ -104,6 +113,11 @@
 		org-log-done 'time
 		org-enforce-todo-dependencies t
 		org-enforce-todo-checkbox-dependencies t
+		org-agenda-custom-commands
+		'(("w" "Work Agenda" agenda ""
+		   ((org-agenda-tag-filter-preset '("+@work"))))
+		  ("h" "Home Agenda" agenda ""
+		   ((org-agenda-tag-filter-preset '("-@work")))))
 
 		;; Org Clock
 		org-clock-idle-time 10
