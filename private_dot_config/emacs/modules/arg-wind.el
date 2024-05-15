@@ -10,6 +10,7 @@
 		popper-reference-buffers
         '("\\**eshell\\*"
 		  ".*-eat\\*"
+		  "\\*Dictionary\\*"
 		  inferior-emacs-lisp-mode
 		  term-mode
 		  sly-mrepl-mode
@@ -25,7 +26,8 @@
   (setq display-buffer-alist
 		`(((or . ((derived-mode . inferior-emacs-lisp-mode)
 				  "\\**eshell\\*"
-				  ".*-eat\\*"))
+				  ".*-eat\\*"
+				  "\\*Dictionary\\*"))
 		   (display-buffer-at-bottom)
 		   (dedicated . t))
 		  ((derived-mode . help-mode)

@@ -182,3 +182,14 @@
   :mode ("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . gfm-mode)
   :config
   (setq markdown-command '("pandoc" "--from=gfm" "--to=html5")))
+
+
+;; Dictionary Configurations
+(use-package dictionary
+  :defer t
+  :init
+  (evil-define-key 'normal 'global
+	(kbd "<leader>ds") 'dictionary-search)
+  :config
+  (setq dictionary-server "localhost"
+		dictionary-use-single-buffer t))
