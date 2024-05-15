@@ -65,8 +65,9 @@
   (setq empv-invidious-instance "https://vid.lilay.dev/api/v1"
 		empv-youtube-use-tabulated-results t
 		empv-radio-channels
-		'(("lofi hip hop radio 📚 - beats to relax/study". "https://www.youtube.com/watch?v=jfKfPfyJRdk")
-		  ("lofi hip hop radio 💤 - beats to sleep/chill" . "https://www.youtube.com/watch?v=rUxyKA_-grg")
-		  ("synthwave radio 🌌 - beats to chill/game" . "https://www.youtube.com/watch?v=4xDzrJKXOOY")
-		  ("dark ambient radio 🌃 - music to escape/dream" . "https://www.youtube.com/watch?v=S_MOd40zlYU"))))
+		'(("ghibli music collection 🍉 - beats for work/relax/study" . "https://www.youtube.com/watch?v=Sx4xVyXHl60")
+		  ("lofi hip hop radio 📚 - beats for relax/study". "https://www.youtube.com/watch?v=jfKfPfyJRdk")
+		  ("lofi hip hop radio 💤 - beats for sleep/chill" . "https://www.youtube.com/watch?v=rUxyKA_-grg")
+		  ("synthwave radio 🌌 - beats for chill/game" . "https://www.youtube.com/watch?v=4xDzrJKXOOY")
+		  ("dark ambient radio 🌃 - music for escape/dream" . "https://www.youtube.com/watch?v=S_MOd40zlYU"))))
 
