@@ -29,7 +29,7 @@ used in case the link does not specify a username or organization."
       (`latex (format "\\href{%s}{%s}" path desc))
       (`texinfo (format "@uref{%s,%s}" path desc))
       (`ascii (format "%s (%s)" desc path))
-      (t path))))
+      (_ path))))
 
 (defun org-github--convert-to-link (path)
   (let* ((path (org-github--ensure-namespace path))
