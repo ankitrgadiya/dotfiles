@@ -25,7 +25,6 @@
 	(define-key map [remap forward-page] #'logos-forward-page-dwim)
 	(define-key map [remap backward-page] #'logos-backward-page-dwim)))
 
-
 ;; `org' is the Great Outline Major mode for everything.
 (use-package org
   :ensure t
@@ -131,13 +130,11 @@
   (org-clock-persistence-insinuate)
   (require 'ox-md))
 
-
 ;; `arg-ol-github' adds support for Github Links in Orgmode.
 (use-package arg-ol-github
   :after org
   :config
   (require 'arg-ol-github))
-
 
 ;; `org-modern' is the eye-candy package for Org-mode.
 (use-package org-modern
@@ -183,7 +180,6 @@
   :config
   (setq markdown-command '("pandoc" "--from=gfm" "--to=html5")))
 
-
 ;; Dictionary Configurations
 (use-package dictionary
   :defer t
@@ -193,3 +189,11 @@
   :config
   (setq dictionary-server "localhost"
 		dictionary-use-single-buffer t))
+
+(use-package arg-draft
+  :defer t
+  :autoload arg-draft
+  :init
+  (setq arg-draft-major-mode 'org-mode)
+  (evil-define-key 'normal 'global
+	(kbd "<leader>dc") 'arg-draft))
