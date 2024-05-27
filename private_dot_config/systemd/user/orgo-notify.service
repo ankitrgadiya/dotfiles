@@ -1,0 +1,10 @@
+[Unit]
+Description=Orgo Notify
+Documentation=https://git.argp.in/ankit/orgo/
+
+[Service]
+ExecStart=/usr/local/bin/orgo-notify
+TimeoutStopSec=5s
+
+[Install]
+WantedBy=default.target
