@@ -1,11 +1,9 @@
 # -*- mode: conf-unix; -*-
 # Begin ~/.gitconfig
 
-# Copyright 2016-2022, Ankit R Gadiya
+# Copyright 2016-2024, Ankit R Gadiya
 # BSD License
 
-# I introduce myself to git by configuring my name, email and GPG
-# key.
 [user]
 	name = Ankit R Gadiya
 {{- if eq .machine "home" }}
@@ -16,11 +14,9 @@
 	signingkey = 8C56990BFCA0F5209FF5A3026572A8682F35C253
 {{- end }}
 
-# I have enabled signing commits with GPG for every commit
 [commit]
 	gpgsign = true
 
-# Use gpg2 executable in the PATH for signing the commits
 [gpg]
 {{- if eq .chezmoi.os "darwin" }}
 	program = gpg
@@ -28,49 +24,21 @@
 	program = gpg2
 {{- end}}
 
-# Enable colors in output
 [color]
 	ui = true
 
-# Use Emacs as editor
 [core]
 	quotepath = false
 	editor = emacs-client
 
-# Global Gitignore
-[core]
-	excludesFile = ~/.gitconfig.d/.gitignore
-
-# Aliases
-
-## Golang
-[alias]
-	change = codereview change
-	gofmt = codereview gofmt
-	mail = codereview mail
-	pending = codereview pending
-	submit = codereview submit
-	sync = codereview sync
-
-## Github
 [url "ssh://git@github.com/ankitrgadiya/"]
 	insteadOf = argh:
 [url "ssh://git@github.com/"]
 	insteadOf = gh:
-
-## Gitlab
 [url "ssh://git@gitlab.com/ankitrgadiya/"]
 	insteadOf = argl:
 [url "ssh://git@gitlab.com/"]
 	insteadOf = gl:
-
-## Bitbucket
-[url "ssh://git@github.com/rapyuta-robotics/"]
-	insteadOf = rr:
-[url "ssh://git@bitbucket.org/"]
-	insteadOf = bb:
-
-## Argc
 [url "https://git.argp.in/"]
 	insteadOf = argc:
 
