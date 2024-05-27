@@ -18,19 +18,14 @@ eval $(/opt/homebrew shellenv)
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/ruby/bin:/opt/homebrew/lib/ruby/gems/3.1.0/bin:$PATH"
 {{- end }}
 
 # Golang configuration
-{{- if eq .machine "work" }}
-export GOROOT="/usr/local/lib/go-1.11"
-{{- else if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 export GOROOT="$HOMEBREW_PREFIX/opt/golang/libexec"
-{{- else if eq .distro "fedora" }}
-export GOROOT="/usr/lib/golang"
-{{- else if eq .distro "ubuntu" }}
-export GOROOT="/usr/lib/go-1.13"
-{{- else if eq .distro "arch" }}
-export GOROOT="/usr/lib/go"
+{{- else if eq .chezmoi.os "darwin" }}
+export GOROOT="/usr/local/share/go"
 {{- end }}
 export GOPATH="$HOME/.local/go"
 export GO111MODULE="auto"
@@ -57,7 +52,7 @@ export MANPATH="$HOME/.local/share/man:$MANPATH"
 # past where some command was not accepting flags in the $EDITOR variable and so
 # the client was not working. So, I wrapped up the logic described in a simple
 # shell script. I am using it as EDITOR now.
-export EDITOR="emacs-editor"
-export VISUAL="emacs-visual"
+export EDITOR="ee"
+export VISUAL="ve"
 
 # End ~/.profile

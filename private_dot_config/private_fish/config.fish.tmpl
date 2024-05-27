@@ -29,8 +29,6 @@ set PATH "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin" $PATH
 set PATH "$HOMEBREW_PREFIX/opt/ruby/bin" "$HOMEBREW_PREFIX/lib/ruby/gems/3.1.0/bin" $PATH
 {{- end }}
 
-set -x FISH_LIBRARY_PATH $HOME/.config/fish/lib
-
 # Enable direnv hook for fish if it is installed
 if type direnv &> /dev/null
     eval (direnv hook fish)
@@ -42,15 +40,7 @@ if test -e "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.fish"
    source $HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.fish
 end
 {{- else if eq .chezmoi.os "linux" }}
-    {{- if eq .distro "fedora" }}
-if test -e "/usr/share/fzf/shell/key-bindings.fish"
-   source /usr/share/fzf/shell/key-bindings.fish
-end
-    {{- else if eq .distro "ubuntu" }}
-if test -e "/usr/share/doc/fzf/examples/key-bindings.fish"
-   source /usr/share/doc/fzf/examples/key-bindings.fish
-end
-    {{- else if eq .distro "arch" }}
+    {{- if eq .distro "arch" }}
 if test -e "/usr/share/fish/vendor_functions.d/fzf_key_bindings.fish"
    source /usr/share/fish/vendor_functions.d/fzf_key_bindings.fish
 end
@@ -89,7 +79,7 @@ alias gd='git diff'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gsl='git shortlog'
 alias ga='git shortlog -s'
-alias magit='emacs-editor -e \(magit-status\)'
+alias magit='ee -e \(magit-status\)'
 
 # Enable Human readable versions
 alias df='df --human'
@@ -105,14 +95,6 @@ alias mkdir='mkdir --verbose'
 # Kubernetes aliases
 alias kc='kubectl'
 
-# Following are the newer alternatives to some Unix tools. These aliases are
-# optional and will only be enabled if the programs are present.
-if type nvim &> /dev/null;
-   alias vi='nvim'
-   alias vim='nvim'
-   alias v='nvim'
-   alias nv='nvim'
-end
 {{- if eq .distro "debian" }}
 if type batcat &> /dev/null;
    alias cat='batcat'
@@ -127,9 +109,6 @@ if type bat &> /dev/null;
    set -x MANROFFOPT "-c"
 end
 {{- end }}
-if type prettyping &> /dev/null;
-   alias ping='prettyping'
-end
 if type fd &> /dev/null;
    alias find='fd'
 end
@@ -139,12 +118,6 @@ end
 if type lf &> /dev/null;
    alias ranger='lf'
 end
-if type lazygit &> /dev/null;
-   alias lg='lazygit'
-end
-if type exa &> /dev/null;
-   alias ls='exa --git --classify'
-end
 if type eza &> /dev/null;
    alias ls='eza --git --classify'
 end
@@ -152,11 +125,6 @@ if type just &> /dev/null;
    alias j='just'
 end
 
-# Enable default download options for Axel
-alias axel='axel -n 15 -a -k'
-
-# Enable Docker BuildKit
-set -x DOCKER_BUILDKIT 1
 
 # I use Emacs for editing text files. Emacs can also be configured to
 # work in Client-Server fashion which means reduced time for launching
@@ -167,8 +135,8 @@ set -x DOCKER_BUILDKIT 1
 # not accepting flags in the $EDITOR variable and so the client was
 # not working. So, I wrapped up the logic described in a simple shell
 # script. I am using it as EDITOR now.
-set -x EDITOR "emacs-editor"
-set -x VISUAL "emacs-visual"
+set -x EDITOR "ee"
+set -x VISUAL "ve"
 
 # I <3 Vi key-bindings.
 fish_vi_key_bindings
