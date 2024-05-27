@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Copyright 2024, Ankit R Gadiya
+# BSD License
+
+git status > /dev/null 2>&1
+if [ $? -ne 0 ]
+then
+	echo "not a git repository"; exit 1
+fi
+
+git config user.email "git@argp.in"
+git config user.signkey "3A25137FB8A87C77C5EAC226322DB2D680BAFB16"
