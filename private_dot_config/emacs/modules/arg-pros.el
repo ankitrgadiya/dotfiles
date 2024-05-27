@@ -136,6 +136,12 @@
   :config
   (require 'arg-ol-github))
 
+;; `arg-ol-gitea' adds support for Gitea Links in Orgmode.
+(use-package arg-ol-gitea
+  :after org
+  :config
+  (require 'arg-ol-gitea))
+
 ;; `org-modern' is the eye-candy package for Org-mode.
 (use-package org-modern
   :ensure t
