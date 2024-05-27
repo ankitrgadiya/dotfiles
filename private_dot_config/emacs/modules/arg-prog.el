@@ -5,6 +5,7 @@
   :hook
   (prog-mode . display-line-numbers-mode)
   (yaml-ts-mode . display-line-numbers-mode)
+  (toml-ts-mode . display-line-numbers-mode)
   :config
   ; Display relative numbers, accounting for folds.
   (setq display-line-numbers-type 'visual)
@@ -54,6 +55,7 @@
 	  (lua . ("https://github.com/tree-sitter-grammars/tree-sitter-lua"))
 	  (bash . ("https://github.com/tree-sitter/tree-sitter-bash"))
 	  (yaml . ("https://github.com/ikatyang/tree-sitter-yaml"))
+	  (toml . ("https://github.com/tree-sitter/tree-sitter-toml"))
 	  (json . ("https://github.com/tree-sitter/tree-sitter-json"))
 	  (dockerfile . ("https://github.com/camdencheek/tree-sitter-dockerfile")))))
 
@@ -163,6 +165,12 @@
   :init
   (arg-prog--install-ts-grammer 'yaml)
   :mode "\\.ya?ml\\'")
+
+;; TOML Configurations
+(use-package toml-ts-mode
+  :init
+  (arg-prog--install-ts-grammer 'toml)
+  :mode "\\.to?ml\\'")
 
 ;; JSON Configurations
 (use-package json-ts-mode
