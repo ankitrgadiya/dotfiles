@@ -221,7 +221,8 @@
 
   ;; Workspace configuration per Server
   (setq-default eglot-workspace-configuration
-				'(:gopls (:usePlaceholders t)))
+				'(:gopls (:usePlaceholders t :gofumpt t)))
+
 
   ;; Use Eglot to Format the buffer before saving.
   (defun arg-prog--format-buffer ()
