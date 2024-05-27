@@ -1,9 +1,0 @@
-# -*- mode: sh; -*-
-# Begin ~/.bash_profile
-
-# Copyright 2019-2022, Ankit R Gadiya
-# BSD License
-
-source ~/.profile
-
-# End ~/.bash_profile
