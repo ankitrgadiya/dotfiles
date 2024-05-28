@@ -69,3 +69,7 @@
 		  ("lofi hip hop radio 💤 - beats for sleep/chill" . "https://www.youtube.com/watch?v=rUxyKA_-grg")
 		  ("synthwave radio 🌌 - beats for chill/game" . "https://www.youtube.com/watch?v=4xDzrJKXOOY")
 		  ("dark ambient radio 🌃 - music for escape/dream" . "https://www.youtube.com/watch?v=S_MOd40zlYU"))))
+
+;; `ellama' brings the Large language models in Emacs.
+(use-package ellama
+  :ensure t)
