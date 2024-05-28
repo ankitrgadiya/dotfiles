@@ -59,7 +59,7 @@
 	(kbd "<leader>occ") 'org-clock-cancel)
   :config
   ;; Global Configuration
-  (setq org-directory "~/Dropbox/Org"
+  (setq org-directory "~/Nextcloud/Org"
 		org-tags-column -77
 		org-fold-catch-invisible-edits 'show-and-error
 		org-insert-heading-respect-content t
@@ -78,13 +78,13 @@
 		;; Capture Configuration
 		org-default-notes-file (concat org-directory "/inbox.org")
 		org-capture-templates
-		'(("w" "[Work] New Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Work")
+		'(("w" "[Work] New Task" entry (file+headline "~/Nextcloud/Org/inbox.org" "Work")
 		   "* TODO %?\n  %i\n  %a" :clock-in t :clock-resume t)
-		  ("m" "[Work] Meeting (Work)" entry (file+headline "~/Dropbox/Org/inbox.org" "Work")
+		  ("m" "[Work] Meeting (Work)" entry (file+headline "~/Nextcloud/Org/inbox.org" "Work")
 		   "* MEETING %?\n  %i\n  %a" :clock-in t :clock-resume t)
-		  ("p" "[Personal] New Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Personal")
+		  ("p" "[Personal] New Task" entry (file+headline "~/Nextcloud/Org/inbox.org" "Personal")
 		   "* TODO %?\n  %i\n  %a" :clock-in t :clock-resume t)
-		  ("h" "[Household] New Task" entry (file+headline "~/Dropbox/Org/inbox.org" "Household")
+		  ("h" "[Household] New Task" entry (file+headline "~/Nextcloud/Org/inbox.org" "Household")
 		   "* TODO %?\n  %i\n  %a" :clock-in t :clock-resume t))
 
 		;; Custom Faces for the TODO Keywords
