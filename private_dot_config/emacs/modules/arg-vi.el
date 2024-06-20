@@ -15,13 +15,17 @@
   (evil-set-leader 'normal (kbd "SPC"))
   (evil-set-leader 'normal (kbd "m") t)
 
+  (defun arg-vi--kill-this-buffer ()
+	(interactive)
+	(kill-buffer (current-buffer)))
+
   (require 'consult)
   (evil-define-key 'normal 'global
 	(kbd "<leader>fs") 'save-buffer
 	(kbd "<leader>ff") 'find-file
 	(kbd "<leader>bb") 'consult-buffer
 	(kbd "<leader>bB") 'ibuffer
-	(kbd "<leader>bk") 'kill-this-buffer
+	(kbd "<leader>bk") 'arg-vi--kill-this-buffer
 	(kbd "<leader>bl") 'consult-line
 	(kbd "<leader>bo") 'delete-other-windows
 	(kbd "<leader>wh") 'winner-undo
