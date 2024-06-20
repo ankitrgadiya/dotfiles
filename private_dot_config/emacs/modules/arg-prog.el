@@ -6,6 +6,7 @@
   (prog-mode . display-line-numbers-mode)
   (yaml-ts-mode . display-line-numbers-mode)
   (toml-ts-mode . display-line-numbers-mode)
+  (org-mode . display-line-numbers-mode)
   :config
   ; Display relative numbers, accounting for folds.
   (setq display-line-numbers-type 'visual)
