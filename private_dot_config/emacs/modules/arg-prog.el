@@ -76,52 +76,7 @@
   :mode (("\\.go\\'"    . go-ts-mode)
   		 ("go\\.mod\\'" . go-mod-ts-mode))
   :config
-  (setq go-ts-mode-indent-offset 4)
-  (defun arg-prog--go-test-get-functions-in-range (beg end)
-	(let* ((curnode (or (treesit-thing-at beg treesit-defun-type-regexp)
-						(treesit-thing-next beg treesit-defun-type-regexp)))
-		   (name (treesit-defun-name curnode)))
-	  ;; (if (< (treesit-node-end curnode) end)
-	  ;; 	  (cons name (arg-prog--go-test-get-functions-in-range (treesit-node-end curnode) end))
-	  ;; 	(cons name nil))))
-	  (if (or (> beg (treesit-node-end curnode))
-			  (< end (treesit-node-start curnode)))
-		  nil
-		  (cons name (arg-prog--go-test-get-functions-in-range (treesit-node-end curnode) end)))))
-  (defun arg-prog--go-test-compile (regexp dir)
-	(let ((build-tags (if (local-variable-p 'go-build-tags)
-						  (format "-tags %s" go-build-tags)
-						  "")))
-	  (compile (format "go test -v %s -run '%s' %s" build-tags regexp dir))))
-  (defun arg-prog--go-test-function-at-point ()
-	"Runs Go Test for the function at point"
-	(interactive)
-	(let ((regexp (if (region-active-p)
-					  (string-join (arg-prog--go-test-get-functions-in-range (region-beginning)
-																			 (region-end))
-								   "|")
-					(treesit-defun-name (treesit-defun-at-point)))))
-	  (arg-prog--go-test-compile regexp default-directory)))
-  (defun arg-prog--go-test-file-at-point ()
-	"Runs Go Test for the File at point"
-	(interactive)
-	(arg-prog--go-test-compile (string-join (mapcar #'car (cdr (assoc "Function"
-																	  (treesit-simple-imenu)))))))
-  (defun arg-prog--go-test-directory-at-point ()
-	"Runs Go Test for the Directory at point"
-	(interactive)
-	(compile (format "go test -v -run %s" default-directory)))
-
-  (require 'mode-local)
-  (setq-mode-local go-ts-mode adaptive-fill-regexp "[ \t]*//+[ \t]*")
-
-  (require 'evil)
-  (evil-define-key 'normal go-ts-mode-map
-	(kbd "<leader>mtt") #'arg-prog--go-test-function-at-point
-	(kbd "<leader>mtf") #'arg-prog--go-test-file-at-point
-	(kbd "<leader>mtd") #'arg-prog--go-test-directory-at-point)
-  (evil-define-key 'visual go-ts-mode-map
-	(kbd "C-c mtt") #'arg-prog--go-test-function-at-point))
+  (setq go-ts-mode-indent-offset 4))
 
 ;; Rust Configurations
 ;; Emacs 29.1 comes built-in with `rust-ts-mode'.
