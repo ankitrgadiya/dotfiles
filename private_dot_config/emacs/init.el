@@ -39,3 +39,4 @@
 (load-file (expand-file-name "modules/arg-wind.el" user-emacs-directory))
 (load-file (expand-file-name "modules/arg-pers.el" user-emacs-directory))
 (load-file (expand-file-name "modules/arg-work.el" user-emacs-directory))
+(load-file (expand-file-name "modules/arg-comm.el" user-emacs-directory))

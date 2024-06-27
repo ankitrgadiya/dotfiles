@@ -1,9 +1,5 @@
 ;;; arg-pers.el -- Personal Configurations
 
-;; `debbugs' is the GNU + Debian Bug Tracker interface for Emacs.
-(use-package debbugs
-  :ensure t)
-
 (use-package auth-source
   :config
   (setq epg-gpg-program "gpg2"
