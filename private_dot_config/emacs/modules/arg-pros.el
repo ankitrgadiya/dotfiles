@@ -28,7 +28,6 @@
 ;; `org' is the Great Outline Major mode for everything.
 (use-package org
   :ensure t
-  :defer t
   :init
   (defun arg-pros--org-work-agenda ()
 	(interactive)
@@ -128,7 +127,8 @@
 
 
   (org-clock-persistence-insinuate)
-  (require 'ox-md))
+  (require 'ox-md)
+  (require 'org-protocol))
 
 ;; `arg-ol-github' adds support for Github Links in Orgmode.
 (use-package arg-ol-github
