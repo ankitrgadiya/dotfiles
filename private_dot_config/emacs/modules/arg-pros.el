@@ -118,6 +118,8 @@
 		   ((org-agenda-tag-filter-preset '("-@work")))))
 
 		;; Org Clock
+		org-clock-in-switch-to-state "INPROGRESS"
+		org-clock-out-switch-to-state "TODO"
 		org-clock-idle-time 10
 		org-clock-persist 'history
 		org-clock-in-resume t
