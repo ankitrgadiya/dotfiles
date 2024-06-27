@@ -32,4 +32,11 @@
 
 ;; `ellama' brings the Large language models in Emacs.
 (use-package ellama
-  :ensure t)
+  :ensure t
+  :defer t)
+
+
+;; `keycast' shows the key-bindings and corresponding functions in mode-line.
+(use-package keycast
+  :ensure t
+  :defer t)
