@@ -3,12 +3,31 @@
 ;; `gnus' is the built-in news and mail reader in the Emacs.
 (use-package gnus
   :defer t
+  :init
+  ;; Use Nextcloud for storing GNUS files to sync easily.
+  (setq gnus-home-directory "~/Nextcloud/Gnus"
+		gnus-directory "~/Nextcloud/Gnus/News"
+		gnus-cache-directory "~/Nextcloud/Gnus/News/cache"
+		gnus-startup-file "~/Nextcloud/Gnus/newsrc"
+		gnus-init-file "~/Nextcloud/Gnus/gnus"
+		gnus-dribble-directory "~/Nextcloud/Gnus/dribble")
   :config
-
   ;; Enable GNUS Topic Mode for displaying sections in the Groups buffer.
   (add-hook 'gnus-group-mode-hook #'gnus-topic-mode)
+
+  ;; Close connections to server when going to sleep.
+  (when (featurep 'dbusbind)
+	(setq gnus-dbus-close-on-sleep t))
+
+
+
   (setq gnus-select-method '(nnml "")
         gnus-secondary-select-methods '((nntp "news.gmane.io"))
+
+		;; GNUS Cache
+		gnus-agent t
+		gnus-agent-cache t
+		gnus-agent-expire-days 90
 
 		;; Friendlier date format.
         gnus-user-date-format-alist '(((gnus-seconds-today) . "Today at %R")
